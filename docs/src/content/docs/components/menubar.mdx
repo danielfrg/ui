@@ -1,0 +1,25 @@
+---
+title: Menubar
+description: A horizontal menubar with dropdown menus, supporting keyboard navigation, submenus, and accessible menu items.
+---
+
+import DemoBlock from "../../../components/demo-block.astro";
+import { DemoMenubarHero } from "../../../demos/menubar/hero";
+import heroCode from "../../../demos/menubar/hero.tsx?raw";
+import menubarStyles from "../../../demos/menubar/index.module.css?raw";
+import demoTheme from "../../../demos/theme.css?raw";
+
+A horizontal menubar component that contains multiple dropdown menus with keyboard navigation, submenus, checkbox items, and radio groups.
+
+The API follows Base-UI naming conventions: `Menubar.Root` renders the top-level `role="menubar"` container, each `Menubar.Menu` is an individual dropdown menu, `Menubar.Trigger` opens it, and `Menubar.Popup` holds the content. Submenus use `Menubar.SubmenuRoot`, `Menubar.SubmenuTrigger`, and `Menubar.SubmenuPopup`.
+
+<DemoBlock
+  label="View source"
+  files={[
+    { label: "component.tsx", code: heroCode },
+    { label: "index.module.css", code: menubarStyles },
+    { label: "theme.css", code: demoTheme },
+  ]}
+>
+  <DemoMenubarHero client:load />
+</DemoBlock>

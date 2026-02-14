@@ -27,6 +27,7 @@ export default defineConfig({
 					{ label: 'Checkbox', slug: 'components/checkbox' },
 					{ label: 'Collapsible', slug: 'components/collapsible' },
 					{ label: 'Dialog', slug: 'components/dialog' },
+					{ label: 'Menubar', slug: 'components/menubar' },
 					{ label: 'Meter', slug: 'components/meter' },
 					{ label: 'Popover', slug: 'components/popover' },
 					{ label: 'Progress', slug: 'components/progress' },
