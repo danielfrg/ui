@@ -32,6 +32,11 @@
       "solid": "./src/separator/index.tsx",
       "default": "./src/separator/index.tsx"
     },
+    "./switch": {
+      "types": "./src/switch/index.tsx",
+      "solid": "./src/switch/index.tsx",
+      "default": "./src/switch/index.tsx"
+    },
     "./src/*": "./src/*"
   },
   "peerDependencies": {

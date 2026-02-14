@@ -25,6 +25,7 @@ export default defineConfig({
 						{ label: 'Checkbox', slug: 'components/checkbox' },
 						{ label: 'Meter', slug: 'components/meter' },
 						{ label: 'Separator', slug: 'components/separator' },
+						{ label: 'Switch', slug: 'components/switch' },
 					],
 				},
 			],

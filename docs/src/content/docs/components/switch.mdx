@@ -1,0 +1,23 @@
+---
+title: Switch
+description: A switch control for toggling between on and off.
+---
+
+import DemoBlock from "../../../components/demo-block.astro";
+import { DemoSwitchHero } from "../../../demos/switch/hero";
+import heroCode from "../../../demos/switch/hero.tsx?raw";
+import switchStyles from "../../../demos/switch/index.module.css?raw";
+import demoTheme from "../../../demos/theme.css?raw";
+
+A switch control for toggling between on and off.
+
+<DemoBlock
+  label="View source"
+  files={[
+    { label: "component.tsx", code: heroCode },
+    { label: "index.module.css", code: switchStyles },
+    { label: "theme.css", code: demoTheme },
+  ]}
+>
+  <DemoSwitchHero client:load />
+</DemoBlock>
