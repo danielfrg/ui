@@ -1,4 +1,5 @@
 export * as Button from "./button";
+export * as Checkbox from "./checkbox";
 export * as Meter from "./meter";
 export * as Separator from "./separator";
 export * from "./polymorphic";
