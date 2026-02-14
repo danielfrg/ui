@@ -15,4 +15,5 @@ export * from "./styles";
 export * from "./tabbable";
 export * from "./types";
 export * from "./create-generate-id";
+export * from "./create-global-listeners";
 export * from "./polygon";

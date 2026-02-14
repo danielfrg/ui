@@ -52,6 +52,11 @@
       "solid": "./src/dialog/index.tsx",
       "default": "./src/dialog/index.tsx"
     },
+    "./input": {
+      "types": "./src/input/index.tsx",
+      "solid": "./src/input/index.tsx",
+      "default": "./src/input/index.tsx"
+    },
     "./listbox": {
       "types": "./src/listbox/index.tsx",
       "solid": "./src/listbox/index.tsx",
@@ -77,10 +82,20 @@
       "solid": "./src/navigation-menu/index.tsx",
       "default": "./src/navigation-menu/index.tsx"
     },
+    "./number-field": {
+      "types": "./src/number-field/index.tsx",
+      "solid": "./src/number-field/index.tsx",
+      "default": "./src/number-field/index.tsx"
+    },
     "./popover": {
       "types": "./src/popover/index.tsx",
       "solid": "./src/popover/index.tsx",
       "default": "./src/popover/index.tsx"
+    },
+    "./preview-card": {
+      "types": "./src/preview-card/index.tsx",
+      "solid": "./src/preview-card/index.tsx",
+      "default": "./src/preview-card/index.tsx"
     },
     "./progress": {
       "types": "./src/progress/index.tsx",
