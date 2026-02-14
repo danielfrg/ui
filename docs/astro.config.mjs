@@ -23,8 +23,9 @@ export default defineConfig({
 					items: [
 						{ label: 'Button', slug: 'components/button' },
 						{ label: 'Checkbox', slug: 'components/checkbox' },
-						{ label: 'Meter', slug: 'components/meter' },
-						{ label: 'Separator', slug: 'components/separator' },
+					{ label: 'Meter', slug: 'components/meter' },
+					{ label: 'RadioGroup', slug: 'components/radio-group' },
+					{ label: 'Separator', slug: 'components/separator' },
 						{ label: 'Switch', slug: 'components/switch' },
 					],
 				},
