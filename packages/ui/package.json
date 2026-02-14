@@ -42,6 +42,11 @@
       "solid": "./src/switch/index.tsx",
       "default": "./src/switch/index.tsx"
     },
+    "./toggle-button": {
+      "types": "./src/toggle-button/index.tsx",
+      "solid": "./src/toggle-button/index.tsx",
+      "default": "./src/toggle-button/index.tsx"
+    },
     "./src/*": "./src/*"
   },
   "peerDependencies": {

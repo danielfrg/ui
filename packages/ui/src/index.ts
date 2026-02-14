@@ -4,6 +4,7 @@ export * as Meter from "./meter";
 export * as RadioGroup from "./radio-group";
 export * as Separator from "./separator";
 export * as Switch from "./switch";
+export * as ToggleButton from "./toggle-button";
 export * from "./polymorphic";
 export * from "./primitives";
 export * from "./utils";
