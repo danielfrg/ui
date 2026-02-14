@@ -1,4 +1,13 @@
+.wrapper {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-height: 320px;
+}
+
 .root {
+	position: relative;
 	background-color: var(--color-gray-50);
 	border-radius: 0.5rem;
 	padding: 0.25rem;

@@ -47,6 +47,7 @@ const handbookLinks = [
 
 export function DemoNavigationMenuHero() {
 	return (
+		<div class={styles.wrapper}>
 		<NavigationMenu.Root class={styles.root}>
 			<NavigationMenu.Menu>
 				<NavigationMenu.Trigger class={styles.trigger}>
@@ -100,6 +101,7 @@ export function DemoNavigationMenuHero() {
 
 			<NavigationMenu.Viewport class={styles.viewport} />
 		</NavigationMenu.Root>
+		</div>
 	);
 }
 
