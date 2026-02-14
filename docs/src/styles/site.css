@@ -54,11 +54,11 @@ pre {
   border-radius: 12px;
   box-shadow: var(--ui-shadow);
   margin: 1.5rem 0 2rem;
+  overflow: hidden;
 }
 
 .demo-playground {
   background-color: white;
-  border-radius: 12px 12px 0 0;
 }
 
 .demo-playground-inner {
@@ -79,7 +79,6 @@ pre {
   border-left: none;
   padding: 0;
   background: oklch(98% 0.005 247deg);
-  border-radius: 0 0 12px 12px;
 }
 
 .demo-source-summary {
