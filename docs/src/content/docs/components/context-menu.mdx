@@ -1,0 +1,27 @@
+---
+title: Context Menu
+description: A menu that appears at the pointer on right click or long press.
+---
+
+import DemoBlock from "../../../components/demo-block.astro";
+import { DemoContextMenuHero } from "../../../demos/context-menu/hero";
+import heroCode from "../../../demos/context-menu/hero.tsx?raw";
+import contextMenuStyles from "../../../demos/context-menu/index.module.css?raw";
+import demoTheme from "../../../demos/theme.css?raw";
+
+A context menu component that appears at the pointer position when the user right-clicks or long-presses on a trigger area.
+
+This component is based on Kobalte's `ContextMenu`. `ContextMenu.Root` wraps the menu, `ContextMenu.Trigger` defines the right-click area (renders a `div`), and `ContextMenu.Popup` holds the content. The menu opens at the cursor position rather than anchored to a trigger element.
+
+For a button-triggered dropdown menu, see [Menu](/components/menu/). For a horizontal menubar, see [Menubar](/components/menubar/).
+
+<DemoBlock
+  label="View source"
+  files={[
+    { label: "component.tsx", code: heroCode },
+    { label: "index.module.css", code: contextMenuStyles },
+    { label: "theme.css", code: demoTheme },
+  ]}
+>
+  <DemoContextMenuHero client:load />
+</DemoBlock>

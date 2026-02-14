@@ -3,6 +3,7 @@ export * as AlertDialog from "./alert-dialog";
 export * as Button from "./button";
 export * as Checkbox from "./checkbox";
 export * as Collapsible from "./collapsible";
+export * as ContextMenu from "./context-menu";
 export * as Dialog from "./dialog";
 export * as Menu from "./menu";
 export * as Menubar from "./menubar";

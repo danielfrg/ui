@@ -37,6 +37,11 @@
       "solid": "./src/collapsible/index.tsx",
       "default": "./src/collapsible/index.tsx"
     },
+    "./context-menu": {
+      "types": "./src/context-menu/index.tsx",
+      "solid": "./src/context-menu/index.tsx",
+      "default": "./src/context-menu/index.tsx"
+    },
     "./dialog": {
       "types": "./src/dialog/index.tsx",
       "solid": "./src/dialog/index.tsx",
