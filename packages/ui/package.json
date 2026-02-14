@@ -17,6 +17,11 @@
       "solid": "./src/accordion/index.tsx",
       "default": "./src/accordion/index.tsx"
     },
+    "./alert-dialog": {
+      "types": "./src/alert-dialog/index.tsx",
+      "solid": "./src/alert-dialog/index.tsx",
+      "default": "./src/alert-dialog/index.tsx"
+    },
     "./button": {
       "types": "./src/button/index.tsx",
       "solid": "./src/button/index.tsx",

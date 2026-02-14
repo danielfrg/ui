@@ -22,6 +22,7 @@ export default defineConfig({
 					label: 'Components',
 				items: [
 						{ label: 'Accordion', slug: 'components/accordion' },
+					{ label: 'Alert Dialog', slug: 'components/alert-dialog' },
 					{ label: 'Button', slug: 'components/button' },
 					{ label: 'Checkbox', slug: 'components/checkbox' },
 					{ label: 'Collapsible', slug: 'components/collapsible' },

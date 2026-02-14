@@ -1,4 +1,5 @@
 export * as Accordion from "./accordion";
+export * as AlertDialog from "./alert-dialog";
 export * as Button from "./button";
 export * as Checkbox from "./checkbox";
 export * as Collapsible from "./collapsible";

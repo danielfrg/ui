@@ -1,0 +1,23 @@
+---
+title: Alert Dialog
+description: A modal dialog that interrupts the user with important content and expects a response.
+---
+
+import DemoBlock from "../../../components/demo-block.astro";
+import { DemoAlertDialogHero } from "../../../demos/alert-dialog/hero";
+import heroCode from "../../../demos/alert-dialog/hero.tsx?raw";
+import alertDialogStyles from "../../../demos/alert-dialog/index.module.css?raw";
+import demoTheme from "../../../demos/theme.css?raw";
+
+A modal dialog that interrupts the user with important content and expects a response.
+
+<DemoBlock
+  label="View source"
+  files={[
+    { label: "component.tsx", code: heroCode },
+    { label: "index.module.css", code: alertDialogStyles },
+    { label: "theme.css", code: demoTheme },
+  ]}
+>
+  <DemoAlertDialogHero client:load />
+</DemoBlock>
