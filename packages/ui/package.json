@@ -47,6 +47,11 @@
       "solid": "./src/meter/index.tsx",
       "default": "./src/meter/index.tsx"
     },
+    "./popover": {
+      "types": "./src/popover/index.tsx",
+      "solid": "./src/popover/index.tsx",
+      "default": "./src/popover/index.tsx"
+    },
     "./progress": {
       "types": "./src/progress/index.tsx",
       "solid": "./src/progress/index.tsx",
@@ -83,6 +88,7 @@
     "solid-js": "^1.8.15"
   },
   "dependencies": {
+    "@floating-ui/dom": "^1.7.5",
     "@internationalized/number": "^3.6.3",
     "@solid-primitives/event-listener": "^2.4.3",
     "@solid-primitives/props": "^3.2.0",

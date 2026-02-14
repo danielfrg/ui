@@ -15,3 +15,4 @@ export * from "./styles";
 export * from "./tabbable";
 export * from "./types";
 export * from "./create-generate-id";
+export * from "./polygon";
