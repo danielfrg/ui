@@ -70,6 +70,10 @@ pre {
   gap: 12px;
 }
 
+.demo-playground-inner * {
+  margin: 0;
+}
+
 .demo-source {
   border-top: 1px solid var(--ui-line);
   border-left: none;

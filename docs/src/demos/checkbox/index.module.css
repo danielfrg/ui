@@ -6,13 +6,11 @@
 
 .label {
   font-size: 1rem;
-  margin: 0;
   line-height: 1.5rem;
   color: var(--color-gray-900);
 }
 
 .description {
-  margin: 0;
   font-size: 0.875rem;
   line-height: 1.25rem;
   color: var(--color-gray-600);
@@ -28,7 +26,6 @@
   border-radius: 0.25rem;
   outline: 0;
   padding: 0;
-  margin: 0;
   border: 1px solid var(--color-gray-300);
   background-color: transparent;
 }

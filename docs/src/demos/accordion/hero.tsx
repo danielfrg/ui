@@ -3,7 +3,7 @@ import styles from "./index.module.css";
 
 export function DemoAccordionHero() {
 	return (
-		<Accordion.Root class={styles.accordion}>
+		<Accordion.Root class={styles.accordion} collapsible>
 			<Accordion.Item value="base-ui" class={styles.item}>
 				<Accordion.Header class={styles.header}>
 					<Accordion.Trigger class={styles.trigger}>
