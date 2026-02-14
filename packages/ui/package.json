@@ -22,6 +22,11 @@
       "solid": "./src/checkbox/index.tsx",
       "default": "./src/checkbox/index.tsx"
     },
+    "./collapsible": {
+      "types": "./src/collapsible/index.tsx",
+      "solid": "./src/collapsible/index.tsx",
+      "default": "./src/collapsible/index.tsx"
+    },
     "./meter": {
       "types": "./src/meter/index.tsx",
       "solid": "./src/meter/index.tsx",
