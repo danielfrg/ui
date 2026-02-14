@@ -1,0 +1,43 @@
+.container {
+	display: flex;
+	gap: 1rem;
+	text-wrap: nowrap;
+	align-items: center;
+}
+
+.separator {
+	width: 1px;
+	align-self: stretch;
+	background-color: var(--color-gray-300);
+}
+
+.link {
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+	color: var(--color-gray-900);
+	text-decoration-color: var(--color-gray-400);
+	text-decoration-thickness: 1px;
+	text-decoration-line: none;
+	text-underline-offset: 2px;
+}
+
+:global(.sl-markdown-content) .link {
+	color: var(--color-gray-900);
+	text-decoration-color: var(--color-gray-400);
+}
+
+:global(.sl-markdown-content) .link:visited {
+	color: var(--color-gray-900);
+}
+
+@media (hover: hover) {
+	.link:hover {
+		text-decoration-line: underline;
+	}
+}
+
+.link:focus-visible {
+	border-radius: 0.125rem;
+	outline: 2px solid var(--color-blue);
+	text-decoration-line: none;
+}

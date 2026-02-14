@@ -17,6 +17,11 @@
       "solid": "./src/button/index.tsx",
       "default": "./src/button/index.tsx"
     },
+    "./separator": {
+      "types": "./src/separator/index.tsx",
+      "solid": "./src/separator/index.tsx",
+      "default": "./src/separator/index.tsx"
+    },
     "./src/*": "./src/*"
   },
   "peerDependencies": {

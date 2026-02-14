@@ -20,7 +20,10 @@ export default defineConfig({
 				},
 				{
 					label: 'Components',
-					items: [{ label: 'Button', slug: 'components/button' }],
+					items: [
+						{ label: 'Button', slug: 'components/button' },
+						{ label: 'Separator', slug: 'components/separator' },
+					],
 				},
 			],
 		}),
