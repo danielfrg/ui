@@ -1,3 +1,11 @@
+/*
+ * Portions of this file are based on code from radix-ui-primitives.
+ * MIT Licensed, Copyright (c) 2022 WorkOS.
+ *
+ * Credits to the Radix UI team:
+ * https://github.com/radix-ui/primitives/blob/81b25f4b40c54f72aeb106ca0e64e1e09655153e/packages/react/menu/src/Menu.tsx
+ */
+
 import {
 	focusWithoutScrolling,
 	mergeDefaultProps,
@@ -6,6 +14,7 @@ import {
 import {
 	type Accessor,
 	type ParentProps,
+	Show,
 	createEffect,
 	createMemo,
 	createSignal,
@@ -16,6 +25,7 @@ import {
 import createPresence from "solid-presence";
 import { createListState } from "../list";
 import { useOptionalMenuBarContext } from "./menu-bar-context";
+import { useOptionalNavigationMenuContext } from "../navigation-menu/navigation-menu-context";
 import { Popper, type PopperRootOptions } from "../popper";
 import type { Placement } from "../popper/utils";
 import {
@@ -55,6 +65,7 @@ export function InternalMenu(props: InternalMenuProps) {
 	const parentDomCollectionContext = useOptionalDomCollectionContext();
 	const parentMenuContext = useOptionalMenuContext();
 	const optionalMenuBarContext = useOptionalMenuBarContext();
+	const optionalNavigationMenuContext = useOptionalNavigationMenuContext();
 
 	const mergedProps = mergeDefaultProps(
 		{
@@ -131,7 +142,7 @@ export function InternalMenu(props: InternalMenuProps) {
 		disclosureState.toggle();
 	};
 
-	const focusContent = () => {
+	const _focusContent = () => {
 		const content = contentRef();
 
 		if (content) {
@@ -139,6 +150,12 @@ export function InternalMenu(props: InternalMenuProps) {
 			listState.selectionManager().setFocused(true);
 			listState.selectionManager().setFocusedKey(undefined);
 		}
+	};
+
+	const focusContent = () => {
+		if (optionalNavigationMenuContext != null)
+			setTimeout(() => _focusContent());
+		else _focusContent();
 	};
 
 	const registerNestedMenu = (element: HTMLElement) => {
@@ -177,8 +194,10 @@ export function InternalMenu(props: InternalMenuProps) {
 		}
 	};
 
+	// aria-hide everything except the content (better supported equivalent to setting aria-modal)
 	createHideOutside({
 		isDisabled: () => {
+			// Apply only on root menu when opened and modal.
 			return !(
 				parentMenuContext == null &&
 				disclosureState.isOpen() &&
@@ -273,12 +292,17 @@ export function InternalMenu(props: InternalMenuProps) {
 	return (
 		<DomCollectionProvider>
 			<InternalMenuContext.Provider value={context}>
-				<Popper
-					anchorRef={triggerRef}
-					contentRef={contentRef}
-					onCurrentPlacementChange={setCurrentPlacement}
-					{...others}
-				/>
+				<Show
+					when={optionalNavigationMenuContext === undefined}
+					fallback={others.children}
+				>
+					<Popper
+						anchorRef={triggerRef}
+						contentRef={contentRef}
+						onCurrentPlacementChange={setCurrentPlacement}
+						{...others}
+					/>
+				</Show>
 			</InternalMenuContext.Provider>
 		</DomCollectionProvider>
 	);

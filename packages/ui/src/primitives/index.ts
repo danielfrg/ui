@@ -10,3 +10,4 @@ export * from "./create-interact-outside";
 export * from "./create-toggle-state";
 export * from "./create-tag-name";
 export * from "./create-register-id";
+export * from "./create-size";

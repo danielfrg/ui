@@ -3,7 +3,7 @@
  * MIT Licensed, Copyright (c) 2022 WorkOS.
  *
  * Credits to the Radix UI team:
- * https://github.com/radix-ui/primitives/blob/81b25f4b40c54f72aeb106ca0e64e1e09655153e/packages/react/menubar/src/Menubar.tsx
+ * https://github.com/radix-ui/primitives/blob/ea6376900d54af536dbb7b71b4fefd6ec2ce9dc0/packages/react/menubar/src/Menubar.tsx
  */
 
 import {
@@ -11,10 +11,11 @@ import {
 	contains,
 	createGenerateId,
 	mergeDefaultProps,
+	mergeRefs,
 } from "../utils";
 import {
 	type Accessor,
-	type ParentProps,
+	type Setter,
 	type ValidComponent,
 	createEffect,
 	createMemo,
@@ -23,6 +24,7 @@ import {
 	onCleanup,
 	splitProps,
 } from "solid-js";
+import { isServer } from "solid-js/web";
 
 import { useLocale } from "../i18n";
 import {
@@ -38,23 +40,26 @@ import {
 } from "./menu-bar-context";
 
 export interface MenuBarRootOptions {
-	/** The controlled value of the currently open menu. */
-	value?: string;
-
-	/** The default value of the currently open menu when initially rendered. */
+	/** The value of the menu that should be open when initially rendered. Use when you do not need to control the value state. */
 	defaultValue?: string;
 
-	/** Event handler called when the value changes. */
-	onValueChange?: (value: string | undefined) => void;
+	/** The controlled value of the menu to open. Should be used in conjunction with onValueChange. */
+	value?: string | null;
 
-	/** Whether the menu should loop keyboard navigation. */
+	/** Event handler called when the value changes. */
+	onValueChange?: (value: string | undefined | null) => void;
+
+	/** When true, keyboard navigation will loop from last item to first, and vice versa. (default: true) */
 	loop?: boolean;
 
-	/** Whether to focus the menubar on Alt key press. */
+	/** When true, click on alt by itself will focus this Menubar (some browsers interfere) */
 	focusOnAlt?: boolean;
 
 	/** Whether to auto-focus the menu when it opens. */
 	autoFocusMenu?: boolean;
+
+	/** Event handler called when the autoFocusMenu state changes. */
+	onAutoFocusMenuChange?: Setter<boolean>;
 
 	/** The orientation of the menubar. */
 	orientation?: Orientation;
@@ -97,215 +102,178 @@ export function MenuBarRoot<T extends ValidComponent = "div">(
 	props: PolymorphicProps<T, MenuBarRootProps<T>>,
 ) {
 	let ref: HTMLElement | undefined;
-
 	const defaultId = `menubar-${createUniqueId()}`;
 
-	const { direction } = useLocale();
-
 	const mergedProps = mergeDefaultProps(
-		{
-			id: defaultId,
-			loop: true,
-			orientation: "horizontal" as Orientation,
-		},
+		{ id: defaultId, loop: true, orientation: "horizontal" as Orientation },
 		props as MenuBarRootProps,
 	);
 
-	const [local, others] = splitProps(mergedProps, [
-		"ref",
-		"value",
-		"defaultValue",
-		"onValueChange",
-		"loop",
-		"focusOnAlt",
-		"autoFocusMenu",
-		"orientation",
-		"disabled",
-		"forceMount",
-	]);
+	const [local, others] = splitProps(
+		mergedProps as typeof mergedProps & { id: string },
+		[
+			"ref",
+			"value",
+			"defaultValue",
+			"onValueChange",
+			"loop",
+			"focusOnAlt",
+			"autoFocusMenu",
+			"onAutoFocusMenuChange",
+			"orientation",
+			"disabled",
+			"forceMount",
+		],
+	);
 
-	const [value, setValue] = createControllableSignal<string>({
-		value: () => local.value,
-		defaultValue: () => local.defaultValue,
-		onChange: (value) => local.onValueChange?.(value),
-	});
+	const [value, setValue] = createControllableSignal<string | null | undefined>(
+		{
+			value: () => local.value,
+			defaultValue: () => local.defaultValue,
+			onChange: (value) => local.onValueChange?.(value),
+		},
+	);
 
-	const [autoFocusMenu, setAutoFocusMenu] = createControllableSignal<boolean>({
+	const [lastValue, setLastValue] = createSignal<string | undefined>();
+
+	const [menuRefs, setMenuRefs] = createSignal<
+		Map<string, Array<HTMLElement>>
+	>(new Map<string, Array<HTMLElement>>());
+
+	const [autoFocusMenu, setAutoFocusMenu] = createControllableSignal({
 		value: () => local.autoFocusMenu,
 		defaultValue: () => false,
+		onChange: local.onAutoFocusMenuChange,
 	});
 
-	const [lastValue, setLastValue] = createSignal<
-		string | (() => string | undefined) | undefined
-	>();
-
-	const menus = new Set<string>();
-	const menuRefs = new Map<string, Element[]>();
-	const menuRefMap = new Map<string, HTMLElement | undefined>();
-
-	const registerMenu = (menuValue: string, refs: Element[]) => {
-		menus.add(menuValue);
-		menuRefs.set(menuValue, refs);
-
-		const triggerEl = document.querySelector(
-			`[data-kb-menu-value-trigger="${menuValue}"]`,
-		);
-		menuRefMap.set(menuValue, triggerEl as HTMLElement | undefined);
+	const expanded = () => {
+		return value() && autoFocusMenu() && !value()?.includes("link-trigger-");
 	};
 
-	const unregisterMenu = (menuValue: string) => {
-		menus.delete(menuValue);
-		menuRefs.delete(menuValue);
-		menuRefMap.delete(menuValue);
+	const dataset: Accessor<MenuBarDataSet> = createMemo(() => ({
+		"data-expanded": expanded() ? "" : undefined,
+		"data-closed": !expanded() ? "" : undefined,
+	}));
+
+	const context: MenuBarContextValue = {
+		dataset,
+		value,
+		setValue,
+		lastValue,
+		setLastValue,
+		menus: () => new Set([...menuRefs().keys()]),
+		menuRefs: () => [...menuRefs().values()].flat(),
+		menuRefMap: () => menuRefs(),
+		registerMenu: (menuValue, refs) => {
+			setMenuRefs((prev) => {
+				const map = new Map<string, Array<HTMLElement>>();
+				prev.forEach((v, k) => map.set(k, v));
+				map.set(menuValue, refs);
+				return map;
+			});
+		},
+		unregisterMenu: (menuValue: string) => {
+			setMenuRefs((prev) => {
+				prev.delete(menuValue);
+				const map = new Map<string, Array<HTMLElement>>();
+				prev.forEach((v, k) => map.set(k, v));
+				return map;
+			});
+		},
+		nextMenu: () => {
+			const menusArray = [...menuRefs().keys()];
+
+			if (value() == null) {
+				setValue(menusArray[0]);
+				return;
+			}
+
+			const currentIndex = menusArray.indexOf(value()!);
+
+			if (currentIndex === menusArray.length - 1) {
+				if (local.loop) setValue(menusArray[0]);
+				return;
+			}
+
+			setValue(menusArray[currentIndex + 1]);
+		},
+		previousMenu: () => {
+			const menusArray = [...menuRefs().keys()];
+
+			if (value() == null) {
+				setValue(menusArray[0]);
+				return;
+			}
+
+			const currentIndex = menusArray.indexOf(value()!);
+
+			if (currentIndex === 0) {
+				if (local.loop) setValue(menusArray[menusArray.length - 1]);
+				return;
+			}
+
+			setValue(menusArray[currentIndex - 1]);
+		},
+		closeMenu: () => {
+			setAutoFocusMenu(false);
+			setValue(undefined);
+		},
+		autoFocusMenu: () => autoFocusMenu()!,
+		setAutoFocusMenu,
+		generateId: createGenerateId(() => others.id!),
+		orientation: () => local.orientation!,
 	};
 
-	const getMenuValues = () => [...menus];
-
-	const getNextMenu = (currentValue: string) => {
-		const values = getMenuValues();
-		const currentIndex = values.indexOf(currentValue);
-		if (currentIndex === -1) return values[0];
-		const nextIndex = currentIndex + 1;
-		if (nextIndex >= values.length) {
-			return local.loop ? values[0] : values[currentIndex];
-		}
-		return values[nextIndex];
-	};
-
-	const getPreviousMenu = (currentValue: string) => {
-		const values = getMenuValues();
-		const currentIndex = values.indexOf(currentValue);
-		if (currentIndex === -1) return values[values.length - 1];
-		const prevIndex = currentIndex - 1;
-		if (prevIndex < 0) {
-			return local.loop ? values[values.length - 1] : values[currentIndex];
-		}
-		return values[prevIndex];
-	};
-
-	const nextMenu = () => {
-		const currentVal = typeof value() === "function" ? (value() as any)() : value();
-		const lastVal = typeof lastValue() === "function" ? (lastValue() as any)() : lastValue();
-		const resolvedValue = currentVal ?? lastVal;
-
-		if (!resolvedValue) return;
-
-		const next = getNextMenu(resolvedValue);
-		if (next) {
-			setValue(next as any);
-			setLastValue(next as any);
-		}
-	};
-
-	const previousMenu = () => {
-		const currentVal = typeof value() === "function" ? (value() as any)() : value();
-		const lastVal = typeof lastValue() === "function" ? (lastValue() as any)() : lastValue();
-		const resolvedValue = currentVal ?? lastVal;
-
-		if (!resolvedValue) return;
-
-		const prev = getPreviousMenu(resolvedValue);
-		if (prev) {
-			setValue(prev as any);
-			setLastValue(prev as any);
-		}
-	};
-
-	const closeMenu = () => {
-		setAutoFocusMenu(false as any);
-		setValue(undefined as any);
-	};
+	createEffect(() => {
+		if (value() == null) setAutoFocusMenu(false);
+	});
 
 	createInteractOutside(
 		{
 			onInteractOutside: () => {
-				closeMenu();
+				context.closeMenu();
+				setTimeout(() => context.closeMenu());
 			},
-			shouldExcludeElement: (el) => {
-				// Don't close if clicking on a menu trigger or content
-				for (const [, refs] of menuRefs) {
-					for (const menuRef of refs) {
-						if (menuRef && contains(menuRef, el)) {
-							return true;
-						}
-					}
-				}
-
-				// Don't close if clicking on a trigger
-				for (const [, triggerEl] of menuRefMap) {
-					if (triggerEl && contains(triggerEl, el)) {
-						return true;
-					}
-				}
-
-				return false;
+			shouldExcludeElement: (element) => {
+				return [ref, ...menuRefs().values()]
+					.flat()
+					.some((r) => r && contains(r, element));
 			},
 		},
 		() => ref,
 	);
 
-	// Handle Alt key focus
+	const keydownHandler = (e: KeyboardEvent) => {
+		if (e.key === "Alt") {
+			e.preventDefault();
+			e.stopPropagation();
+			if (context.value() === undefined) context.nextMenu();
+			else context.closeMenu();
+		}
+	};
+
 	createEffect(() => {
-		if (!local.focusOnAlt) return;
-
-		const handleKeyDown = (e: KeyboardEvent) => {
-			if (e.key === "Alt") {
-				e.preventDefault();
-				const values = getMenuValues();
-				const resolvedLastValue = typeof lastValue() === "function" ? (lastValue() as any)() : lastValue();
-				if (value() !== undefined) {
-					closeMenu();
-				} else if (resolvedLastValue) {
-					setValue(resolvedLastValue as any);
-				} else if (values.length > 0) {
-					setValue(values[0]! as any);
-					setLastValue(values[0]! as any);
-				}
-			}
-		};
-
-		document.addEventListener("keydown", handleKeyDown);
+		if (isServer) return;
+		if (local.focusOnAlt) window.addEventListener("keydown", keydownHandler);
+		else window.removeEventListener("keydown", keydownHandler);
 
 		onCleanup(() => {
-			document.removeEventListener("keydown", handleKeyDown);
+			window.removeEventListener("keydown", keydownHandler);
 		});
 	});
 
-	const dataset: Accessor<MenuBarDataSet> = createMemo(() => ({
-		"data-expanded": value() !== undefined ? "" : undefined,
-		"data-closed": value() === undefined ? "" : undefined,
-	}));
-
-	const context: MenuBarContextValue = {
-		dataset,
-		value: value as Accessor<string | undefined>,
-		setValue: setValue as any,
-		menus: () => menus,
-		menuRefs: () => menuRefs,
-		menuRefMap: () => menuRefMap,
-		lastValue,
-		setLastValue,
-		registerMenu,
-		unregisterMenu,
-		nextMenu,
-		previousMenu,
-		closeMenu,
-		autoFocusMenu: () => autoFocusMenu() ?? false,
-		setAutoFocusMenu: (v: boolean) => setAutoFocusMenu(v as any),
-		generateId: createGenerateId(() => mergedProps.id!),
-		orientation: () => local.orientation ?? "horizontal",
-	};
+	createEffect(() => {
+		if (value() != null) setLastValue(value()!);
+	});
 
 	return (
 		<MenuBarContext.Provider value={context}>
 			<Polymorphic<MenuBarRootRenderProps>
 				as="div"
-				ref={(el: HTMLElement) => {
-					ref = el;
-				}}
+				ref={mergeRefs((el: HTMLElement) => (ref = el), local.ref)}
 				role="menubar"
-				data-orientation={local.orientation}
-				aria-orientation={local.orientation}
+				data-orientation={local.orientation!}
+				aria-orientation={local.orientation!}
 				{...dataset()}
 				{...others}
 			/>

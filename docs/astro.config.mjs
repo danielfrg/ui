@@ -30,6 +30,7 @@ export default defineConfig({
 				{ label: 'Dialog', slug: 'components/dialog' },
 					{ label: 'Menu', slug: 'components/menu' },
 				{ label: 'Menubar', slug: 'components/menubar' },
+				{ label: 'Navigation Menu', slug: 'components/navigation-menu' },
 					{ label: 'Meter', slug: 'components/meter' },
 					{ label: 'Popover', slug: 'components/popover' },
 					{ label: 'Progress', slug: 'components/progress' },

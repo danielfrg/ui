@@ -62,6 +62,11 @@
       "solid": "./src/meter/index.tsx",
       "default": "./src/meter/index.tsx"
     },
+    "./navigation-menu": {
+      "types": "./src/navigation-menu/index.tsx",
+      "solid": "./src/navigation-menu/index.tsx",
+      "default": "./src/navigation-menu/index.tsx"
+    },
     "./popover": {
       "types": "./src/popover/index.tsx",
       "solid": "./src/popover/index.tsx",

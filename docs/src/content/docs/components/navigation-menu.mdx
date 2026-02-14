@@ -1,0 +1,25 @@
+---
+title: Navigation Menu
+description: A navigation menu with hover-to-open menus, animated content transitions, and viewport-based positioning.
+---
+
+import DemoBlock from "../../../components/demo-block.astro";
+import { DemoNavigationMenuHero } from "../../../demos/navigation-menu/hero";
+import heroCode from "../../../demos/navigation-menu/hero.tsx?raw";
+import navMenuStyles from "../../../demos/navigation-menu/index.module.css?raw";
+import demoTheme from "../../../demos/theme.css?raw";
+
+A navigation menu component commonly used for site-wide navigation. Menus open on hover with configurable delay, support animated content transitions between items, and position content using a shared viewport.
+
+`NavigationMenu.Root` wraps everything in a `<nav>` with `<ul role="menubar">`. Each `NavigationMenu.Menu` groups a `NavigationMenu.Trigger` and `NavigationMenu.Content`. Content is portalled into a `NavigationMenu.Viewport` for smooth animated transitions between menus. The `data-motion` attribute on content (`from-start`, `from-end`, `to-start`, `to-end`) enables directional animation.
+
+<DemoBlock
+  label="View source"
+  files={[
+    { label: "component.tsx", code: heroCode },
+    { label: "index.module.css", code: navMenuStyles },
+    { label: "theme.css", code: demoTheme },
+  ]}
+>
+  <DemoNavigationMenuHero client:load />
+</DemoBlock>

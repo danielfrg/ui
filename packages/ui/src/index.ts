@@ -8,6 +8,7 @@ export * as Dialog from "./dialog";
 export * as Menu from "./menu";
 export * as Menubar from "./menubar";
 export * as Meter from "./meter";
+export * as NavigationMenu from "./navigation-menu";
 export * as Popover from "./popover";
 export * as Progress from "./progress";
 export * as RadioGroup from "./radio-group";
