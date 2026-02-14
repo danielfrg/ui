@@ -32,6 +32,11 @@
       "solid": "./src/checkbox/index.tsx",
       "default": "./src/checkbox/index.tsx"
     },
+    "./combobox": {
+      "types": "./src/combobox/index.tsx",
+      "solid": "./src/combobox/index.tsx",
+      "default": "./src/combobox/index.tsx"
+    },
     "./collapsible": {
       "types": "./src/collapsible/index.tsx",
       "solid": "./src/collapsible/index.tsx",
@@ -46,6 +51,11 @@
       "types": "./src/dialog/index.tsx",
       "solid": "./src/dialog/index.tsx",
       "default": "./src/dialog/index.tsx"
+    },
+    "./listbox": {
+      "types": "./src/listbox/index.tsx",
+      "solid": "./src/listbox/index.tsx",
+      "default": "./src/listbox/index.tsx"
     },
     "./menu": {
       "types": "./src/menu/index.tsx",
@@ -82,10 +92,20 @@
       "solid": "./src/radio-group/index.tsx",
       "default": "./src/radio-group/index.tsx"
     },
+    "./select": {
+      "types": "./src/select/index.tsx",
+      "solid": "./src/select/index.tsx",
+      "default": "./src/select/index.tsx"
+    },
     "./separator": {
       "types": "./src/separator/index.tsx",
       "solid": "./src/separator/index.tsx",
       "default": "./src/separator/index.tsx"
+    },
+    "./slider": {
+      "types": "./src/slider/index.tsx",
+      "solid": "./src/slider/index.tsx",
+      "default": "./src/slider/index.tsx"
     },
     "./switch": {
       "types": "./src/switch/index.tsx",
@@ -116,6 +136,7 @@
     "@floating-ui/dom": "^1.7.5",
     "@internationalized/number": "^3.6.3",
     "@solid-primitives/event-listener": "^2.4.3",
+    "@solid-primitives/keyed": "^1.5.3",
     "@solid-primitives/props": "^3.2.0",
     "@solid-primitives/refs": "^1.0.5",
     "@solid-primitives/utils": "^6.3.2",
