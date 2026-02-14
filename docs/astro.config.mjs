@@ -20,14 +20,15 @@ export default defineConfig({
 				},
 				{
 					label: 'Components',
-					items: [
-					{ label: 'Button', slug: 'components/button' },
-					{ label: 'Checkbox', slug: 'components/checkbox' },
-					{ label: 'Meter', slug: 'components/meter' },
-					{ label: 'RadioGroup', slug: 'components/radio-group' },
-					{ label: 'Separator', slug: 'components/separator' },
-					{ label: 'Switch', slug: 'components/switch' },
-					{ label: 'Toggle', slug: 'components/toggle-button' },
+				items: [
+						{ label: 'Button', slug: 'components/button' },
+						{ label: 'Checkbox', slug: 'components/checkbox' },
+						{ label: 'Meter', slug: 'components/meter' },
+						{ label: 'RadioGroup', slug: 'components/radio-group' },
+						{ label: 'Separator', slug: 'components/separator' },
+						{ label: 'Switch', slug: 'components/switch' },
+						{ label: 'Toggle', slug: 'components/toggle-button' },
+						{ label: 'ToggleGroup', slug: 'components/toggle-group' },
 					],
 				},
 			],

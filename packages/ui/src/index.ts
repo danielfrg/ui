@@ -5,6 +5,7 @@ export * as RadioGroup from "./radio-group";
 export * as Separator from "./separator";
 export * as Switch from "./switch";
 export * as ToggleButton from "./toggle-button";
+export * as ToggleGroup from "./toggle-group";
 export * from "./polymorphic";
 export * from "./primitives";
 export * from "./utils";

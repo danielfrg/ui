@@ -47,6 +47,11 @@
       "solid": "./src/toggle-button/index.tsx",
       "default": "./src/toggle-button/index.tsx"
     },
+    "./toggle-group": {
+      "types": "./src/toggle-group/index.tsx",
+      "solid": "./src/toggle-group/index.tsx",
+      "default": "./src/toggle-group/index.tsx"
+    },
     "./src/*": "./src/*"
   },
   "peerDependencies": {
