@@ -23,6 +23,7 @@ export default defineConfig({
 				items: [
 					{ label: 'Accordion', slug: 'components/accordion' },
 				{ label: 'Alert Dialog', slug: 'components/alert-dialog' },
+					{ label: 'Autocomplete', slug: 'components/autocomplete' },
 					{ label: 'Avatar', slug: 'components/avatar' },
 					{ label: 'Button', slug: 'components/button' },
 				{ label: 'Checkbox', slug: 'components/checkbox' },

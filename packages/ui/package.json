@@ -22,6 +22,11 @@
       "solid": "./src/alert-dialog/index.tsx",
       "default": "./src/alert-dialog/index.tsx"
     },
+    "./autocomplete": {
+      "types": "./src/autocomplete/index.tsx",
+      "solid": "./src/autocomplete/index.tsx",
+      "default": "./src/autocomplete/index.tsx"
+    },
     "./avatar": {
       "types": "./src/avatar/index.tsx",
       "solid": "./src/avatar/index.tsx",
