@@ -22,6 +22,11 @@
       "solid": "./src/alert-dialog/index.tsx",
       "default": "./src/alert-dialog/index.tsx"
     },
+    "./avatar": {
+      "types": "./src/avatar/index.tsx",
+      "solid": "./src/avatar/index.tsx",
+      "default": "./src/avatar/index.tsx"
+    },
     "./button": {
       "types": "./src/button/index.tsx",
       "solid": "./src/button/index.tsx",
