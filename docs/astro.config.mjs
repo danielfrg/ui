@@ -28,6 +28,7 @@ export default defineConfig({
 					{ label: 'Collapsible', slug: 'components/collapsible' },
 					{ label: 'Dialog', slug: 'components/dialog' },
 					{ label: 'Meter', slug: 'components/meter' },
+					{ label: 'Progress', slug: 'components/progress' },
 						{ label: 'RadioGroup', slug: 'components/radio-group' },
 						{ label: 'Separator', slug: 'components/separator' },
 						{ label: 'Switch', slug: 'components/switch' },

@@ -1,0 +1,23 @@
+---
+title: Progress
+description: A progress bar element for displaying determinate or indeterminate progress of an operation.
+---
+
+import DemoBlock from "../../../components/demo-block.astro";
+import { DemoProgressHero } from "../../../demos/progress/hero";
+import heroCode from "../../../demos/progress/hero.tsx?raw";
+import progressStyles from "../../../demos/progress/index.module.css?raw";
+import demoTheme from "../../../demos/theme.css?raw";
+
+A progress bar element for displaying determinate or indeterminate progress of an operation.
+
+<DemoBlock
+  label="View source"
+  files={[
+    { label: "component.tsx", code: heroCode },
+    { label: "index.module.css", code: progressStyles },
+    { label: "theme.css", code: demoTheme },
+  ]}
+>
+  <DemoProgressHero client:load />
+</DemoBlock>

@@ -47,6 +47,11 @@
       "solid": "./src/meter/index.tsx",
       "default": "./src/meter/index.tsx"
     },
+    "./progress": {
+      "types": "./src/progress/index.tsx",
+      "solid": "./src/progress/index.tsx",
+      "default": "./src/progress/index.tsx"
+    },
     "./radio-group": {
       "types": "./src/radio-group/index.tsx",
       "solid": "./src/radio-group/index.tsx",

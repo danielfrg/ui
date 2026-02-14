@@ -5,6 +5,7 @@ export * as Checkbox from "./checkbox";
 export * as Collapsible from "./collapsible";
 export * as Dialog from "./dialog";
 export * as Meter from "./meter";
+export * as Progress from "./progress";
 export * as RadioGroup from "./radio-group";
 export * as Separator from "./separator";
 export * as Switch from "./switch";
