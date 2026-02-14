@@ -1,37 +1,46 @@
 import * as Toast from "@danielfrg/ui/toast";
-import * as Button from "@danielfrg/ui/button";
 import styles from "./index.module.css";
+
+let count = 0;
 
 export function DemoToastHero() {
 	return (
 		<>
-			<Button.Root
+			<button
 				class={styles.trigger}
-				onClick={() =>
+				onClick={() => {
+					count++;
+					const n = count;
 					Toast.toaster.show((props) => (
-						<Toast.Root toastId={props.toastId} class={styles.root}>
+						<Toast.Root toastId={props.toastId} class={styles.toast}>
 							<div class={styles.content}>
 								<Toast.Title class={styles.title}>
-									Event has been created
+									Toast {n} created
 								</Toast.Title>
 								<Toast.Description class={styles.description}>
-									Monday, January 3rd at 6:00pm
+									This is a toast notification.
 								</Toast.Description>
 							</div>
-							<Toast.CloseButton class={styles.closeButton}>
+							<Toast.CloseButton
+								class={styles.closeButton}
+								onPointerDown={(e: PointerEvent) => {
+									// Stop the toast root's swipe handler from capturing this
+									e.stopPropagation();
+								}}
+							>
 								<CloseIcon />
 							</Toast.CloseButton>
 							<Toast.ProgressTrack class={styles.progressTrack}>
 								<Toast.ProgressFill class={styles.progressFill} />
 							</Toast.ProgressTrack>
 						</Toast.Root>
-					))
-				}
+					));
+				}}
 			>
-				Show Toast
-			</Button.Root>
+				Create toast
+			</button>
 
-			<Toast.Region>
+			<Toast.Region limit={5} swipeDirection="right">
 				<Toast.List class={styles.list} />
 			</Toast.Region>
 		</>
