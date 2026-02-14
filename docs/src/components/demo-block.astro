@@ -1,0 +1,28 @@
+---
+import CodeTabs from "./code-tabs.astro";
+
+interface DemoFile {
+	label: string;
+	code: string;
+}
+
+interface Props {
+	files: DemoFile[];
+	defaultOpen?: boolean;
+	label?: string;
+}
+
+const { files, defaultOpen = false, label = "Source" } = Astro.props;
+---
+
+<section class="demo-card">
+	<div class="demo-playground">
+		<div class="demo-playground-inner">
+			<slot />
+		</div>
+	</div>
+	<details class="demo-source" open={defaultOpen}>
+		<summary class="demo-source-summary">{label}</summary>
+		<CodeTabs files={files} />
+	</details>
+</section>

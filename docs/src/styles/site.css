@@ -1,0 +1,166 @@
+@import "../demos/theme.css";
+
+:root {
+  --ui-background: oklch(98.5% 0.002 250deg);
+  --ui-foreground: oklch(22% 0.01 255deg);
+  --ui-muted: oklch(52% 0.01 255deg);
+  --ui-line: oklch(90% 0.005 255deg);
+  --ui-accent: oklch(55% 0.18 264deg);
+  --ui-shadow: 0 0.5px 1px oklch(0% 0 0 / 12%), 0 1px 3px -1px oklch(0% 0 0 / 5%), 0 2px 4px -1px oklch(0% 0 0 / 5%);
+  --font-sans: "Space Grotesk", "Satoshi", "Avenir Next", "Segoe UI", sans-serif;
+  --font-mono: "SF Mono", "Menlo", "DejaVu Sans Mono", "Consolas", "Inconsolata", monospace;
+
+  --sl-color-bg: var(--ui-background);
+  --sl-color-bg-nav: oklch(97.5% 0.003 255deg);
+  --sl-color-bg-sidebar: oklch(97.5% 0.003 255deg);
+  --sl-color-text: var(--ui-foreground);
+  --sl-color-text-accent: var(--ui-accent);
+  --sl-color-accent: var(--ui-accent);
+  --sl-color-border: var(--ui-line);
+}
+
+body {
+  font-family: var(--font-sans);
+  background: linear-gradient(180deg, var(--ui-background), oklch(96.5% 0.003 255deg));
+  color: var(--ui-foreground);
+}
+
+code,
+pre {
+  font-family: var(--font-mono);
+}
+
+.sl-markdown-content a {
+  color: var(--ui-accent);
+}
+
+.sl-markdown-content h1,
+.sl-markdown-content h2,
+.sl-markdown-content h3,
+.sl-markdown-content h4 {
+  letter-spacing: -0.02em;
+}
+
+.demo-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.demo-card {
+  background-color: white;
+  border: 1px solid var(--ui-line);
+  border-radius: 12px;
+  box-shadow: var(--ui-shadow);
+  margin: 1.5rem 0 2rem;
+  overflow: hidden;
+}
+
+.demo-playground {
+  background-color: white;
+}
+
+.demo-playground-inner {
+  padding: 2.5rem 1.5rem;
+  min-height: 8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.demo-source {
+  border-top: 1px solid var(--ui-line);
+  border-left: none;
+  padding: 0;
+  background: oklch(98% 0.005 247deg);
+}
+
+.demo-source-summary {
+  list-style: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  color: var(--ui-muted);
+  padding: 0.5rem 1.5rem;
+  margin: 0;
+  user-select: none;
+  border-bottom: 1px solid transparent;
+}
+
+.demo-source-summary::-webkit-details-marker {
+  display: none;
+}
+
+.demo-source[open] .demo-source-summary {
+  border-bottom-color: var(--ui-line);
+  color: var(--ui-foreground);
+}
+
+.demo-source-summary:hover {
+  background: oklch(97% 0.01 247deg);
+}
+
+.code-tabs {
+  margin: 0;
+}
+
+.code-tabs-header {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  border-bottom: 1px solid var(--ui-line);
+  background: var(--color-gray-50);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.code-tab {
+  border: 1px solid transparent;
+  background: transparent;
+  font-size: 0.8125rem;
+  color: var(--ui-muted);
+  margin: 0;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition:
+    background 120ms ease,
+    color 120ms ease,
+    border-color 120ms ease;
+}
+
+.code-tab[aria-selected="true"] {
+  color: var(--ui-foreground);
+  border-color: var(--ui-line);
+  background: white;
+}
+
+.code-tab:hover:not([aria-selected="true"]) {
+  background: var(--color-gray-100);
+}
+
+.code-panel {
+  display: none;
+  padding: 0;
+  margin: 0;
+  overflow: auto;
+}
+
+.code-panel[data-active] {
+  display: block;
+}
+
+.code-panel pre {
+  border: 0;
+}
+
+.code-panel :global(.expressive-code) {
+  margin: 0;
+  border: none;
+  box-shadow: none;
+}
+
+.code-panel :global(.expressive-code .frame) {
+  padding: 0.75rem 0.75rem 1rem;
+}

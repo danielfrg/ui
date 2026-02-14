@@ -1,0 +1,59 @@
+---
+title: Button
+description: An accessible, unstyled Solid button component.
+---
+
+import DemoBlock from "../../../components/demo-block.astro";
+import { DemoButtonHero } from "../../../demos/button/hero";
+import { DemoButtonLoading } from "../../../demos/button/loading";
+import { DemoButtonAsTag } from "../../../demos/button/as-tag.tsx";
+import heroCode from "../../../demos/button/hero.tsx?raw";
+import loadingCode from "../../../demos/button/loading.tsx?raw";
+import asTagCode from "../../../demos/button/as-tag.tsx?raw";
+import buttonStyles from "../../../demos/button/index.module.css?raw";
+import demoTheme from "../../../demos/theme.css?raw";
+
+A button component that can be rendered as another tag or focusable when disabled.
+
+<DemoBlock
+  label="View source"
+  files={[
+    { label: "component.tsx", code: heroCode },
+    { label: "index.module.css", code: buttonStyles },
+    { label: "theme.css", code: demoTheme },
+  ]}
+>
+  <DemoButtonHero client:load />
+</DemoBlock>
+
+## Examples
+
+### Rendering as another tag
+
+The button can remain keyboard accessible while being rendered as another tag, such as a `<div>`, by specifying `as`.
+
+<DemoBlock
+  label="View source"
+  files={[
+    { label: "component.tsx", code: asTagCode },
+    { label: "index.module.css", code: buttonStyles },
+    { label: "theme.css", code: demoTheme },
+  ]}
+>
+  <DemoButtonAsTag client:load />
+</DemoBlock>
+
+### Loading states
+
+For buttons that enter a loading state after being clicked, ensure focus remains on the button when it becomes disabled to prevent focus loss.
+
+<DemoBlock
+  label="View source"
+  files={[
+    { label: "component.tsx", code: loadingCode },
+    { label: "index.module.css", code: buttonStyles },
+    { label: "theme.css", code: demoTheme },
+  ]}
+>
+  <DemoButtonLoading client:load />
+</DemoBlock>

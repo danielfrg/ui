@@ -1,0 +1,77 @@
+---
+import { Code } from "@astrojs/starlight/components";
+
+interface CodeFile {
+	label: string;
+	code: string;
+}
+
+interface Props {
+	files: CodeFile[];
+	initialTab?: string;
+}
+
+const { files, initialTab } = Astro.props;
+const normalizedFiles = files.map((file) => ({
+	...file,
+	code: file.code.replace(/^\s*\n/, "").trimEnd(),
+}));
+const activeTab = initialTab ?? normalizedFiles[0]?.label ?? "source";
+const getLang = (label: string) => {
+	if (label.endsWith(".tsx")) return "tsx";
+	if (label.endsWith(".ts")) return "ts";
+	if (label.endsWith(".css")) return "css";
+	return "txt";
+};
+---
+
+<div class="code-tabs" data-code-tabs data-tab={activeTab}>
+	<div class="code-tabs-header" role="tablist" aria-label="Source files">
+		{normalizedFiles.map((file) => (
+			<button
+				class="code-tab"
+				type="button"
+				data-tab={file.label}
+				aria-selected={file.label === activeTab ? "true" : "false"}
+				role="tab"
+			>
+				{file.label}
+			</button>
+		))}
+	</div>
+	{normalizedFiles.map((file) => (
+		<div
+			class="code-panel"
+			data-tab-panel={file.label}
+			role="tabpanel"
+			data-active={file.label === activeTab ? "" : undefined}
+		>
+			<Code code={file.code} lang={getLang(file.label)} />
+		</div>
+	))}
+</div>
+
+<script is:inline>
+	(() => {
+		const root = document.currentScript?.previousElementSibling;
+		if (!root) return;
+		const tabs = root.querySelectorAll(".code-tab");
+		const panels = root.querySelectorAll(".code-panel");
+		const setActive = (label) => {
+			if (!label) return;
+			root.setAttribute("data-tab", label);
+			tabs.forEach((tab) => {
+				const isActive = tab.getAttribute("data-tab") === label;
+				tab.setAttribute("aria-selected", isActive ? "true" : "false");
+			});
+			panels.forEach((panel) => {
+				const isActive = panel.getAttribute("data-tab-panel") === label;
+				panel.toggleAttribute("data-active", isActive);
+			});
+		};
+		setActive(root.getAttribute("data-tab"));
+		tabs.forEach((tab) => {
+			tab.addEventListener("click", () => setActive(tab.getAttribute("data-tab")));
+		});
+	})();
+</script>
