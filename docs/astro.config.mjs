@@ -35,6 +35,7 @@ export default defineConfig({
 						{ label: 'Switch', slug: 'components/switch' },
 						{ label: 'Toggle', slug: 'components/toggle-button' },
 						{ label: 'ToggleGroup', slug: 'components/toggle-group' },
+						{ label: 'Tooltip', slug: 'components/tooltip' },
 					],
 				},
 			],

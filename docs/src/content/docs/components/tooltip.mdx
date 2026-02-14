@@ -1,0 +1,23 @@
+---
+title: Tooltip
+description: A popup that displays information related to an element when hovered or focused.
+---
+
+import DemoBlock from "../../../components/demo-block.astro";
+import { DemoTooltipHero } from "../../../demos/tooltip/hero";
+import heroCode from "../../../demos/tooltip/hero.tsx?raw";
+import tooltipStyles from "../../../demos/tooltip/index.module.css?raw";
+import demoTheme from "../../../demos/theme.css?raw";
+
+A popup that displays information related to an element when hovered or focused.
+
+<DemoBlock
+  label="View source"
+  files={[
+    { label: "component.tsx", code: heroCode },
+    { label: "index.module.css", code: tooltipStyles },
+    { label: "theme.css", code: demoTheme },
+  ]}
+>
+  <DemoTooltipHero client:load />
+</DemoBlock>

@@ -82,6 +82,11 @@
       "solid": "./src/toggle-group/index.tsx",
       "default": "./src/toggle-group/index.tsx"
     },
+    "./tooltip": {
+      "types": "./src/tooltip/index.tsx",
+      "solid": "./src/tooltip/index.tsx",
+      "default": "./src/tooltip/index.tsx"
+    },
     "./src/*": "./src/*"
   },
   "peerDependencies": {
