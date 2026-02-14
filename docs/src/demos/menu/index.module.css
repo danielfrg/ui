@@ -1,0 +1,125 @@
+.trigger {
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.375rem;
+	height: 2.5rem;
+	padding: 0 0.875rem;
+	border: 1px solid var(--color-gray-200);
+	border-radius: 0.375rem;
+	background-color: var(--color-gray-50);
+	font-family: inherit;
+	font-size: 1rem;
+	font-weight: 500;
+	line-height: 1.5rem;
+	color: var(--color-gray-900);
+	user-select: none;
+	cursor: default;
+	outline: 0;
+
+	@media (hover: hover) {
+		&:hover {
+			background-color: var(--color-gray-100);
+		}
+	}
+
+	&:active {
+		background-color: var(--color-gray-100);
+	}
+
+	&[data-expanded] {
+		background-color: var(--color-gray-100);
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--color-blue);
+		outline-offset: -1px;
+	}
+}
+
+.trigger-icon {
+	margin-right: -0.25rem;
+}
+
+.popup {
+	box-sizing: border-box;
+	padding-block: 0.25rem;
+	border-radius: 0.375rem;
+	background-color: var(--color-gray-50);
+	border: 1px solid var(--color-gray-200);
+	color: var(--color-gray-900);
+	outline: none;
+	box-shadow:
+		0 10px 15px -3px var(--color-gray-200),
+		0 4px 6px -4px var(--color-gray-200);
+	animation: popupHide 150ms ease forwards;
+	z-index: 50;
+}
+
+.popup[data-expanded] {
+	animation: popupShow 150ms ease;
+}
+
+.arrow {
+	--size: 14px;
+
+	width: var(--size);
+	height: var(--size);
+}
+
+.item {
+	outline: 0;
+	cursor: default;
+	user-select: none;
+	padding-block: 0.5rem;
+	padding-left: 1rem;
+	padding-right: 2rem;
+	display: flex;
+	font-size: 0.875rem;
+	line-height: 1rem;
+
+	&[data-highlighted] {
+		z-index: 0;
+		position: relative;
+		color: var(--color-gray-50);
+	}
+
+	&[data-highlighted]::before {
+		content: "";
+		z-index: -1;
+		position: absolute;
+		inset-block: 0;
+		inset-inline: 0.25rem;
+		border-radius: 0.25rem;
+		background-color: var(--color-gray-900);
+	}
+}
+
+.separator {
+	margin: 0.375rem 1rem;
+	height: 1px;
+	background-color: var(--color-gray-200);
+}
+
+@keyframes popupShow {
+	from {
+		opacity: 0;
+		transform: scale(0.96);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+@keyframes popupHide {
+	from {
+		opacity: 1;
+		transform: scale(1);
+	}
+	to {
+		opacity: 0;
+		transform: scale(0.96);
+	}
+}

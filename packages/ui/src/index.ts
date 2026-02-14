@@ -4,6 +4,7 @@ export * as Button from "./button";
 export * as Checkbox from "./checkbox";
 export * as Collapsible from "./collapsible";
 export * as Dialog from "./dialog";
+export * as Menu from "./menu";
 export * as Menubar from "./menubar";
 export * as Meter from "./meter";
 export * as Popover from "./popover";

@@ -42,6 +42,11 @@
       "solid": "./src/dialog/index.tsx",
       "default": "./src/dialog/index.tsx"
     },
+    "./menu": {
+      "types": "./src/menu/index.tsx",
+      "solid": "./src/menu/index.tsx",
+      "default": "./src/menu/index.tsx"
+    },
     "./menubar": {
       "types": "./src/menubar/index.tsx",
       "solid": "./src/menubar/index.tsx",
