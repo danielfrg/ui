@@ -12,6 +12,11 @@
       "solid": "./src/index.ts",
       "default": "./src/index.ts"
     },
+    "./accordion": {
+      "types": "./src/accordion/index.tsx",
+      "solid": "./src/accordion/index.tsx",
+      "default": "./src/accordion/index.tsx"
+    },
     "./button": {
       "types": "./src/button/index.tsx",
       "solid": "./src/button/index.tsx",

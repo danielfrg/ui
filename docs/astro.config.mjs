@@ -21,7 +21,8 @@ export default defineConfig({
 				{
 					label: 'Components',
 				items: [
-						{ label: 'Button', slug: 'components/button' },
+						{ label: 'Accordion', slug: 'components/accordion' },
+					{ label: 'Button', slug: 'components/button' },
 					{ label: 'Checkbox', slug: 'components/checkbox' },
 					{ label: 'Collapsible', slug: 'components/collapsible' },
 					{ label: 'Meter', slug: 'components/meter' },
