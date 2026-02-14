@@ -1,4 +1,4 @@
-.demo-card {
+:root {
 	--color-blue: oklch(45% 50% 264deg);
 	--color-red: oklch(50% 55% 31deg);
 	--color-gray-50: oklch(98% 0.25% 264deg);
@@ -15,7 +15,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-	.demo-card {
+	:root {
 		--color-blue: oklch(69% 50% 264deg);
 		--color-red: oklch(80% 55% 31deg);
 		--color-gray-50: oklch(17% 0.25% 264deg);

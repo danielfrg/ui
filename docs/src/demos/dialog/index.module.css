@@ -35,25 +35,33 @@
 
 .overlay {
 	position: fixed;
-	min-height: 100dvh;
 	inset: 0;
-	background-color: black;
-	opacity: 0.2;
 	z-index: 50;
+	background-color: rgb(0 0 0 / 0.2);
+	animation: overlayHide 150ms ease forwards;
+}
+
+.overlay[data-expanded] {
+	animation: overlayShow 150ms ease;
 }
 
 @media (prefers-color-scheme: dark) {
 	.overlay {
-		opacity: 0.7;
+		background-color: rgb(0 0 0 / 0.7);
 	}
+}
+
+.positioner {
+	position: fixed;
+	inset: 0;
+	z-index: 50;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .content {
 	box-sizing: border-box;
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
 	width: 24rem;
 	max-width: calc(100vw - 3rem);
 	padding: 1.5rem;
@@ -61,7 +69,11 @@
 	outline: 1px solid var(--color-gray-200);
 	background-color: var(--color-gray-50);
 	color: var(--color-gray-900);
-	z-index: 50;
+	animation: contentHide 150ms ease forwards;
+}
+
+.content[data-expanded] {
+	animation: contentShow 150ms ease;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -90,4 +102,44 @@
 	display: flex;
 	justify-content: end;
 	gap: 1rem;
+}
+
+@keyframes overlayShow {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes overlayHide {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
+@keyframes contentShow {
+	from {
+		opacity: 0;
+		transform: scale(0.96);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+@keyframes contentHide {
+	from {
+		opacity: 1;
+		transform: scale(1);
+	}
+	to {
+		opacity: 0;
+		transform: scale(0.96);
+	}
 }
