@@ -1,3 +1,10 @@
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-bottom: 280px;
+}
+
 .root {
 	display: flex;
 	justify-content: center;
@@ -48,6 +55,9 @@
 }
 
 .viewport {
+	position: absolute;
+	top: 100%;
+	left: 0;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -62,11 +72,10 @@
 	opacity: 0;
 	overflow-x: clip;
 	overflow-y: visible;
-	transform-origin: var(--kb-menu-content-transform-origin);
+	transform-origin: top center;
 	transition:
-		width,
-		height,
-		250ms ease;
+		width 250ms ease,
+		height 250ms ease;
 	animation: viewport-hide 250ms ease-in forwards;
 	pointer-events: none;
 }

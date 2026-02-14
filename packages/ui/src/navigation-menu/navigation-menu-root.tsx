@@ -208,7 +208,7 @@ export function NavigationMenuRoot<T extends ValidComponent = "ul">(
 				onCurrentPlacementChange={setCurrentPlacement}
 				{...popperProps}
 			>
-				<nav>
+				<nav style={{ position: "relative" }}>
 					<MenuBarRoot<
 						Component<
 							Omit<NavigationMenuRootRenderProps, keyof MenuBarRootRenderProps>

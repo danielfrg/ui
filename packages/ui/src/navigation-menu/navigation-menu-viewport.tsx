@@ -150,7 +150,6 @@ export function NavigationMenuViewport<T extends ValidComponent = "li">(
 						"--kb-navigation-menu-viewport-width": width()
 							? `${width()}px`
 							: undefined,
-						position: "relative",
 					},
 					local.style,
 				)}
