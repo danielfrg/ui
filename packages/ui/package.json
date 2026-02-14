@@ -32,6 +32,11 @@
       "solid": "./src/collapsible/index.tsx",
       "default": "./src/collapsible/index.tsx"
     },
+    "./dialog": {
+      "types": "./src/dialog/index.tsx",
+      "solid": "./src/dialog/index.tsx",
+      "default": "./src/dialog/index.tsx"
+    },
     "./meter": {
       "types": "./src/meter/index.tsx",
       "solid": "./src/meter/index.tsx",
@@ -73,6 +78,7 @@
     "@solid-primitives/props": "^3.2.0",
     "@solid-primitives/refs": "^1.0.5",
     "@solid-primitives/utils": "^6.3.2",
-    "solid-presence": "^0.1.8"
+    "solid-presence": "^0.1.8",
+    "solid-prevent-scroll": "^0.1.10"
   }
 }
