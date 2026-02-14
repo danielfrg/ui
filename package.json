@@ -9,7 +9,8 @@
   "scripts": {
     "dev:docs": "bun run --cwd docs dev",
     "format": "prettier --ignore-unknown --write .",
-    "test": "vitest"
+    "test": "vitest",
+    "typecheck": "tsc -p packages/ui/tsconfig.json --noEmit"
   },
   "devDependencies": {
     "@solidjs/testing-library": "^0.8.6",

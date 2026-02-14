@@ -28,11 +28,11 @@ export function installPointerEvent() {
 					return this._init.pointerId;
 				}
 
-				get pageX() {
+				override get pageX() {
 					return this._init.pageX;
 				}
 
-				get pageY() {
+				override get pageY() {
 					return this._init.pageY;
 				}
 
