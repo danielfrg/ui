@@ -19,6 +19,7 @@ export * as Separator from "./separator";
 export * as Slider from "./slider";
 export * as Switch from "./switch";
 export * as Tabs from "./tabs";
+export * as Toast from "./toast";
 export * as ToggleButton from "./toggle-button";
 export * as ToggleGroup from "./toggle-group";
 export * as Tooltip from "./tooltip";

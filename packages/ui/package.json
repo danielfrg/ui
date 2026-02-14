@@ -117,6 +117,11 @@
       "solid": "./src/tabs/index.tsx",
       "default": "./src/tabs/index.tsx"
     },
+    "./toast": {
+      "types": "./src/toast/index.tsx",
+      "solid": "./src/toast/index.tsx",
+      "default": "./src/toast/index.tsx"
+    },
     "./toggle-button": {
       "types": "./src/toggle-button/index.tsx",
       "solid": "./src/toggle-button/index.tsx",
