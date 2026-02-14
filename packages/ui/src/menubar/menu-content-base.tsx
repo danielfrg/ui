@@ -31,6 +31,7 @@ import {
 	Polymorphic,
 	type PolymorphicProps,
 } from "../polymorphic";
+import { useOptionalNavigationMenuContext } from "../navigation-menu/navigation-menu-context";
 import { Popper } from "../popper";
 import {
 	type FocusOutsideEvent,
@@ -87,6 +88,7 @@ export function MenuContentBase<T extends ValidComponent = "div">(
 	const rootContext = useMenuRootContext();
 	const context = useMenuContext();
 	const optionalMenuBarContext = useOptionalMenuBarContext();
+	const optionalNavigationMenuContext = useOptionalNavigationMenuContext();
 
 	const { direction } = useLocale();
 
@@ -283,36 +285,51 @@ export function MenuContentBase<T extends ValidComponent = "div">(
 
 	return (
 		<Show when={context.contentPresent()}>
-			<Popper.Positioner>
-				<DismissableLayer<
-					Component<
-						Omit<
-							MenuContentBaseRenderProps,
-							keyof DismissableLayerRenderProps
+			<Show
+				when={
+					optionalNavigationMenuContext === undefined ||
+					context.parentMenuContext() != null
+				}
+				fallback={
+					<Polymorphic<MenuContentBaseRenderProps>
+						as="div"
+						{...context.dataset()}
+						{...commonAttributes}
+						{...others}
+					/>
+				}
+			>
+				<Popper.Positioner>
+					<DismissableLayer<
+						Component<
+							Omit<
+								MenuContentBaseRenderProps,
+								keyof DismissableLayerRenderProps
+							>
 						>
 					>
-				>
-					disableOutsidePointerEvents={
-						isRootModalContent() && context.isOpen()
-					}
-					excludedElements={[context.triggerRef]}
-					bypassTopMostLayerCheck
-					style={combineStyle(
-						{
-							"--kb-menu-content-transform-origin":
-								"var(--kb-popper-content-transform-origin)",
-							position: "relative",
-						},
-						local.style,
-					)}
-					onEscapeKeyDown={onEscapeKeyDown}
-					onFocusOutside={onFocusOutside}
-					onDismiss={context.close}
-					{...context.dataset()}
-					{...commonAttributes}
-					{...others}
-				/>
-			</Popper.Positioner>
+						disableOutsidePointerEvents={
+							isRootModalContent() && context.isOpen()
+						}
+						excludedElements={[context.triggerRef]}
+						bypassTopMostLayerCheck
+						style={combineStyle(
+							{
+								"--kb-menu-content-transform-origin":
+									"var(--kb-popper-content-transform-origin)",
+								position: "relative",
+							},
+							local.style,
+						)}
+						onEscapeKeyDown={onEscapeKeyDown}
+						onFocusOutside={onFocusOutside}
+						onDismiss={context.close}
+						{...context.dataset()}
+						{...commonAttributes}
+						{...others}
+					/>
+				</Popper.Positioner>
+			</Show>
 		</Show>
 	);
 }
