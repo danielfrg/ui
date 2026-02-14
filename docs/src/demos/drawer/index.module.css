@@ -1,0 +1,153 @@
+/* ===== Shared ===== */
+
+.button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.5rem 1rem;
+	font-size: 0.875rem;
+	font-weight: 500;
+	border-radius: 0.375rem;
+	border: 1px solid var(--color-gray-300);
+	background-color: white;
+	color: var(--color-gray-900);
+	cursor: pointer;
+	outline: none;
+}
+
+.button:hover {
+	background-color: var(--color-gray-100);
+}
+
+.button:focus-visible {
+	outline: 2px solid var(--color-blue);
+	outline-offset: 2px;
+}
+
+.title {
+	margin: 0;
+	font-size: 1.125rem;
+	font-weight: 600;
+	color: var(--color-gray-900);
+}
+
+.description {
+	margin: 0.5rem 0 0;
+	font-size: 0.875rem;
+	line-height: 1.5;
+	color: var(--color-gray-600);
+}
+
+.actions {
+	display: flex;
+	gap: 0.5rem;
+	margin-top: 1.5rem;
+}
+
+/* ===== Backdrop ===== */
+
+.backdrop {
+	position: fixed;
+	inset: 0;
+	background-color: rgba(0, 0, 0, 0.2);
+	z-index: 50;
+	transition: opacity 300ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.backdrop[data-expanded] {
+	opacity: 1;
+}
+
+.backdrop[data-closed] {
+	opacity: 0;
+}
+
+/* ===== Popup (shared base) ===== */
+
+.popup {
+	position: fixed;
+	z-index: 50;
+	display: flex;
+	flex-direction: column;
+	background-color: white;
+	outline: none;
+	transition:
+		transform 300ms cubic-bezier(0.32, 0.72, 0, 1),
+		opacity 300ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.popup[data-swiping] {
+	transition-duration: 0ms;
+}
+
+/* ===== Right side drawer ===== */
+
+.popup-right {
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 20rem;
+	max-width: 85vw;
+	padding: 1.5rem;
+	border-left: 1px solid var(--color-gray-200);
+	transform: translateX(calc(var(--drawer-swipe-movement-x)));
+}
+
+.popup-right[data-expanded] {
+	transform: translateX(var(--drawer-swipe-movement-x));
+}
+
+.popup-right[data-closed] {
+	transform: translateX(100%);
+}
+
+/* ===== Bottom sheet ===== */
+
+.popup-bottom {
+	left: 0;
+	right: 0;
+	bottom: 0;
+	max-height: 80vh;
+	padding: 1rem 1.5rem 1.5rem;
+	border-radius: 1rem 1rem 0 0;
+	border-top: 1px solid var(--color-gray-200);
+	text-align: center;
+	transform: translateY(var(--drawer-swipe-movement-y));
+}
+
+.popup-bottom[data-expanded] {
+	transform: translateY(var(--drawer-swipe-movement-y));
+}
+
+.popup-bottom[data-closed] {
+	transform: translateY(100%);
+}
+
+.popup-bottom .title {
+	margin-top: 0.5rem;
+}
+
+/* ===== Non-modal variant ===== */
+
+.popup-non-modal {
+	box-shadow:
+		-4px 0 16px -4px rgba(0, 0, 0, 0.08),
+		-8px 0 24px -4px rgba(0, 0, 0, 0.04);
+}
+
+.popup-non-modal[data-closed] {
+	box-shadow:
+		-4px 0 16px -4px transparent,
+		-8px 0 24px -4px transparent;
+}
+
+/* ===== Handle (bottom sheet drag indicator) ===== */
+
+.handle {
+	width: 3rem;
+	height: 0.25rem;
+	border-radius: 9999px;
+	background-color: var(--color-gray-300);
+	margin: 0 auto 0.75rem;
+	flex-shrink: 0;
+}

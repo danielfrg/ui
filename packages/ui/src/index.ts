@@ -8,6 +8,7 @@ export * as Collapsible from "./collapsible";
 export * as Combobox from "./combobox";
 export * as ContextMenu from "./context-menu";
 export * as Dialog from "./dialog";
+export * as Drawer from "./drawer";
 export * as Input from "./input";
 export * as Listbox from "./listbox";
 export * as Menu from "./menu";

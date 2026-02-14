@@ -62,6 +62,11 @@
       "solid": "./src/dialog/index.tsx",
       "default": "./src/dialog/index.tsx"
     },
+    "./drawer": {
+      "types": "./src/drawer/index.tsx",
+      "solid": "./src/drawer/index.tsx",
+      "default": "./src/drawer/index.tsx"
+    },
     "./input": {
       "types": "./src/input/index.tsx",
       "solid": "./src/input/index.tsx",

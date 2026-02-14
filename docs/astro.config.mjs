@@ -31,6 +31,7 @@ export default defineConfig({
 			{ label: 'Combobox', slug: 'components/combobox' },
 			{ label: 'Context Menu', slug: 'components/context-menu' },
 			{ label: 'Dialog', slug: 'components/dialog' },
+			{ label: 'Drawer', slug: 'components/drawer' },
 			{ label: 'Input', slug: 'components/input' },
 				{ label: 'Menu', slug: 'components/menu' },
 			{ label: 'Menubar', slug: 'components/menubar' },

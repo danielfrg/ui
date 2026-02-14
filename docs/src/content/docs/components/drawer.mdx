@@ -1,0 +1,62 @@
+---
+title: Drawer
+description: A panel that slides in from the edge of the screen.
+---
+
+import DemoBlock from "../../../components/demo-block.astro";
+import { DemoDrawerHero } from "../../../demos/drawer/hero";
+import { DemoDrawerPosition } from "../../../demos/drawer/position";
+import { DemoDrawerNonModal } from "../../../demos/drawer/non-modal";
+import heroCode from "../../../demos/drawer/hero.tsx?raw";
+import positionCode from "../../../demos/drawer/position.tsx?raw";
+import nonModalCode from "../../../demos/drawer/non-modal.tsx?raw";
+import drawerStyles from "../../../demos/drawer/index.module.css?raw";
+import demoTheme from "../../../demos/theme.css?raw";
+
+A panel that slides in from the edge of the screen, built on top of Dialog primitives.
+Supports swipe-to-dismiss on touch devices, four side positions, and both modal and non-modal modes.
+
+## Side drawer
+
+A drawer that slides in from the right side of the screen.
+
+<DemoBlock
+  label="View source"
+  files={[
+    { label: "component.tsx", code: heroCode },
+    { label: "index.module.css", code: drawerStyles },
+    { label: "theme.css", code: demoTheme },
+  ]}
+>
+  <DemoDrawerHero client:load />
+</DemoBlock>
+
+## Bottom sheet
+
+Use `side="bottom"` to create a bottom sheet drawer with a drag handle.
+
+<DemoBlock
+  label="View source"
+  files={[
+    { label: "component.tsx", code: positionCode },
+    { label: "index.module.css", code: drawerStyles },
+    { label: "theme.css", code: demoTheme },
+  ]}
+>
+  <DemoDrawerPosition client:load />
+</DemoBlock>
+
+## Non-modal
+
+Set `modal={false}` to allow interaction with the rest of the page while the drawer is open. No backdrop is rendered.
+
+<DemoBlock
+  label="View source"
+  files={[
+    { label: "component.tsx", code: nonModalCode },
+    { label: "index.module.css", code: drawerStyles },
+    { label: "theme.css", code: demoTheme },
+  ]}
+>
+  <DemoDrawerNonModal client:load />
+</DemoBlock>
