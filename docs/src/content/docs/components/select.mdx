@@ -1,0 +1,23 @@
+---
+title: Select
+description: A dropdown menu for selecting a value from a list of options.
+---
+
+import DemoBlock from "../../../components/demo-block.astro";
+import { DemoSelectHero } from "../../../demos/select/hero";
+import heroCode from "../../../demos/select/hero.tsx?raw";
+import selectStyles from "../../../demos/select/index.module.css?raw";
+import demoTheme from "../../../demos/theme.css?raw";
+
+A dropdown menu for selecting a value from a list of options.
+
+<DemoBlock
+  label="View source"
+  files={[
+    { label: "component.tsx", code: heroCode },
+    { label: "index.module.css", code: selectStyles },
+    { label: "theme.css", code: demoTheme },
+  ]}
+>
+  <DemoSelectHero client:load />
+</DemoBlock>

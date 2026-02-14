@@ -1,0 +1,23 @@
+---
+title: Slider
+description: A slider input for selecting a numeric value within a range.
+---
+
+import DemoBlock from "../../../components/demo-block.astro";
+import { DemoSliderHero } from "../../../demos/slider/hero";
+import heroCode from "../../../demos/slider/hero.tsx?raw";
+import sliderStyles from "../../../demos/slider/index.module.css?raw";
+import demoTheme from "../../../demos/theme.css?raw";
+
+A slider input for selecting a numeric value within a range.
+
+<DemoBlock
+  label="View source"
+  files={[
+    { label: "component.tsx", code: heroCode },
+    { label: "index.module.css", code: sliderStyles },
+    { label: "theme.css", code: demoTheme },
+  ]}
+>
+  <DemoSliderHero client:load />
+</DemoBlock>
