@@ -10,6 +10,7 @@
     "dev:docs": "bun run --cwd docs dev",
     "format": "prettier --ignore-unknown --write .",
     "test": "vitest",
+    "test:run": "vitest --run --reporter=dot",
     "typecheck": "tsc -p packages/ui/tsconfig.json --noEmit"
   },
   "devDependencies": {

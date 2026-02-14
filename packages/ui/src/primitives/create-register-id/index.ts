@@ -1,2 +1,1 @@
-export * from "./create-tag-name";
 export * from "./create-register-id";

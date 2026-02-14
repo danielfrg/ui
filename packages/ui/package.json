@@ -17,6 +17,11 @@
       "solid": "./src/button/index.tsx",
       "default": "./src/button/index.tsx"
     },
+    "./meter": {
+      "types": "./src/meter/index.tsx",
+      "solid": "./src/meter/index.tsx",
+      "default": "./src/meter/index.tsx"
+    },
     "./separator": {
       "types": "./src/separator/index.tsx",
       "solid": "./src/separator/index.tsx",
@@ -28,6 +33,9 @@
     "solid-js": "^1.8.15"
   },
   "dependencies": {
-    "@solid-primitives/refs": "^1.0.5"
+    "@internationalized/number": "^3.6.3",
+    "@solid-primitives/props": "^3.2.0",
+    "@solid-primitives/refs": "^1.0.5",
+    "@solid-primitives/utils": "^6.3.2"
   }
 }

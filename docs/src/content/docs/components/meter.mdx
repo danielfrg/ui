@@ -1,0 +1,23 @@
+---
+title: Meter
+description: A meter element for displaying a value within a range.
+---
+
+import DemoBlock from "../../../components/demo-block.astro";
+import { DemoMeterHero } from "../../../demos/meter/hero";
+import heroCode from "../../../demos/meter/hero.tsx?raw";
+import meterStyles from "../../../demos/meter/index.module.css?raw";
+import demoTheme from "../../../demos/theme.css?raw";
+
+A meter element for displaying a value within a range.
+
+<DemoBlock
+  label="View source"
+  files={[
+    { label: "component.tsx", code: heroCode },
+    { label: "index.module.css", code: meterStyles },
+    { label: "theme.css", code: demoTheme },
+  ]}
+>
+  <DemoMeterHero client:load />
+</DemoBlock>

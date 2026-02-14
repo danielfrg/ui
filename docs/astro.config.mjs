@@ -22,6 +22,7 @@ export default defineConfig({
 					label: 'Components',
 					items: [
 						{ label: 'Button', slug: 'components/button' },
+						{ label: 'Meter', slug: 'components/meter' },
 						{ label: 'Separator', slug: 'components/separator' },
 					],
 				},
