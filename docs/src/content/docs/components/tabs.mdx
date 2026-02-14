@@ -1,0 +1,23 @@
+---
+title: Tabs
+description: A set of layered sections of content that display one panel at a time.
+---
+
+import DemoBlock from "../../../components/demo-block.astro";
+import { DemoTabsHero } from "../../../demos/tabs/hero";
+import heroCode from "../../../demos/tabs/hero.tsx?raw";
+import tabsStyles from "../../../demos/tabs/index.module.css?raw";
+import demoTheme from "../../../demos/theme.css?raw";
+
+A set of layered sections of content, known as tab panels, that display one panel of content at a time.
+
+<DemoBlock
+  label="View source"
+  files={[
+    { label: "component.tsx", code: heroCode },
+    { label: "index.module.css", code: tabsStyles },
+    { label: "theme.css", code: demoTheme },
+  ]}
+>
+  <DemoTabsHero client:load />
+</DemoBlock>
