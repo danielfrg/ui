@@ -1,0 +1,23 @@
+---
+title: Fieldset
+description: Groups related form fields together with a legend.
+---
+
+import DemoBlock from "../../../components/demo-block.astro";
+import { DemoFieldsetHero } from "../../../demos/fieldset/hero";
+import heroCode from "../../../demos/fieldset/hero.tsx?raw";
+import fieldsetStyles from "../../../demos/fieldset/index.module.css?raw";
+import demoTheme from "../../../demos/theme.css?raw";
+
+Groups related form fields together with a legend. Renders a native `<fieldset>` element.
+
+<DemoBlock
+  label="View source"
+  files={[
+    { label: "component.tsx", code: heroCode },
+    { label: "index.module.css", code: fieldsetStyles },
+    { label: "theme.css", code: demoTheme },
+  ]}
+>
+  <DemoFieldsetHero client:load />
+</DemoBlock>

@@ -67,6 +67,21 @@
       "solid": "./src/drawer/index.tsx",
       "default": "./src/drawer/index.tsx"
     },
+    "./field": {
+      "types": "./src/field/index.tsx",
+      "solid": "./src/field/index.tsx",
+      "default": "./src/field/index.tsx"
+    },
+    "./fieldset": {
+      "types": "./src/fieldset/index.tsx",
+      "solid": "./src/fieldset/index.tsx",
+      "default": "./src/fieldset/index.tsx"
+    },
+    "./form": {
+      "types": "./src/form/index.tsx",
+      "solid": "./src/form/index.tsx",
+      "default": "./src/form/index.tsx"
+    },
     "./input": {
       "types": "./src/input/index.tsx",
       "solid": "./src/input/index.tsx",
