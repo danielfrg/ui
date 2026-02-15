@@ -10,6 +10,8 @@ export function DemoDrawerNonModal() {
 			<Drawer.Portal>
 				<Drawer.Popup
 					class={`${styles.popup} ${styles["popup-right"]} ${styles["popup-non-modal"]}`}
+					onPointerDownOutside={(e) => e.preventDefault()}
+					onInteractOutside={(e) => e.preventDefault()}
 				>
 					<Drawer.Title class={styles.title}>Non-modal drawer</Drawer.Title>
 					<Drawer.Description class={styles.description}>

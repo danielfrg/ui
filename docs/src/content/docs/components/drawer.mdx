@@ -7,9 +7,11 @@ import DemoBlock from "../../../components/demo-block.astro";
 import { DemoDrawerHero } from "../../../demos/drawer/hero";
 import { DemoDrawerPosition } from "../../../demos/drawer/position";
 import { DemoDrawerNonModal } from "../../../demos/drawer/non-modal";
+import { DemoDrawerMobileNav } from "../../../demos/drawer/mobile-nav";
 import heroCode from "../../../demos/drawer/hero.tsx?raw";
 import positionCode from "../../../demos/drawer/position.tsx?raw";
 import nonModalCode from "../../../demos/drawer/non-modal.tsx?raw";
+import mobileNavCode from "../../../demos/drawer/mobile-nav.tsx?raw";
 import drawerStyles from "../../../demos/drawer/index.module.css?raw";
 import demoTheme from "../../../demos/theme.css?raw";
 
@@ -59,4 +61,19 @@ Set `modal={false}` to allow interaction with the rest of the page while the dra
   ]}
 >
   <DemoDrawerNonModal client:load />
+</DemoBlock>
+
+## Mobile navigation
+
+A full-screen bottom sheet with a scrollable list of navigation items. Uses the ScrollArea component for a custom scrollbar.
+
+<DemoBlock
+  label="View source"
+  files={[
+    { label: "component.tsx", code: mobileNavCode },
+    { label: "index.module.css", code: drawerStyles },
+    { label: "theme.css", code: demoTheme },
+  ]}
+>
+  <DemoDrawerMobileNav client:load />
 </DemoBlock>

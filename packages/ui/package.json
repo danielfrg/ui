@@ -122,6 +122,11 @@
       "solid": "./src/radio-group/index.tsx",
       "default": "./src/radio-group/index.tsx"
     },
+    "./scroll-area": {
+      "types": "./src/scroll-area/index.tsx",
+      "solid": "./src/scroll-area/index.tsx",
+      "default": "./src/scroll-area/index.tsx"
+    },
     "./select": {
       "types": "./src/select/index.tsx",
       "solid": "./src/select/index.tsx",

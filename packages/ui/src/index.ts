@@ -20,6 +20,7 @@ export * as Popover from "./popover";
 export * as PreviewCard from "./preview-card";
 export * as Progress from "./progress";
 export * as RadioGroup from "./radio-group";
+export * as ScrollArea from "./scroll-area";
 export * as Select from "./select";
 export * as Separator from "./separator";
 export * as Slider from "./slider";
