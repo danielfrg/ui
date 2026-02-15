@@ -49,6 +49,7 @@ import {
 	type DialogTriggerRenderProps,
 	DialogTrigger as Trigger,
 } from "./dialog-trigger";
+import { createDialogHandle, type DialogHandle } from "./dialog-handle";
 
 export type {
 	DialogCloseButtonOptions,
@@ -78,6 +79,7 @@ export type {
 	DialogTriggerRenderProps,
 	DialogTriggerOptions,
 	DialogTriggerProps,
+	DialogHandle,
 };
 
 export {
@@ -89,6 +91,7 @@ export {
 	Root,
 	Title,
 	Trigger,
+	createDialogHandle,
 };
 
 export const Dialog = Object.assign(Root, {
@@ -99,6 +102,7 @@ export const Dialog = Object.assign(Root, {
 	Portal,
 	Title,
 	Trigger,
+	createHandle: createDialogHandle,
 });
 
 export { useDialogContext, type DialogContextValue } from "./dialog-context";

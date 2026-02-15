@@ -5,7 +5,13 @@ description: A modal dialog that interrupts the user with important content and 
 
 import DemoBlock from "../../../components/demo-block.astro";
 import { DemoAlertDialogHero } from "../../../demos/alert-dialog/hero";
+import { DemoAlertDialogCloseConfirmation } from "../../../demos/alert-dialog/close-confirmation";
+import { DemoAlertDialogDetachedTriggers } from "../../../demos/alert-dialog/detached-triggers";
+import { DemoAlertDialogMultipleTriggers } from "../../../demos/alert-dialog/multiple-triggers";
 import heroCode from "../../../demos/alert-dialog/hero.tsx?raw";
+import closeConfirmationCode from "../../../demos/alert-dialog/close-confirmation.tsx?raw";
+import detachedTriggersCode from "../../../demos/alert-dialog/detached-triggers.tsx?raw";
+import multipleTriggersCode from "../../../demos/alert-dialog/multiple-triggers.tsx?raw";
 import alertDialogStyles from "../../../demos/alert-dialog/index.module.css?raw";
 import demoTheme from "../../../demos/theme.css?raw";
 
@@ -20,4 +26,43 @@ A modal dialog that interrupts the user with important content and expects a res
   ]}
 >
   <DemoAlertDialogHero client:load />
+</DemoBlock>
+
+Close confirmation.
+
+<DemoBlock
+  label="View source"
+  files={[
+    { label: "component.tsx", code: closeConfirmationCode },
+    { label: "index.module.css", code: alertDialogStyles },
+    { label: "theme.css", code: demoTheme },
+  ]}
+>
+  <DemoAlertDialogCloseConfirmation client:load />
+</DemoBlock>
+
+Detached triggers.
+
+<DemoBlock
+  label="View source"
+  files={[
+    { label: "component.tsx", code: detachedTriggersCode },
+    { label: "index.module.css", code: alertDialogStyles },
+    { label: "theme.css", code: demoTheme },
+  ]}
+>
+  <DemoAlertDialogDetachedTriggers client:load />
+</DemoBlock>
+
+Multiple triggers.
+
+<DemoBlock
+  label="View source"
+  files={[
+    { label: "component.tsx", code: multipleTriggersCode },
+    { label: "index.module.css", code: alertDialogStyles },
+    { label: "theme.css", code: demoTheme },
+  ]}
+>
+  <DemoAlertDialogMultipleTriggers client:load />
 </DemoBlock>

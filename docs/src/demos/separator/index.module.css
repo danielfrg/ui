@@ -6,9 +6,28 @@
 }
 
 .separator {
+	border: none;
+	background-color: var(--color-gray-300);
+}
+
+.separator[data-orientation="vertical"] {
 	width: 1px;
 	align-self: stretch;
-	background-color: var(--color-gray-300);
+}
+
+.separator[data-orientation="horizontal"] {
+	height: 1px;
+	width: 100%;
+}
+
+.horizontalContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	max-width: 20rem;
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+	color: var(--color-gray-900);
 }
 
 .link {

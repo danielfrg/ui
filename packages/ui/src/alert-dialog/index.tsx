@@ -30,6 +30,7 @@ import {
 	Title,
 	Trigger,
 } from "../dialog";
+import { createDialogHandle, type DialogHandle } from "../dialog/dialog-handle";
 import {
 	type AlertDialogContentCommonProps,
 	type AlertDialogContentOptions,
@@ -66,6 +67,7 @@ export type {
 	AlertDialogTriggerRenderProps,
 	AlertDialogTriggerOptions,
 	AlertDialogTriggerProps,
+	DialogHandle as AlertDialogHandle,
 };
 
 export {
@@ -77,6 +79,7 @@ export {
 	Root,
 	Title,
 	Trigger,
+	createDialogHandle as createAlertDialogHandle,
 };
 
 export const AlertDialog = Object.assign(Root, {
@@ -87,4 +90,7 @@ export const AlertDialog = Object.assign(Root, {
 	Portal,
 	Title,
 	Trigger,
+	createHandle: createDialogHandle,
 });
+
+export const createHandle = createDialogHandle;

@@ -1,9 +1,13 @@
 import * as Accordion from "@danielfrg/ui/accordion";
 import styles from "./index.module.css";
 
-export function DemoAccordionHero() {
+export function DemoAccordionMultiple() {
 	return (
-		<Accordion.Root class={styles.accordion} defaultValue={["item-1"]}>
+		<Accordion.Root
+			class={styles.accordion}
+			multiple
+			defaultValue={["item-1", "item-2"]}
+		>
 			<Accordion.Item value="item-1" class={styles.item}>
 				<Accordion.Header class={styles.header}>
 					<Accordion.Trigger class={styles.trigger}>

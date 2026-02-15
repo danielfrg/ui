@@ -5,7 +5,9 @@ description: A vertically stacked set of interactive headings that each reveal a
 
 import DemoBlock from "../../../components/demo-block.astro";
 import { DemoAccordionHero } from "../../../demos/accordion/hero";
+import { DemoAccordionMultiple } from "../../../demos/accordion/multiple";
 import heroCode from "../../../demos/accordion/hero.tsx?raw";
+import multipleCode from "../../../demos/accordion/multiple.tsx?raw";
 import accordionStyles from "../../../demos/accordion/index.module.css?raw";
 import demoTheme from "../../../demos/theme.css?raw";
 
@@ -20,4 +22,17 @@ A vertically stacked set of interactive headings that each reveal an associated 
   ]}
 >
   <DemoAccordionHero client:load />
+</DemoBlock>
+
+Multiple open items.
+
+<DemoBlock
+  label="View source"
+  files={[
+    { label: "component.tsx", code: multipleCode },
+    { label: "index.module.css", code: accordionStyles },
+    { label: "theme.css", code: demoTheme },
+  ]}
+>
+  <DemoAccordionMultiple client:load />
 </DemoBlock>

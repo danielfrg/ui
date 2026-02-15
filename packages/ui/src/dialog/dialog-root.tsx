@@ -4,12 +4,16 @@ import { type ParentProps, createSignal, createUniqueId } from "solid-js";
 import createPresence from "solid-presence";
 import { createDisclosureState, createRegisterId } from "../primitives";
 import { DialogContext, type DialogContextValue } from "./dialog-context";
+import type { DialogHandle } from "./dialog-handle";
 import {
 	DIALOG_INTL_TRANSLATIONS,
 	type DialogIntlTranslations,
 } from "./dialog.intl";
 
 export interface DialogRootOptions {
+	/** Optional handle for detached triggers. */
+	handle?: DialogHandle;
+
 	/** The localized strings of the component. */
 	translations?: DialogIntlTranslations;
 
@@ -78,9 +82,12 @@ export function DialogRoot(props: DialogRootProps) {
 	const [triggerRef, setTriggerRef] = createSignal<HTMLElement>();
 
 	const disclosureState = createDisclosureState({
-		open: () => mergedProps.open,
+		open: () => mergedProps.handle?.isOpen() ?? mergedProps.open,
 		defaultOpen: () => mergedProps.defaultOpen,
-		onOpenChange: (isOpen) => mergedProps.onOpenChange?.(isOpen),
+		onOpenChange: (isOpen) => {
+			mergedProps.handle?.setOpen(isOpen);
+			mergedProps.onOpenChange?.(isOpen);
+		},
 	});
 
 	const shouldMount = () => mergedProps.forceMount || disclosureState.isOpen();

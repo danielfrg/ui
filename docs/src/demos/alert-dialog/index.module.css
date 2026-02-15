@@ -108,6 +108,39 @@
 	gap: 1rem;
 }
 
+.textareaContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	margin-top: 1rem;
+}
+
+.textarea {
+	box-sizing: border-box;
+	padding-block: 0.5rem;
+	padding-inline: 0.875rem;
+	margin: 0;
+	border: 1px solid var(--color-gray-200);
+	width: 100%;
+	min-height: 12rem;
+	border-radius: 0.375rem;
+	font-family: inherit;
+	font-size: 1rem;
+	background-color: transparent;
+	color: var(--color-gray-900);
+}
+
+.textarea:focus {
+	outline: 2px solid var(--color-blue);
+	outline-offset: -1px;
+}
+
+.triggerRow {
+	display: flex;
+	gap: 0.5rem;
+	flex-wrap: wrap;
+}
+
 @keyframes overlayShow {
 	from {
 		opacity: 0;

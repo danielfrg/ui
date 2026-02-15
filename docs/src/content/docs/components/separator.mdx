@@ -6,10 +6,14 @@ description: A separator element accessible to screen readers.
 import DemoBlock from "../../../components/demo-block.astro";
 import { DemoSeparatorHero } from "../../../demos/separator/hero";
 import heroCode from "../../../demos/separator/hero.tsx?raw";
+import { DemoSeparatorHorizontal } from "../../../demos/separator/horizontal";
+import horizontalCode from "../../../demos/separator/horizontal.tsx?raw";
 import separatorStyles from "../../../demos/separator/index.module.css?raw";
 import demoTheme from "../../../demos/theme.css?raw";
 
 A separator element accessible to screen readers.
+
+## Vertical
 
 <DemoBlock
   label="View source"
@@ -20,4 +24,17 @@ A separator element accessible to screen readers.
   ]}
 >
   <DemoSeparatorHero client:load />
+</DemoBlock>
+
+## Horizontal
+
+<DemoBlock
+  label="View source"
+  files={[
+    { label: "component.tsx", code: horizontalCode },
+    { label: "index.module.css", code: separatorStyles },
+    { label: "theme.css", code: demoTheme },
+  ]}
+>
+  <DemoSeparatorHorizontal client:load />
 </DemoBlock>

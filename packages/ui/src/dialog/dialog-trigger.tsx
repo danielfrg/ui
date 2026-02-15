@@ -17,8 +17,12 @@ import {
 import * as Button from "../button";
 import type { ElementOf, PolymorphicProps } from "../polymorphic";
 import { useDialogContext } from "./dialog-context";
+import type { DialogHandle } from "./dialog-handle";
 
-export interface DialogTriggerOptions {}
+export interface DialogTriggerOptions {
+	/** Optional handle for detached triggers. */
+	handle?: DialogHandle;
+}
 
 export interface DialogTriggerCommonProps<T extends HTMLElement = HTMLElement>
 	extends Button.ButtonRootCommonProps<T> {
@@ -45,17 +49,20 @@ export type DialogTriggerProps<
 export function DialogTrigger<T extends ValidComponent = "button">(
 	props: PolymorphicProps<T, DialogTriggerProps<T>>,
 ) {
-	const context = useDialogContext();
-
 	const [local, others] = splitProps(props as DialogTriggerProps, [
 		"ref",
 		"onClick",
+		"handle",
 	]);
+
+	const context = local.handle ? undefined : useDialogContext();
 
 	const onClick: JSX.EventHandlerUnion<HTMLElement, MouseEvent> = (e) => {
 		callHandler(e, local.onClick);
-		context.toggle();
+		local.handle ? local.handle.toggle() : context?.toggle();
 	};
+
+	const isOpen = () => (local.handle ? local.handle.isOpen() : context?.isOpen?.() ?? false);
 
 	return (
 		<Button.Root<
@@ -63,12 +70,12 @@ export function DialogTrigger<T extends ValidComponent = "button">(
 				Omit<DialogTriggerRenderProps, keyof Button.ButtonRootRenderProps>
 			>
 		>
-			ref={mergeRefs(context.setTriggerRef, local.ref)}
+			ref={context ? mergeRefs(context.setTriggerRef, local.ref) : local.ref}
 			aria-haspopup="dialog"
-			aria-expanded={context.isOpen()}
-			aria-controls={context.isOpen() ? context.contentId() : undefined}
-			data-expanded={context.isOpen() ? "" : undefined}
-			data-closed={!context.isOpen() ? "" : undefined}
+			aria-expanded={isOpen()}
+			aria-controls={context && isOpen() ? context.contentId() : undefined}
+			data-expanded={isOpen() ? "" : undefined}
+			data-closed={!isOpen() ? "" : undefined}
 			onClick={onClick}
 			{...others}
 		/>
