@@ -52,6 +52,11 @@
       "solid": "./src/collapsible/index.tsx",
       "default": "./src/collapsible/index.tsx"
     },
+    "./combobox": {
+      "types": "./src/combobox/index.tsx",
+      "solid": "./src/combobox/index.tsx",
+      "default": "./src/combobox/index.tsx"
+    },
     "./context-menu": {
       "types": "./src/context-menu/index.tsx",
       "solid": "./src/context-menu/index.tsx",

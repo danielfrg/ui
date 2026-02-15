@@ -1,0 +1,124 @@
+---
+const { title, theme = "default" } = Astro.props
+const themes = {
+	default: {
+		"--ui-background": "#ffffff",
+		"--ui-foreground": "#111111",
+		"--ui-muted": "#6b7280",
+		"--ui-line": "#e6e8eb",
+		"--ui-accent": "#2563eb",
+		"--ui-accent-hover": "#1d4ed8",
+		"--ui-soft": "#f3f4f6",
+		"--ui-soft-hover": "#e9ecef",
+		"--ui-ghost-hover": "#f5f6f8",
+		"--ui-floating-panel": "rgba(239, 247, 255, 0.615)",
+	},
+	music: {
+		"--ui-background": "#ffffff",
+		"--ui-foreground": "#11181c",
+		"--ui-muted": "#687076",
+		"--ui-line": "#d7dbdf",
+		"--ui-accent": "#e5484d",
+		"--ui-accent-hover": "#dc3e42",
+		"--ui-soft": "#f1f3f5",
+		"--ui-soft-hover": "#e7eaee",
+		"--ui-ghost-hover": "#f4f6f8",
+		"--ui-floating-panel": "rgba(239, 247, 255, 0.615)",
+	},
+}
+const themeVars = themes[theme] ?? themes.default
+const themeStyle = Object.entries(themeVars)
+	.map(([key, value]) => `${key}:${value}`)
+	.join(";")
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} | @danielfrg/ui</title>
+  </head>
+  <body style={themeStyle} data-theme={theme}>
+    <header class="example-header">
+      <nav class="example-nav">
+        <a href="/">Docs</a>
+        <a href="/examples/">Examples</a>
+      </nav>
+    </header>
+    <main class="example-main">
+      <slot />
+    </main>
+  </body>
+</html>
+
+<style>
+  :global(:root) {
+    color-scheme: light;
+    --ui-background: #ffffff;
+    --ui-foreground: #111111;
+    --ui-muted: #6b7280;
+    --ui-line: #e6e8eb;
+    --ui-accent: #2563eb;
+    --ui-accent-hover: #1d4ed8;
+    --ui-soft: #f3f4f6;
+    --ui-soft-hover: #e9ecef;
+    --ui-ghost-hover: #f5f6f8;
+    --ui-floating-panel: rgba(239, 247, 255, 0.615);
+    --ui-shadow:
+      0 0.5px 1px oklch(0% 0 0 / 12%),
+      0 1px 3px -1px oklch(0% 0 0 / 5%),
+      0 2px 4px -1px oklch(0% 0 0 / 5%);
+    --font-sans:
+      "Untitled Sans",
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Helvetica,
+      Arial,
+      sans-serif,
+      "Apple Color Emoji",
+      "Segoe UI Emoji";
+    --font-mono: "Sohne Mono", "Menlo", "Consolas", monospace;
+  }
+
+  :global(html) {
+    background: white;
+  }
+
+  :global(body) {
+    margin: 0;
+    font-family: var(--font-sans);
+    color: var(--ui-foreground);
+  }
+
+  .example-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: white;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .example-nav {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    padding: 12px 20px;
+  }
+
+  .example-nav a {
+    color: #111111;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .example-nav a:hover {
+    text-decoration: underline;
+  }
+
+  .example-main {
+    padding: 36px;
+    overflow-x: auto;
+  }
+</style>

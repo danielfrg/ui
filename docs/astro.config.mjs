@@ -58,6 +58,15 @@ export default defineConfig({
 						{ label: 'Tooltip', slug: 'components/tooltip' },
 					],
 				},
+			{
+				label: 'Examples',
+				items: [
+					{ label: 'Overview', slug: 'examples' },
+					{ label: 'Dashboard', link: '/examples/dashboard/' },
+					{ label: 'E-commerce', link: '/examples/ecommerce/' },
+					{ label: 'Music App', link: '/examples/music/' },
+				],
+			},
 			],
 		}),
 	],

@@ -168,3 +168,221 @@ pre {
 .code-panel :global(.expressive-code .frame) {
   padding: 0.75rem 0.75rem 1rem;
 }
+
+/* ── Full-width example pages ────────────────────────────────── */
+.example-fullwidth {
+  padding: 36px;
+  overflow-x: auto;
+  min-width: 0;
+}
+
+/*
+ * Strip all Starlight content wrappers on pages that contain an example.
+ * Splash pages have no sidebar (html:not([data-has-sidebar])), but we further
+ * scope with :has(.example-fullwidth) so normal splash/landing pages are not affected.
+ */
+html:not([data-has-sidebar]):has(.example-fullwidth) .content-panel {
+  padding: 0;
+}
+
+html:not([data-has-sidebar]):has(.example-fullwidth) .sl-container {
+  max-width: none;
+}
+
+html:not([data-has-sidebar]):has(.example-fullwidth) main {
+  padding: 0;
+}
+
+html:not([data-has-sidebar]):has(.example-fullwidth) .sl-markdown-content > :first-child {
+  margin-top: 0;
+}
+
+/* Hide the Starlight footer on example pages */
+html:not([data-has-sidebar]):has(.example-fullwidth) footer {
+  display: none;
+}
+
+/*
+ * ── .example CSS reset ──────────────────────────────────────────
+ * Isolates example content from Starlight's global styles.
+ *
+ * Strategy:
+ *   1. The wrapper has class="not-content" which is Starlight's built-in
+ *      escape hatch -- it disables most .sl-markdown-content element rules
+ *      (headings, links, images, code, tables, lists, etc.) because they
+ *      all use :not(:where(.not-content *)).
+ *
+ *   2. The universal sibling spacing rule in Starlight:
+ *        .sl-markdown-content :not(inline) + :not(inline, :where(.not-content *))
+ *      adds margin-top: var(--sl-content-gap-y) between adjacent block elements.
+ *      We kill this with a high-specificity blanket reset on margin-block.
+ *
+ *   3. Low-specificity :where() resets provide clean defaults so that only
+ *      the component's own CSS module classes take effect.
+ */
+.example {
+  font-family:
+    "Untitled Sans",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Helvetica,
+    Arial,
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji";
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--ui-foreground);
+  letter-spacing: 0.005em;
+  word-spacing: normal;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/*
+ * CRITICAL: Kill Starlight's universal sibling spacing.
+ * Starlight applies: margin-top: var(--sl-content-gap-y) to every block element
+ * that follows another block element inside .sl-markdown-content.
+ * We need specificity >= (0,2,1) to beat it. Using .sl-markdown-content .example *
+ * gives us (0,2,1) which beats Starlight's (0,1,1) on the target element.
+ * :where() on * keeps it from overriding CSS module classes.
+ */
+.sl-markdown-content .example *::before,
+.sl-markdown-content .example *::after {
+  box-sizing: border-box;
+}
+
+.sl-markdown-content .example * {
+  box-sizing: border-box;
+}
+
+.sl-markdown-content .example :where(*:not([class])) {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+/* ── Headings: reset Starlight's font-size, color, weight, line-height ── */
+.sl-markdown-content .example :where(h1, h2, h3, h4, h5, h6) {
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  border: none;
+}
+
+/* ── Paragraphs ─────────────────────────────────────────────── */
+.sl-markdown-content .example :where(p) {
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Links: reset Starlight's accent color and hover color ──── */
+.sl-markdown-content .example :where(a) {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.sl-markdown-content .example :where(a:hover) {
+  color: inherit;
+}
+
+/* ── Lists ──────────────────────────────────────────────────── */
+.sl-markdown-content .example :where(ul, ol) {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sl-markdown-content .example :where(li) {
+  margin: 0;
+  padding: 0;
+  overflow-wrap: normal;
+}
+
+/* ── Inline text ────────────────────────────────────────────── */
+:where(.example) :where(strong, b) {
+  font-weight: 700;
+}
+
+:where(.example) :where(em, i) {
+  font-style: italic;
+}
+
+/* ── Code: reset Starlight's inline code background/padding ── */
+.sl-markdown-content .example :where(code) {
+  font-family: var(--font-mono);
+  font-size: inherit;
+  background: none;
+  padding: 0;
+  margin-block: 0;
+  border-radius: 0;
+}
+
+:where(.example) :where(address) {
+  font-style: normal;
+}
+
+/* ── Images/SVG: reset Starlight's max-width:100% and display:block ── */
+.sl-markdown-content .example :where(img, picture, video, canvas, svg, iframe) {
+  max-width: none;
+  height: auto;
+}
+
+:where(.example) :where(img) {
+  border: none;
+  display: block;
+}
+
+/* Inline SVG icons should not be forced to display:block */
+:where(.example) :where(svg) {
+  display: inline-block;
+}
+
+/* ── Horizontal rules ───────────────────────────────────────── */
+.sl-markdown-content .example :where(hr) {
+  margin: 0;
+  padding: 0;
+  border: none;
+  height: 1px;
+  background: var(--ui-line);
+}
+
+/* ── Buttons ────────────────────────────────────────────────── */
+:where(.example) :where(button) {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  box-sizing: border-box;
+}
+
+/* ── Form elements ──────────────────────────────────────────── */
+:where(.example) :where(input, select, textarea) {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  margin: 0;
+}
+
+/* ── Labels ─────────────────────────────────────────────────── */
+:where(.example) :where(label) {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+}
