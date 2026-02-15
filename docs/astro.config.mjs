@@ -27,6 +27,7 @@ export default defineConfig({
 					{ label: 'Avatar', slug: 'components/avatar' },
 					{ label: 'Button', slug: 'components/button' },
 				{ label: 'Checkbox', slug: 'components/checkbox' },
+			{ label: 'Checkbox Group', slug: 'components/checkbox-group' },
 			{ label: 'Collapsible', slug: 'components/collapsible' },
 			{ label: 'Combobox', slug: 'components/combobox' },
 			{ label: 'Context Menu', slug: 'components/context-menu' },

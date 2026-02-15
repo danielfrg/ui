@@ -4,6 +4,7 @@ export * as Autocomplete from "./autocomplete";
 export * as Avatar from "./avatar";
 export * as Button from "./button";
 export * as Checkbox from "./checkbox";
+export * as CheckboxGroup from "./checkbox-group";
 export * as Collapsible from "./collapsible";
 export * as Combobox from "./combobox";
 export * as ContextMenu from "./context-menu";
