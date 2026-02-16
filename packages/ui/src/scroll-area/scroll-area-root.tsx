@@ -135,7 +135,6 @@ export function ScrollAreaRoot<T extends ValidComponent = "div">(
     startY = e.clientY
     startScrollTop = viewport.scrollTop
     startScrollLeft = viewport.scrollLeft
-
     ;(e.currentTarget as HTMLElement).setPointerCapture(e.pointerId)
     e.preventDefault()
   }

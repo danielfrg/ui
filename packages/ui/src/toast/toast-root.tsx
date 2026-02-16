@@ -270,7 +270,6 @@ export function ToastRoot<T extends ValidComponent = "li">(props: PolymorphicPro
 
       handleAndDispatchCustomEvent(TOAST_SWIPE_START_EVENT, local.onSwipeStart, eventDetail)
       e.currentTarget.setAttribute("data-swipe", "start")
-
       ;(e.target as HTMLElement).setPointerCapture(e.pointerId)
     } else if (Math.abs(x) > moveStartBuffer || Math.abs(y) > moveStartBuffer) {
       // User is swiping in wrong direction, so we disable swipe gesture

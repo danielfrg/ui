@@ -5,11 +5,12 @@ import solid from "@astrojs/solid-js"
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://ui.danielfrg.com",
   integrations: [
     solid(),
     starlight({
       title: "@danielfrg/ui",
-      social: [{ icon: "github", label: "GitHub", href: "https://github.com/withastro/starlight" }],
+      social: [{ icon: "github", label: "GitHub", href: "https://github.com/danielfrg/ui" }],
       customCss: ["./src/styles/site.css"],
       sidebar: [
         {
