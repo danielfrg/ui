@@ -6,151 +6,128 @@
  * https://github.com/radix-ui/primitives/blob/21a7c97dc8efa79fecca36428eec49f187294085/packages/react/collapsible/src/Collapsible.tsx
  */
 
-import { mergeDefaultProps, mergeRefs } from "../utils";
+import { mergeDefaultProps, mergeRefs } from "../utils"
 import {
-	type JSX,
-	Show,
-	type ValidComponent,
-	createEffect,
-	createSignal,
-	on,
-	onCleanup,
-	onMount,
-	splitProps,
-} from "solid-js";
+  type JSX,
+  Show,
+  type ValidComponent,
+  createEffect,
+  createSignal,
+  on,
+  onCleanup,
+  onMount,
+  splitProps,
+} from "solid-js"
 
-import { combineStyle } from "@solid-primitives/props";
-import createPresence from "solid-presence";
-import {
-	type ElementOf,
-	Polymorphic,
-	type PolymorphicProps,
-} from "../polymorphic";
-import {
-	type CollapsibleDataSet,
-	useCollapsibleContext,
-} from "./collapsible-context";
+import { combineStyle } from "@solid-primitives/props"
+import createPresence from "solid-presence"
+import { type ElementOf, Polymorphic, type PolymorphicProps } from "../polymorphic"
+import { type CollapsibleDataSet, useCollapsibleContext } from "./collapsible-context"
 
 export interface CollapsibleContentOptions {}
 
-export interface CollapsibleContentCommonProps<
-	T extends HTMLElement = HTMLElement,
-> {
-	id: string;
-	ref: T | ((el: T) => void);
-	style: JSX.CSSProperties | string;
+export interface CollapsibleContentCommonProps<T extends HTMLElement = HTMLElement> {
+  id: string
+  ref: T | ((el: T) => void)
+  style: JSX.CSSProperties | string
 }
 
-export interface CollapsibleContentRenderProps
-	extends CollapsibleContentCommonProps,
-		CollapsibleDataSet {}
+export interface CollapsibleContentRenderProps extends CollapsibleContentCommonProps, CollapsibleDataSet {}
 
-export type CollapsibleContentProps<
-	T extends ValidComponent | HTMLElement = HTMLElement,
-> = CollapsibleContentOptions &
-	Partial<CollapsibleContentCommonProps<ElementOf<T>>>;
+export type CollapsibleContentProps<T extends ValidComponent | HTMLElement = HTMLElement> = CollapsibleContentOptions &
+  Partial<CollapsibleContentCommonProps<ElementOf<T>>>
 
 /**
  * Contains the content to be rendered when the collapsible is expanded.
  */
 export function CollapsibleContent<T extends ValidComponent = "div">(
-	props: PolymorphicProps<T, CollapsibleContentProps<T>>,
+  props: PolymorphicProps<T, CollapsibleContentProps<T>>,
 ) {
-	const [ref, setRef] = createSignal<HTMLElement>();
+  const [ref, setRef] = createSignal<HTMLElement>()
 
-	const context = useCollapsibleContext();
+  const context = useCollapsibleContext()
 
-	const mergedProps = mergeDefaultProps(
-		{ id: context.generateId("content") },
-		props as CollapsibleContentProps,
-	);
+  const mergedProps = mergeDefaultProps({ id: context.generateId("content") }, props as CollapsibleContentProps)
 
-	const [local, others] = splitProps(mergedProps, ["ref", "id", "style"]);
+  const [local, others] = splitProps(mergedProps, ["ref", "id", "style"])
 
-	const { present } = createPresence({
-		show: context.shouldMount,
-		element: () => ref() ?? null,
-	});
+  const { present } = createPresence({
+    show: context.shouldMount,
+    element: () => ref() ?? null,
+  })
 
-	const [height, setHeight] = createSignal(0);
-	const [width, setWidth] = createSignal(0);
+  const [height, setHeight] = createSignal(0)
+  const [width, setWidth] = createSignal(0)
 
-	// When opening we want it to immediately open to retrieve dimensions.
-	// When closing we delay `present` to retrieve dimensions before closing.
-	const isOpen = () => context.isOpen() || present();
-	let isMountAnimationPrevented = isOpen();
+  // When opening we want it to immediately open to retrieve dimensions.
+  // When closing we delay `present` to retrieve dimensions before closing.
+  const isOpen = () => context.isOpen() || present()
+  let isMountAnimationPrevented = isOpen()
 
-	onMount(() => {
-		const raf = requestAnimationFrame(() => {
-			isMountAnimationPrevented = false;
-		});
+  onMount(() => {
+    const raf = requestAnimationFrame(() => {
+      isMountAnimationPrevented = false
+    })
 
-		onCleanup(() => {
-			cancelAnimationFrame(raf);
-		});
-	});
+    onCleanup(() => {
+      cancelAnimationFrame(raf)
+    })
+  })
 
-	createEffect(
-		on(
-			present,
-			() => {
-				if (!ref()) {
-					return;
-				}
+  createEffect(
+    on(present, () => {
+      if (!ref()) {
+        return
+      }
 
-				// block any animations/transitions so the element renders at its full dimensions
-				ref()!.style.transitionDuration = "0s";
-				ref()!.style.animationName = "none";
+      // block any animations/transitions so the element renders at its full dimensions
+      ref()!.style.transitionDuration = "0s"
+      ref()!.style.animationName = "none"
 
-				// get width and height from full dimensions
-				const rect = ref()!.getBoundingClientRect();
-				setHeight(rect.height);
-				setWidth(rect.width);
+      // get width and height from full dimensions
+      const rect = ref()!.getBoundingClientRect()
+      setHeight(rect.height)
+      setWidth(rect.width)
 
-				// kick off any animations/transitions that were originally set up if it isn't the initial mount
-				if (!isMountAnimationPrevented) {
-					ref()!.style.transitionDuration = "";
-					ref()!.style.animationName = "";
-				}
-			},
-		),
-	);
+      // kick off any animations/transitions that were originally set up if it isn't the initial mount
+      if (!isMountAnimationPrevented) {
+        ref()!.style.transitionDuration = ""
+        ref()!.style.animationName = ""
+      }
+    }),
+  )
 
-	createEffect(
-		on(
-			context.isOpen,
-			(open) => {
-				if (!open && ref()) {
-					ref()!.style.transitionDuration = "";
-					ref()!.style.animationName = "";
-				}
-			},
-			{ defer: true },
-		),
-	);
+  createEffect(
+    on(
+      context.isOpen,
+      (open) => {
+        if (!open && ref()) {
+          ref()!.style.transitionDuration = ""
+          ref()!.style.animationName = ""
+        }
+      },
+      { defer: true },
+    ),
+  )
 
-	createEffect(() => onCleanup(context.registerContentId(local.id)));
+  createEffect(() => onCleanup(context.registerContentId(local.id)))
 
-	return (
-		<Show when={present()}>
-			<Polymorphic<CollapsibleContentRenderProps>
-				as="div"
-				ref={mergeRefs(setRef, local.ref)}
-				id={local.id}
-				style={combineStyle(
-					{
-						"--kb-collapsible-content-height": height()
-							? `${height()}px`
-							: undefined,
-						"--kb-collapsible-content-width": width()
-							? `${width()}px`
-							: undefined,
-					},
-					local.style,
-				)}
-				{...context.dataset()}
-				{...others}
-			/>
-		</Show>
-	);
+  return (
+    <Show when={present()}>
+      <Polymorphic<CollapsibleContentRenderProps>
+        as="div"
+        ref={mergeRefs(setRef, local.ref)}
+        id={local.id}
+        style={combineStyle(
+          {
+            "--kb-collapsible-content-height": height() ? `${height()}px` : undefined,
+            "--kb-collapsible-content-width": width() ? `${width()}px` : undefined,
+          },
+          local.style,
+        )}
+        {...context.dataset()}
+        {...others}
+      />
+    </Show>
+  )
 }

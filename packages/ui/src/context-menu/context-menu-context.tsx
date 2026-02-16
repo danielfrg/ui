@@ -1,23 +1,21 @@
-import { type Setter, createContext, useContext } from "solid-js";
+import { type Setter, createContext, useContext } from "solid-js"
 
 export interface ContextMenuContextValue {
-	setAnchorRect: Setter<{ x: number; y: number }>;
+  setAnchorRect: Setter<{ x: number; y: number }>
 }
 
-export const ContextMenuContext = createContext<ContextMenuContextValue>();
+export const ContextMenuContext = createContext<ContextMenuContextValue>()
 
 export function useOptionalContextMenuContext() {
-	return useContext(ContextMenuContext);
+  return useContext(ContextMenuContext)
 }
 
 export function useContextMenuContext() {
-	const context = useOptionalContextMenuContext();
+  const context = useOptionalContextMenuContext()
 
-	if (context === undefined) {
-		throw new Error(
-			"[ui]: `useContextMenuContext` must be used within a `ContextMenu` component",
-		);
-	}
+  if (context === undefined) {
+    throw new Error("[ui]: `useContextMenuContext` must be used within a `ContextMenu` component")
+  }
 
-	return context;
+  return context
 }

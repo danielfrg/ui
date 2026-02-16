@@ -6,17 +6,17 @@
  * https://github.com/adobe/react-spectrum/blob/22cb32d329e66c60f55d4fc4025d1d44bb015d71/packages/@react-aria/i18n/src/useFilter.ts
  */
 
-import { createCollator } from "./create-collator";
+import { createCollator } from "./create-collator"
 
 export interface Filter {
-	/** Returns whether a string starts with a given substring. */
-	startsWith(string: string, substring: string): boolean;
+  /** Returns whether a string starts with a given substring. */
+  startsWith(string: string, substring: string): boolean
 
-	/** Returns whether a string ends with a given substring. */
-	endsWith(string: string, substring: string): boolean;
+  /** Returns whether a string ends with a given substring. */
+  endsWith(string: string, substring: string): boolean
 
-	/** Returns whether a string contains a given substring. */
-	contains(string: string, substring: string): boolean;
+  /** Returns whether a string contains a given substring. */
+  contains(string: string, substring: string): boolean
 }
 
 /**
@@ -24,66 +24,56 @@ export interface Filter {
  * in a list. Options can be provided to adjust the sensitivity to case, diacritics, and other parameters.
  */
 export function createFilter(options?: Intl.CollatorOptions): Filter {
-	const collator = createCollator({
-		usage: "search",
-		...options,
-	});
+  const collator = createCollator({
+    usage: "search",
+    ...options,
+  })
 
-	const startsWith = (str: string, substr: string) => {
-		if (substr.length === 0) {
-			return true;
-		}
+  const startsWith = (str: string, substr: string) => {
+    if (substr.length === 0) {
+      return true
+    }
 
-		const normalizedStr = str.normalize("NFC");
-		const normalizedSubstr = substr.normalize("NFC");
-		return (
-			collator().compare(
-				normalizedStr.slice(0, normalizedSubstr.length),
-				normalizedSubstr,
-			) === 0
-		);
-	};
+    const normalizedStr = str.normalize("NFC")
+    const normalizedSubstr = substr.normalize("NFC")
+    return collator().compare(normalizedStr.slice(0, normalizedSubstr.length), normalizedSubstr) === 0
+  }
 
-	const endsWith = (str: string, substr: string) => {
-		if (substr.length === 0) {
-			return true;
-		}
+  const endsWith = (str: string, substr: string) => {
+    if (substr.length === 0) {
+      return true
+    }
 
-		const normalizedStr = str.normalize("NFC");
-		const normalizedSubstr = substr.normalize("NFC");
-		return (
-			collator().compare(
-				normalizedStr.slice(-normalizedSubstr.length),
-				normalizedSubstr,
-			) === 0
-		);
-	};
+    const normalizedStr = str.normalize("NFC")
+    const normalizedSubstr = substr.normalize("NFC")
+    return collator().compare(normalizedStr.slice(-normalizedSubstr.length), normalizedSubstr) === 0
+  }
 
-	const contains = (str: string, substr: string) => {
-		if (substr.length === 0) {
-			return true;
-		}
+  const contains = (str: string, substr: string) => {
+    if (substr.length === 0) {
+      return true
+    }
 
-		const normalizedStr = str.normalize("NFC");
-		const normalizedSubstr = substr.normalize("NFC");
+    const normalizedStr = str.normalize("NFC")
+    const normalizedSubstr = substr.normalize("NFC")
 
-		let scan = 0;
-		const sliceLen = substr.length;
+    let scan = 0
+    const sliceLen = substr.length
 
-		for (; scan + sliceLen <= normalizedStr.length; scan++) {
-			const slice = normalizedStr.slice(scan, scan + sliceLen);
+    for (; scan + sliceLen <= normalizedStr.length; scan++) {
+      const slice = normalizedStr.slice(scan, scan + sliceLen)
 
-			if (collator().compare(normalizedSubstr, slice) === 0) {
-				return true;
-			}
-		}
+      if (collator().compare(normalizedSubstr, slice) === 0) {
+        return true
+      }
+    }
 
-		return false;
-	};
+    return false
+  }
 
-	return {
-		startsWith,
-		endsWith,
-		contains,
-	};
+  return {
+    startsWith,
+    endsWith,
+    contains,
+  }
 }

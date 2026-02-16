@@ -1,30 +1,30 @@
 import {
-	FieldsetRoot as Root,
-	type FieldsetRootCommonProps,
-	type FieldsetRootOptions,
-	type FieldsetRootProps,
-	type FieldsetRootRenderProps,
-} from "./fieldset-root";
+  FieldsetRoot as Root,
+  type FieldsetRootCommonProps,
+  type FieldsetRootOptions,
+  type FieldsetRootProps,
+  type FieldsetRootRenderProps,
+} from "./fieldset-root"
 
 import {
-	FieldsetLegend as Legend,
-	type FieldsetLegendCommonProps,
-	type FieldsetLegendOptions,
-	type FieldsetLegendProps,
-	type FieldsetLegendRenderProps,
-} from "./fieldset-legend";
+  FieldsetLegend as Legend,
+  type FieldsetLegendCommonProps,
+  type FieldsetLegendOptions,
+  type FieldsetLegendProps,
+  type FieldsetLegendRenderProps,
+} from "./fieldset-legend"
 
 export type {
-	FieldsetRootOptions,
-	FieldsetRootCommonProps,
-	FieldsetRootRenderProps,
-	FieldsetRootProps,
-	FieldsetLegendOptions,
-	FieldsetLegendCommonProps,
-	FieldsetLegendRenderProps,
-	FieldsetLegendProps,
-};
+  FieldsetRootOptions,
+  FieldsetRootCommonProps,
+  FieldsetRootRenderProps,
+  FieldsetRootProps,
+  FieldsetLegendOptions,
+  FieldsetLegendCommonProps,
+  FieldsetLegendRenderProps,
+  FieldsetLegendProps,
+}
 
-export { Root, Legend };
+export { Root, Legend }
 
-export const Fieldset = Root;
+export const Fieldset = Root

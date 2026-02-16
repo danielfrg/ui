@@ -1,61 +1,50 @@
-import { mergeDefaultProps } from "../utils";
-import { type Component, type ValidComponent, splitProps } from "solid-js";
-import type { ElementOf, PolymorphicProps } from "../polymorphic";
+import { mergeDefaultProps } from "../utils"
+import { type Component, type ValidComponent, splitProps } from "solid-js"
+import type { ElementOf, PolymorphicProps } from "../polymorphic"
 
 import {
-	MenuItemBase,
-	type MenuItemBaseCommonProps,
-	type MenuItemBaseOptions,
-	type MenuItemBaseRenderProps,
-} from "./menu-item-base";
-import { useMenuRadioGroupContext } from "./menu-radio-group-context";
+  MenuItemBase,
+  type MenuItemBaseCommonProps,
+  type MenuItemBaseOptions,
+  type MenuItemBaseRenderProps,
+} from "./menu-item-base"
+import { useMenuRadioGroupContext } from "./menu-radio-group-context"
 
-export interface MenuRadioItemOptions<TValue = string>
-	extends Omit<MenuItemBaseOptions, "checked" | "indeterminate"> {
-	value: TValue;
+export interface MenuRadioItemOptions<TValue = string> extends Omit<MenuItemBaseOptions, "checked" | "indeterminate"> {
+  value: TValue
 }
 
-export interface MenuRadioItemCommonProps<T extends HTMLElement = HTMLElement>
-	extends MenuItemBaseCommonProps<T> {}
+export interface MenuRadioItemCommonProps<T extends HTMLElement = HTMLElement> extends MenuItemBaseCommonProps<T> {}
 
-export interface MenuRadioItemRenderProps
-	extends MenuRadioItemCommonProps,
-		MenuItemBaseRenderProps {
-	role: "menuitemradio";
+export interface MenuRadioItemRenderProps extends MenuRadioItemCommonProps, MenuItemBaseRenderProps {
+  role: "menuitemradio"
 }
 
 export type MenuRadioItemProps<
-	T extends ValidComponent | HTMLElement = HTMLElement,
-	TValue = string,
-> = MenuRadioItemOptions<TValue> &
-	Partial<MenuRadioItemCommonProps<ElementOf<T>>>;
+  T extends ValidComponent | HTMLElement = HTMLElement,
+  TValue = string,
+> = MenuRadioItemOptions<TValue> & Partial<MenuRadioItemCommonProps<ElementOf<T>>>
 
-export function MenuRadioItem<
-	TValue = string,
-	T extends ValidComponent = "div",
->(props: PolymorphicProps<T, MenuRadioItemProps<T, TValue>>) {
-	const context = useMenuRadioGroupContext<TValue>();
+export function MenuRadioItem<TValue = string, T extends ValidComponent = "div">(
+  props: PolymorphicProps<T, MenuRadioItemProps<T, TValue>>,
+) {
+  const context = useMenuRadioGroupContext<TValue>()
 
-	const mergedProps = mergeDefaultProps(
-		{ closeOnSelect: false },
-		props as MenuRadioItemProps<T, TValue>,
-	);
+  const mergedProps = mergeDefaultProps({ closeOnSelect: false }, props as MenuRadioItemProps<T, TValue>)
 
-	const [local, others] = splitProps(mergedProps, ["value", "onSelect"]);
+  const [local, others] = splitProps(mergedProps, ["value", "onSelect"])
 
-	const onSelect = () => {
-		local.onSelect?.();
-		context.setSelectedValue(local.value);
-	};
+  const onSelect = () => {
+    local.onSelect?.()
+    context.setSelectedValue(local.value)
+  }
 
-	return (
-		<MenuItemBase<
-			Component<Omit<MenuRadioItemRenderProps, keyof MenuItemBaseRenderProps>>
-		>
-			role="menuitemradio"
-			checked={context.isSelectedValue(local.value)}
-			onSelect={onSelect}
-			{...others}
-		/>
-	);
+  return (
+    <MenuItemBase<Component<Omit<MenuRadioItemRenderProps, keyof MenuItemBaseRenderProps>>>
+      role="menuitemradio"
+      checked={context.isSelectedValue(local.value)}
+      onSelect={onSelect}
+      {...others}
+    />
+  )
 }

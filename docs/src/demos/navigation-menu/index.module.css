@@ -1,253 +1,253 @@
 .root {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 4px;
-	background-color: var(--color-gray-50);
-	width: max-content;
-	border-radius: 6px;
-	list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+  background-color: var(--color-gray-50);
+  width: max-content;
+  border-radius: 6px;
+  list-style: none;
 }
 
 .trigger {
-	appearance: none;
-	display: inline-flex;
-	justify-content: center;
-	align-items: center;
-	width: auto;
-	outline: none;
-	padding: 12px 16px;
-	background-color: var(--color-gray-50);
-	color: var(--color-gray-900);
-	font-size: 0.9375rem;
-	gap: 6px;
-	line-height: 0;
-	transition: 250ms background-color;
-	border-radius: 4px;
-	border: none;
-	text-decoration: none;
-	font-weight: 500;
-	font-family: inherit;
-	cursor: pointer;
+  appearance: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  outline: none;
+  padding: 12px 16px;
+  background-color: var(--color-gray-50);
+  color: var(--color-gray-900);
+  font-size: 0.9375rem;
+  gap: 6px;
+  line-height: 0;
+  transition: 250ms background-color;
+  border-radius: 4px;
+  border: none;
+  text-decoration: none;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
 }
 
 .trigger[data-highlighted="true"] {
-	background-color: var(--color-gray-100);
+  background-color: var(--color-gray-100);
 }
 
 .trigger-indicator {
-	position: relative;
-	margin: -7.5px -4px;
-	height: 15px;
-	width: 15px;
-	transition: transform 250ms ease;
+  position: relative;
+  margin: -7.5px -4px;
+  height: 15px;
+  width: 15px;
+  transition: transform 250ms ease;
 }
 
 .trigger[data-expanded] .trigger-indicator {
-	transform: rotateX(180deg);
+  transform: rotateX(180deg);
 }
 
 .viewport {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: var(--kb-navigation-menu-viewport-width);
-	height: var(--kb-navigation-menu-viewport-height);
-	z-index: 1000;
-	background-color: white;
-	border: 1px solid var(--color-gray-200);
-	box-shadow:
-		0 4px 6px -1px rgb(0 0 0 / 0.1),
-		0 2px 4px -2px rgb(0 0 0 / 0.1);
-	opacity: 0;
-	overflow-x: clip;
-	overflow-y: visible;
-	transform-origin: var(--kb-menu-content-transform-origin);
-	transition:
-		width 250ms ease,
-		height 250ms ease;
-	animation: viewport-hide 250ms ease-in forwards;
-	pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--kb-navigation-menu-viewport-width);
+  height: var(--kb-navigation-menu-viewport-height);
+  z-index: 1000;
+  background-color: white;
+  border: 1px solid var(--color-gray-200);
+  box-shadow:
+    0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1);
+  opacity: 0;
+  overflow-x: clip;
+  overflow-y: visible;
+  transform-origin: var(--kb-menu-content-transform-origin);
+  transition:
+    width 250ms ease,
+    height 250ms ease;
+  animation: viewport-hide 250ms ease-in forwards;
+  pointer-events: none;
 }
 
 .viewport[data-expanded] {
-	border-radius: 6px;
-	animation: viewport-show 250ms ease-out;
-	opacity: 1;
-	pointer-events: auto;
+  border-radius: 6px;
+  animation: viewport-show 250ms ease-out;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .item-callout {
-	box-sizing: border-box;
-	display: flex;
-	justify-content: flex-end;
-	flex-direction: column;
-	width: 100%;
-	height: 100%;
-	background: linear-gradient(135deg, var(--color-gray-900) 0%, var(--color-gray-600) 100%);
-	border-radius: 6px;
-	padding: 25px;
-	text-decoration: none;
-	outline: none;
-	user-select: none;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--color-gray-900) 0%, var(--color-gray-600) 100%);
+  border-radius: 6px;
+  padding: 25px;
+  text-decoration: none;
+  outline: none;
+  user-select: none;
 }
 
 .item-callout:focus {
-	outline: 2px solid var(--color-blue);
+  outline: 2px solid var(--color-blue);
 }
 
 .item-callout .item-label {
-	margin-top: 16px;
-	font-size: 1.25rem;
-	color: white;
+  margin-top: 16px;
+  font-size: 1.25rem;
+  color: white;
 }
 
 .item-callout .item-description {
-	color: var(--color-gray-200);
+  color: var(--color-gray-200);
 }
 
 .item-label {
-	font-size: 1rem;
-	font-weight: 500;
-	color: var(--color-gray-900);
-	line-height: 1.2;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-gray-900);
+  line-height: 1.2;
 }
 
 .item-description {
-	font-size: 0.875rem;
-	color: var(--color-gray-500);
-	line-height: 1.4;
+  font-size: 0.875rem;
+  color: var(--color-gray-500);
+  line-height: 1.4;
 }
 
 .item {
-	display: block;
-	outline: none;
-	text-decoration: none;
-	user-select: none;
-	padding: 12px;
-	border-radius: 6px;
-	font-size: 15px;
-	line-height: 1;
+  display: block;
+  outline: none;
+  text-decoration: none;
+  user-select: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 15px;
+  line-height: 1;
 }
 
 .item:hover,
 .item:focus {
-	background-color: var(--color-gray-100);
+  background-color: var(--color-gray-100);
 }
 
 .content {
-	position: absolute;
-	top: 0;
-	left: 0;
-	box-sizing: border-box;
-	outline: none;
-	display: grid;
-	padding: 22px;
-	column-gap: 10px;
-	grid-template-rows: repeat(3, 1fr);
-	grid-auto-flow: column;
-	animation-duration: 250ms;
-	animation-timing-function: ease;
-	animation-fill-mode: forwards;
-	pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  outline: none;
+  display: grid;
+  padding: 22px;
+  column-gap: 10px;
+  grid-template-rows: repeat(3, 1fr);
+  grid-auto-flow: column;
+  animation-duration: 250ms;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  pointer-events: none;
 }
 
 .content[data-expanded] {
-	pointer-events: auto;
+  pointer-events: auto;
 }
 
 .content[data-motion="from-start"] {
-	animation-name: enter-from-left;
+  animation-name: enter-from-left;
 }
 
 .content[data-motion="from-end"] {
-	animation-name: enter-from-right;
+  animation-name: enter-from-right;
 }
 
 .content[data-motion="to-start"] {
-	animation-name: exit-to-left;
+  animation-name: exit-to-left;
 }
 
 .content[data-motion="to-end"] {
-	animation-name: exit-to-right;
+  animation-name: exit-to-right;
 }
 
 .content-1 {
-	width: min(500px, 90dvw);
-	grid-template-columns: 0.75fr 1fr;
+  width: min(500px, 90dvw);
+  grid-template-columns: 0.75fr 1fr;
 }
 
 .content-1 > :first-child {
-	grid-row: span 3;
+  grid-row: span 3;
 }
 
 .content-2 {
-	width: min(600px, 90dvw);
-	grid-template-columns: 1fr 1fr;
+  width: min(600px, 90dvw);
+  grid-template-columns: 1fr 1fr;
 }
 
 @keyframes viewport-show {
-	from {
-		opacity: 0;
-		transform: rotateX(-20deg) scale(0.96);
-	}
-	to {
-		opacity: 1;
-		transform: rotateX(0deg) scale(1);
-	}
+  from {
+    opacity: 0;
+    transform: rotateX(-20deg) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: rotateX(0deg) scale(1);
+  }
 }
 
 @keyframes viewport-hide {
-	from {
-		opacity: 1;
-		transform: rotateX(0deg) scale(1);
-	}
-	to {
-		opacity: 0;
-		transform: rotateX(-10deg) scale(0.96);
-	}
+  from {
+    opacity: 1;
+    transform: rotateX(0deg) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: rotateX(-10deg) scale(0.96);
+  }
 }
 
 @keyframes enter-from-right {
-	from {
-		opacity: 0;
-		transform: translateX(200px);
-	}
-	to {
-		opacity: 1;
-		transform: translateX(0);
-	}
+  from {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes enter-from-left {
-	from {
-		opacity: 0;
-		transform: translateX(-200px);
-	}
-	to {
-		opacity: 1;
-		transform: translateX(0);
-	}
+  from {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes exit-to-right {
-	from {
-		opacity: 1;
-		transform: translateX(0);
-	}
-	to {
-		opacity: 0;
-		transform: translateX(200px);
-	}
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(200px);
+  }
 }
 
 @keyframes exit-to-left {
-	from {
-		opacity: 1;
-		transform: translateX(0);
-	}
-	to {
-		opacity: 0;
-		transform: translateX(-200px);
-	}
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
 }

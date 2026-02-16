@@ -6,64 +6,40 @@
  * https://github.com/adobe/react-spectrum/blob/b35d5c02fe900badccd0cf1a8f23bb593419f238/packages/@react-aria/listbox/src/useOption.ts
  */
 
-import { mergeDefaultProps } from "../utils";
-import {
-	type ValidComponent,
-	createEffect,
-	onCleanup,
-	splitProps,
-} from "solid-js";
+import { mergeDefaultProps } from "../utils"
+import { type ValidComponent, createEffect, onCleanup, splitProps } from "solid-js"
 
-import {
-	type ElementOf,
-	Polymorphic,
-	type PolymorphicProps,
-} from "../polymorphic";
-import {
-	type ListboxItemDataSet,
-	useListboxItemContext,
-} from "./listbox-item-context";
+import { type ElementOf, Polymorphic, type PolymorphicProps } from "../polymorphic"
+import { type ListboxItemDataSet, useListboxItemContext } from "./listbox-item-context"
 
 export interface ListboxItemLabelOptions {}
 
-export interface ListboxItemLabelCommonProps<
-	T extends HTMLElement = HTMLElement,
-> {
-	id: string;
+export interface ListboxItemLabelCommonProps<T extends HTMLElement = HTMLElement> {
+  id: string
 }
 
-export interface ListboxItemLabelRenderProps
-	extends ListboxItemLabelCommonProps,
-		ListboxItemDataSet {}
+export interface ListboxItemLabelRenderProps extends ListboxItemLabelCommonProps, ListboxItemDataSet {}
 
-export type ListboxItemLabelProps<
-	T extends ValidComponent | HTMLElement = HTMLElement,
-> = ListboxItemLabelOptions &
-	Partial<ListboxItemLabelCommonProps<ElementOf<T>>>;
+export type ListboxItemLabelProps<T extends ValidComponent | HTMLElement = HTMLElement> = ListboxItemLabelOptions &
+  Partial<ListboxItemLabelCommonProps<ElementOf<T>>>
 
 /**
  * An accessible label to be announced for the item.
  * Useful for items that have more complex content (e.g. icons, multiple lines of text, etc.)
  */
 export function ListboxItemLabel<T extends ValidComponent = "div">(
-	props: PolymorphicProps<T, ListboxItemLabelProps<T>>,
+  props: PolymorphicProps<T, ListboxItemLabelProps<T>>,
 ) {
-	const context = useListboxItemContext();
+  const context = useListboxItemContext()
 
-	const mergedProps = mergeDefaultProps(
-		{
-			id: context.generateId("label"),
-		},
-		props as ListboxItemLabelProps,
-	);
+  const mergedProps = mergeDefaultProps(
+    {
+      id: context.generateId("label"),
+    },
+    props as ListboxItemLabelProps,
+  )
 
-	createEffect(() => onCleanup(context.registerLabelId(mergedProps.id)));
+  createEffect(() => onCleanup(context.registerLabelId(mergedProps.id)))
 
-	return (
-		<Polymorphic<ListboxItemLabelRenderProps>
-			as="div"
-			{...context.dataset()}
-			{...mergedProps}
-		/>
-	);
+  return <Polymorphic<ListboxItemLabelRenderProps> as="div" {...context.dataset()} {...mergedProps} />
 }

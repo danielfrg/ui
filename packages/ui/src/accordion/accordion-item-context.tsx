@@ -1,24 +1,22 @@
-import { type Accessor, createContext, useContext } from "solid-js";
+import { type Accessor, createContext, useContext } from "solid-js"
 
 export interface AccordionItemContextValue {
-	value: Accessor<string>;
-	triggerId: Accessor<string | undefined>;
-	contentId: Accessor<string | undefined>;
-	generateId: (part: string) => string;
-	registerTriggerId: (id: string) => () => void;
-	registerContentId: (id: string) => () => void;
+  value: Accessor<string>
+  triggerId: Accessor<string | undefined>
+  contentId: Accessor<string | undefined>
+  generateId: (part: string) => string
+  registerTriggerId: (id: string) => () => void
+  registerContentId: (id: string) => () => void
 }
 
-export const AccordionItemContext = createContext<AccordionItemContextValue>();
+export const AccordionItemContext = createContext<AccordionItemContextValue>()
 
 export function useAccordionItemContext() {
-	const context = useContext(AccordionItemContext);
+  const context = useContext(AccordionItemContext)
 
-	if (context === undefined) {
-		throw new Error(
-			"[ui]: `useAccordionItemContext` must be used within a `Accordion.Item` component",
-		);
-	}
+  if (context === undefined) {
+    throw new Error("[ui]: `useAccordionItemContext` must be used within a `Accordion.Item` component")
+  }
 
-	return context;
+  return context
 }

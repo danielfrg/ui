@@ -6,25 +6,25 @@
  * https://github.com/adobe/react-spectrum/blob/5c1920e50d4b2b80c826ca91aff55c97350bf9f9/packages/@react-aria/select/src/HiddenSelect.tsx
  */
 
-import type { ComponentProps } from "solid-js";
+import type { ComponentProps } from "solid-js"
 
-import { HiddenSelectBase } from "../select/hidden-select-base";
-import { useComboboxContext } from "./combobox-context";
+import { HiddenSelectBase } from "../select/hidden-select-base"
+import { useComboboxContext } from "./combobox-context"
 
-export type ComboboxHiddenSelectProps = ComponentProps<"select">;
+export type ComboboxHiddenSelectProps = ComponentProps<"select">
 
 export function ComboboxHiddenSelect(props: ComboboxHiddenSelectProps) {
-	const context = useComboboxContext();
+  const context = useComboboxContext()
 
-	return (
-		<HiddenSelectBase
-			collection={context.listState().collection()}
-			selectionManager={context.listState().selectionManager()}
-			isOpen={context.isOpen()}
-			isMultiple={context.isMultiple()}
-			isVirtualized={context.isVirtualized()}
-			focusTrigger={() => context.inputRef()?.focus()}
-			{...props}
-		/>
-	);
+  return (
+    <HiddenSelectBase
+      collection={context.listState().collection()}
+      selectionManager={context.listState().selectionManager()}
+      isOpen={context.isOpen()}
+      isMultiple={context.isMultiple()}
+      isVirtualized={context.isVirtualized()}
+      focusTrigger={() => context.inputRef()?.focus()}
+      {...props}
+    />
+  )
 }

@@ -1,1 +1,1 @@
-export type TabsActivationMode = "automatic" | "manual";
+export type TabsActivationMode = "automatic" | "manual"

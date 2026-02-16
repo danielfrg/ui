@@ -6,23 +6,23 @@
  * https://github.com/adobe/react-spectrum/blob/22cb32d329e66c60f55d4fc4025d1d44bb015d71/packages/@react-stately/collections/src/getItemCount.ts
  */
 
-import type { CollectionNode } from "./types";
+import type { CollectionNode } from "./types"
 
-const cache = new WeakMap<Iterable<unknown>, number>();
+const cache = new WeakMap<Iterable<unknown>, number>()
 
 export function getItemCount(collection: Iterable<CollectionNode>): number {
-	let count = cache.get(collection);
-	if (count != null) {
-		return count;
-	}
+  let count = cache.get(collection)
+  if (count != null) {
+    return count
+  }
 
-	count = 0;
-	for (const item of collection) {
-		if (item.type === "item") {
-			count++;
-		}
-	}
+  count = 0
+  for (const item of collection) {
+    if (item.type === "item") {
+      count++
+    }
+  }
 
-	cache.set(collection, count);
-	return count;
+  cache.set(collection, count)
+  return count
 }

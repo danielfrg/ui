@@ -1,361 +1,314 @@
 import {
-	type Orientation,
-	callHandler,
-	composeEventHandlers,
-	focusWithoutScrolling,
-	mergeDefaultProps,
-	mergeRefs,
-} from "../utils";
-import {
-	type JSX,
-	type ValidComponent,
-	createEffect,
-	createUniqueId,
-	on,
-	onCleanup,
-	splitProps,
-} from "solid-js";
-import { isServer } from "solid-js/web";
+  type Orientation,
+  callHandler,
+  composeEventHandlers,
+  focusWithoutScrolling,
+  mergeDefaultProps,
+  mergeRefs,
+} from "../utils"
+import { type JSX, type ValidComponent, createEffect, createUniqueId, on, onCleanup, splitProps } from "solid-js"
+import { isServer } from "solid-js/web"
 
-import { type Direction, useLocale } from "../i18n";
-import {
-	type ElementOf,
-	Polymorphic,
-	type PolymorphicProps,
-} from "../polymorphic";
-import { createSelectableItem } from "../selection";
-import { type MenuDataSet, useMenuContext } from "./menu-context";
-import { useMenuRootContext } from "./menu-root-context";
-import { type Side, getPointerGraceArea } from "./utils";
+import { type Direction, useLocale } from "../i18n"
+import { type ElementOf, Polymorphic, type PolymorphicProps } from "../polymorphic"
+import { createSelectableItem } from "../selection"
+import { type MenuDataSet, useMenuContext } from "./menu-context"
+import { useMenuRootContext } from "./menu-root-context"
+import { type Side, getPointerGraceArea } from "./utils"
 
 export interface MenuSubTriggerOptions {
-	textValue?: string;
-	disabled?: boolean;
+  textValue?: string
+  disabled?: boolean
 }
 
-export interface MenuSubTriggerCommonProps<
-	T extends HTMLElement = HTMLElement,
-> {
-	id: string;
-	ref: T | ((el: T) => void);
-	onPointerMove: JSX.EventHandlerUnion<T, PointerEvent>;
-	onPointerLeave: JSX.EventHandlerUnion<T, PointerEvent>;
-	onPointerDown: JSX.EventHandlerUnion<T, PointerEvent>;
-	onPointerUp: JSX.EventHandlerUnion<T, PointerEvent>;
-	onClick: JSX.EventHandlerUnion<T, MouseEvent>;
-	onKeyDown: JSX.EventHandlerUnion<T, KeyboardEvent>;
-	onMouseDown: JSX.EventHandlerUnion<T, MouseEvent>;
-	onFocus: JSX.EventHandlerUnion<T, FocusEvent>;
+export interface MenuSubTriggerCommonProps<T extends HTMLElement = HTMLElement> {
+  id: string
+  ref: T | ((el: T) => void)
+  onPointerMove: JSX.EventHandlerUnion<T, PointerEvent>
+  onPointerLeave: JSX.EventHandlerUnion<T, PointerEvent>
+  onPointerDown: JSX.EventHandlerUnion<T, PointerEvent>
+  onPointerUp: JSX.EventHandlerUnion<T, PointerEvent>
+  onClick: JSX.EventHandlerUnion<T, MouseEvent>
+  onKeyDown: JSX.EventHandlerUnion<T, KeyboardEvent>
+  onMouseDown: JSX.EventHandlerUnion<T, MouseEvent>
+  onFocus: JSX.EventHandlerUnion<T, FocusEvent>
 }
 
-export interface MenuSubTriggerRenderProps
-	extends MenuSubTriggerCommonProps,
-		MenuDataSet {
-	role: "menuitem";
-	tabIndex: number | undefined;
-	"aria-haspopup": "true";
-	"aria-expanded": boolean;
-	"aria-controls": string | undefined;
-	"aria-disabled": boolean | undefined;
-	"data-key": string | undefined;
-	"data-highlighted": "" | undefined;
-	"data-disabled": "" | undefined;
+export interface MenuSubTriggerRenderProps extends MenuSubTriggerCommonProps, MenuDataSet {
+  role: "menuitem"
+  tabIndex: number | undefined
+  "aria-haspopup": "true"
+  "aria-expanded": boolean
+  "aria-controls": string | undefined
+  "aria-disabled": boolean | undefined
+  "data-key": string | undefined
+  "data-highlighted": "" | undefined
+  "data-disabled": "" | undefined
 }
 
-export type MenuSubTriggerProps<
-	T extends ValidComponent | HTMLElement = HTMLElement,
-> = MenuSubTriggerOptions & Partial<MenuSubTriggerCommonProps<ElementOf<T>>>;
+export type MenuSubTriggerProps<T extends ValidComponent | HTMLElement = HTMLElement> = MenuSubTriggerOptions &
+  Partial<MenuSubTriggerCommonProps<ElementOf<T>>>
 
-const SELECTION_KEYS = ["Enter", " "];
+const SELECTION_KEYS = ["Enter", " "]
 const SUB_OPEN_KEYS = {
-	open: (dir: Direction, orientation: Orientation) => {
-		if (dir === "ltr") {
-			return [
-				...SELECTION_KEYS,
-				orientation === "horizontal" ? "ArrowRight" : "ArrowDown",
-			];
-		}
-		return [
-			...SELECTION_KEYS,
-			orientation === "horizontal" ? "ArrowLeft" : "ArrowUp",
-		];
-	},
-};
+  open: (dir: Direction, orientation: Orientation) => {
+    if (dir === "ltr") {
+      return [...SELECTION_KEYS, orientation === "horizontal" ? "ArrowRight" : "ArrowDown"]
+    }
+    return [...SELECTION_KEYS, orientation === "horizontal" ? "ArrowLeft" : "ArrowUp"]
+  },
+}
 
-export function MenuSubTrigger<T extends ValidComponent = "div">(
-	props: PolymorphicProps<T, MenuSubTriggerProps<T>>,
-) {
-	let ref: HTMLElement | undefined;
+export function MenuSubTrigger<T extends ValidComponent = "div">(props: PolymorphicProps<T, MenuSubTriggerProps<T>>) {
+  let ref: HTMLElement | undefined
 
-	const rootContext = useMenuRootContext();
-	const context = useMenuContext();
+  const rootContext = useMenuRootContext()
+  const context = useMenuContext()
 
-	const mergedProps = mergeDefaultProps(
-		{
-			id: rootContext.generateId(`sub-trigger-${createUniqueId()}`),
-		},
-		props as MenuSubTriggerProps,
-	);
+  const mergedProps = mergeDefaultProps(
+    {
+      id: rootContext.generateId(`sub-trigger-${createUniqueId()}`),
+    },
+    props as MenuSubTriggerProps,
+  )
 
-	const [local, others] = splitProps(mergedProps, [
-		"ref",
-		"id",
-		"textValue",
-		"disabled",
-		"onPointerMove",
-		"onPointerLeave",
-		"onPointerDown",
-		"onPointerUp",
-		"onClick",
-		"onKeyDown",
-		"onMouseDown",
-		"onFocus",
-	]);
+  const [local, others] = splitProps(mergedProps, [
+    "ref",
+    "id",
+    "textValue",
+    "disabled",
+    "onPointerMove",
+    "onPointerLeave",
+    "onPointerDown",
+    "onPointerUp",
+    "onClick",
+    "onKeyDown",
+    "onMouseDown",
+    "onFocus",
+  ])
 
-	let openTimeoutId: number | null = null;
+  let openTimeoutId: number | null = null
 
-	const clearOpenTimeout = () => {
-		if (isServer) {
-			return;
-		}
+  const clearOpenTimeout = () => {
+    if (isServer) {
+      return
+    }
 
-		if (openTimeoutId) {
-			window.clearTimeout(openTimeoutId);
-		}
+    if (openTimeoutId) {
+      window.clearTimeout(openTimeoutId)
+    }
 
-		openTimeoutId = null;
-	};
+    openTimeoutId = null
+  }
 
-	const { direction } = useLocale();
+  const { direction } = useLocale()
 
-	const key = () => local.id!;
+  const key = () => local.id!
 
-	const parentSelectionManager = () => {
-		const parentMenuContext = context.parentMenuContext();
+  const parentSelectionManager = () => {
+    const parentMenuContext = context.parentMenuContext()
 
-		if (parentMenuContext == null) {
-			throw new Error(
-				"[kobalte]: `Menu.SubTrigger` must be used within a `Menu.Sub` component",
-			);
-		}
+    if (parentMenuContext == null) {
+      throw new Error("[kobalte]: `Menu.SubTrigger` must be used within a `Menu.Sub` component")
+    }
 
-		return parentMenuContext.listState().selectionManager();
-	};
+    return parentMenuContext.listState().selectionManager()
+  }
 
-	const collection = () => context.listState().collection();
+  const collection = () => context.listState().collection()
 
-	const isHighlighted = () => parentSelectionManager().focusedKey() === key();
+  const isHighlighted = () => parentSelectionManager().focusedKey() === key()
 
-	const selectableItem = createSelectableItem(
-		{
-			key,
-			selectionManager: parentSelectionManager,
-			shouldSelectOnPressUp: true,
-			allowsDifferentPressOrigin: true,
-			disabled: () => local.disabled,
-		},
-		() => ref,
-	);
+  const selectableItem = createSelectableItem(
+    {
+      key,
+      selectionManager: parentSelectionManager,
+      shouldSelectOnPressUp: true,
+      allowsDifferentPressOrigin: true,
+      disabled: () => local.disabled,
+    },
+    () => ref,
+  )
 
-	const onClick: JSX.EventHandlerUnion<HTMLElement, MouseEvent> = (e) => {
-		callHandler(e, local.onClick);
+  const onClick: JSX.EventHandlerUnion<HTMLElement, MouseEvent> = (e) => {
+    callHandler(e, local.onClick)
 
-		if (!context.isOpen() && !local.disabled) {
-			context.open(true);
-		}
-	};
+    if (!context.isOpen() && !local.disabled) {
+      context.open(true)
+    }
+  }
 
-	const onPointerMove: JSX.EventHandlerUnion<HTMLElement, PointerEvent> = (
-		e,
-	) => {
-		callHandler(e, local.onPointerMove);
+  const onPointerMove: JSX.EventHandlerUnion<HTMLElement, PointerEvent> = (e) => {
+    callHandler(e, local.onPointerMove)
 
-		if (e.pointerType !== "mouse") {
-			return;
-		}
+    if (e.pointerType !== "mouse") {
+      return
+    }
 
-		const parentMenuContext = context.parentMenuContext();
+    const parentMenuContext = context.parentMenuContext()
 
-		parentMenuContext?.onItemEnter(e);
+    parentMenuContext?.onItemEnter(e)
 
-		if (e.defaultPrevented) {
-			return;
-		}
+    if (e.defaultPrevented) {
+      return
+    }
 
-		if (local.disabled) {
-			parentMenuContext?.onItemLeave(e);
-			return;
-		}
+    if (local.disabled) {
+      parentMenuContext?.onItemLeave(e)
+      return
+    }
 
-		if (!context.isOpen() && !openTimeoutId) {
-			context.parentMenuContext()?.setPointerGraceIntent(null);
+    if (!context.isOpen() && !openTimeoutId) {
+      context.parentMenuContext()?.setPointerGraceIntent(null)
 
-			openTimeoutId = window.setTimeout(() => {
-				context.open(false);
-				clearOpenTimeout();
-			}, 100);
-		}
+      openTimeoutId = window.setTimeout(() => {
+        context.open(false)
+        clearOpenTimeout()
+      }, 100)
+    }
 
-		parentMenuContext?.onItemEnter(e);
+    parentMenuContext?.onItemEnter(e)
 
-		if (!e.defaultPrevented) {
-			if (context.listState().selectionManager().isFocused()) {
-				context.listState().selectionManager().setFocused(false);
-				context.listState().selectionManager().setFocusedKey(undefined);
-			}
+    if (!e.defaultPrevented) {
+      if (context.listState().selectionManager().isFocused()) {
+        context.listState().selectionManager().setFocused(false)
+        context.listState().selectionManager().setFocusedKey(undefined)
+      }
 
-			focusWithoutScrolling(e.currentTarget);
-			parentMenuContext?.listState().selectionManager().setFocused(true);
-			parentMenuContext?.listState().selectionManager().setFocusedKey(key());
-		}
-	};
+      focusWithoutScrolling(e.currentTarget)
+      parentMenuContext?.listState().selectionManager().setFocused(true)
+      parentMenuContext?.listState().selectionManager().setFocusedKey(key())
+    }
+  }
 
-	const onPointerLeave: JSX.EventHandlerUnion<HTMLElement, PointerEvent> = (
-		e,
-	) => {
-		callHandler(e, local.onPointerLeave);
+  const onPointerLeave: JSX.EventHandlerUnion<HTMLElement, PointerEvent> = (e) => {
+    callHandler(e, local.onPointerLeave)
 
-		if (e.pointerType !== "mouse") {
-			return;
-		}
+    if (e.pointerType !== "mouse") {
+      return
+    }
 
-		clearOpenTimeout();
+    clearOpenTimeout()
 
-		const parentMenuContext = context.parentMenuContext();
+    const parentMenuContext = context.parentMenuContext()
 
-		const contentEl = context.contentRef();
+    const contentEl = context.contentRef()
 
-		if (contentEl) {
-			parentMenuContext?.setPointerGraceIntent({
-				area: getPointerGraceArea(context.currentPlacement(), e, contentEl),
-				side: context.currentPlacement().split("-")[0] as Side,
-			});
+    if (contentEl) {
+      parentMenuContext?.setPointerGraceIntent({
+        area: getPointerGraceArea(context.currentPlacement(), e, contentEl),
+        side: context.currentPlacement().split("-")[0] as Side,
+      })
 
-			window.clearTimeout(parentMenuContext?.pointerGraceTimeoutId());
+      window.clearTimeout(parentMenuContext?.pointerGraceTimeoutId())
 
-			const pointerGraceTimeoutId = window.setTimeout(() => {
-				parentMenuContext?.setPointerGraceIntent(null);
-			}, 300);
+      const pointerGraceTimeoutId = window.setTimeout(() => {
+        parentMenuContext?.setPointerGraceIntent(null)
+      }, 300)
 
-			parentMenuContext?.setPointerGraceTimeoutId(pointerGraceTimeoutId);
-		} else {
-			parentMenuContext?.onTriggerLeave(e);
+      parentMenuContext?.setPointerGraceTimeoutId(pointerGraceTimeoutId)
+    } else {
+      parentMenuContext?.onTriggerLeave(e)
 
-			if (e.defaultPrevented) {
-				return;
-			}
+      if (e.defaultPrevented) {
+        return
+      }
 
-			parentMenuContext?.setPointerGraceIntent(null);
-		}
+      parentMenuContext?.setPointerGraceIntent(null)
+    }
 
-		parentMenuContext?.onItemLeave(e);
-	};
+    parentMenuContext?.onItemLeave(e)
+  }
 
-	const onKeyDown: JSX.EventHandlerUnion<HTMLElement, KeyboardEvent> = (e) => {
-		callHandler(e, local.onKeyDown);
+  const onKeyDown: JSX.EventHandlerUnion<HTMLElement, KeyboardEvent> = (e) => {
+    callHandler(e, local.onKeyDown)
 
-		if (e.repeat) {
-			return;
-		}
+    if (e.repeat) {
+      return
+    }
 
-		if (local.disabled) {
-			return;
-		}
+    if (local.disabled) {
+      return
+    }
 
-		if (
-			SUB_OPEN_KEYS.open(direction(), rootContext.orientation()).includes(e.key)
-		) {
-			e.stopPropagation();
-			e.preventDefault();
+    if (SUB_OPEN_KEYS.open(direction(), rootContext.orientation()).includes(e.key)) {
+      e.stopPropagation()
+      e.preventDefault()
 
-			parentSelectionManager().setFocused(false);
-			parentSelectionManager().setFocusedKey(undefined);
+      parentSelectionManager().setFocused(false)
+      parentSelectionManager().setFocusedKey(undefined)
 
-			if (!context.isOpen()) {
-				context.open("first");
-			}
+      if (!context.isOpen()) {
+        context.open("first")
+      }
 
-			context.focusContent();
-			context.listState().selectionManager().setFocused(true);
-			context
-				.listState()
-				.selectionManager()
-				.setFocusedKey(collection().getFirstKey());
-		}
-	};
+      context.focusContent()
+      context.listState().selectionManager().setFocused(true)
+      context.listState().selectionManager().setFocusedKey(collection().getFirstKey())
+    }
+  }
 
-	createEffect(() => {
-		if (context.registerItemToParentDomCollection == null) {
-			throw new Error(
-				"[kobalte]: `Menu.SubTrigger` must be used within a `Menu.Sub` component",
-			);
-		}
+  createEffect(() => {
+    if (context.registerItemToParentDomCollection == null) {
+      throw new Error("[kobalte]: `Menu.SubTrigger` must be used within a `Menu.Sub` component")
+    }
 
-		const unregister = context.registerItemToParentDomCollection({
-			ref: () => ref,
-			type: "item",
-			key: key(),
-			textValue: local.textValue ?? ref?.textContent ?? "",
-			disabled: local.disabled ?? false,
-		});
+    const unregister = context.registerItemToParentDomCollection({
+      ref: () => ref,
+      type: "item",
+      key: key(),
+      textValue: local.textValue ?? ref?.textContent ?? "",
+      disabled: local.disabled ?? false,
+    })
 
-		onCleanup(unregister);
-	});
+    onCleanup(unregister)
+  })
 
-	createEffect(
-		on(
-			() => context.parentMenuContext()?.pointerGraceTimeoutId(),
-			(pointerGraceTimer) => {
-				onCleanup(() => {
-					window.clearTimeout(pointerGraceTimer);
-					context.parentMenuContext()?.setPointerGraceIntent(null);
-				});
-			},
-		),
-	);
+  createEffect(
+    on(
+      () => context.parentMenuContext()?.pointerGraceTimeoutId(),
+      (pointerGraceTimer) => {
+        onCleanup(() => {
+          window.clearTimeout(pointerGraceTimer)
+          context.parentMenuContext()?.setPointerGraceIntent(null)
+        })
+      },
+    ),
+  )
 
-	createEffect(() => onCleanup(context.registerTriggerId(local.id!)));
+  createEffect(() => onCleanup(context.registerTriggerId(local.id!)))
 
-	onCleanup(() => {
-		clearOpenTimeout();
-	});
+  onCleanup(() => {
+    clearOpenTimeout()
+  })
 
-	return (
-		<Polymorphic<MenuSubTriggerRenderProps>
-			as="div"
-			ref={mergeRefs((el) => {
-				context.setTriggerRef(el);
-				ref = el;
-			}, local.ref)}
-			id={local.id}
-			role="menuitem"
-			tabIndex={selectableItem.tabIndex()}
-			aria-haspopup="true"
-			aria-expanded={context.isOpen()}
-			aria-controls={context.isOpen() ? context.contentId() : undefined}
-			aria-disabled={local.disabled}
-			data-key={selectableItem.dataKey()}
-			data-highlighted={isHighlighted() ? "" : undefined}
-			data-disabled={local.disabled ? "" : undefined}
-			onPointerDown={composeEventHandlers([
-				local.onPointerDown,
-				selectableItem.onPointerDown,
-			])}
-			onPointerUp={composeEventHandlers([
-				local.onPointerUp,
-				selectableItem.onPointerUp,
-			])}
-			onClick={composeEventHandlers([onClick, selectableItem.onClick])}
-			onKeyDown={composeEventHandlers([onKeyDown, selectableItem.onKeyDown])}
-			onMouseDown={composeEventHandlers([
-				local.onMouseDown,
-				selectableItem.onMouseDown,
-			])}
-			onFocus={composeEventHandlers([local.onFocus, selectableItem.onFocus])}
-			onPointerMove={onPointerMove}
-			onPointerLeave={onPointerLeave}
-			{...context.dataset()}
-			{...others}
-		/>
-	);
+  return (
+    <Polymorphic<MenuSubTriggerRenderProps>
+      as="div"
+      ref={mergeRefs((el) => {
+        context.setTriggerRef(el)
+        ref = el
+      }, local.ref)}
+      id={local.id}
+      role="menuitem"
+      tabIndex={selectableItem.tabIndex()}
+      aria-haspopup="true"
+      aria-expanded={context.isOpen()}
+      aria-controls={context.isOpen() ? context.contentId() : undefined}
+      aria-disabled={local.disabled}
+      data-key={selectableItem.dataKey()}
+      data-highlighted={isHighlighted() ? "" : undefined}
+      data-disabled={local.disabled ? "" : undefined}
+      onPointerDown={composeEventHandlers([local.onPointerDown, selectableItem.onPointerDown])}
+      onPointerUp={composeEventHandlers([local.onPointerUp, selectableItem.onPointerUp])}
+      onClick={composeEventHandlers([onClick, selectableItem.onClick])}
+      onKeyDown={composeEventHandlers([onKeyDown, selectableItem.onKeyDown])}
+      onMouseDown={composeEventHandlers([local.onMouseDown, selectableItem.onMouseDown])}
+      onFocus={composeEventHandlers([local.onFocus, selectableItem.onFocus])}
+      onPointerMove={onPointerMove}
+      onPointerLeave={onPointerLeave}
+      {...context.dataset()}
+      {...others}
+    />
+  )
 }

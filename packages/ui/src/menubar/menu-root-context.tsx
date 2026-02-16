@@ -1,27 +1,25 @@
-import type { Orientation } from "../utils";
-import { type Accessor, createContext, useContext } from "solid-js";
+import type { Orientation } from "../utils"
+import { type Accessor, createContext, useContext } from "solid-js"
 
 export interface MenuRootContextValue {
-	isModal: Accessor<boolean>;
-	preventScroll: Accessor<boolean>;
-	forceMount: Accessor<boolean>;
-	generateId: (part: string) => string;
-	orientation: Accessor<Orientation>;
+  isModal: Accessor<boolean>
+  preventScroll: Accessor<boolean>
+  forceMount: Accessor<boolean>
+  generateId: (part: string) => string
+  orientation: Accessor<Orientation>
 
-	/** Used for the top-level Menu (menubar) */
-	value: Accessor<string | undefined>;
+  /** Used for the top-level Menu (menubar) */
+  value: Accessor<string | undefined>
 }
 
-export const MenuRootContext = createContext<MenuRootContextValue>();
+export const MenuRootContext = createContext<MenuRootContextValue>()
 
 export function useMenuRootContext() {
-	const context = useContext(MenuRootContext);
+  const context = useContext(MenuRootContext)
 
-	if (context === undefined) {
-		throw new Error(
-			"[kobalte]: `useMenuRootContext` must be used within a `Menu.Root` component",
-		);
-	}
+  if (context === undefined) {
+    throw new Error("[kobalte]: `useMenuRootContext` must be used within a `Menu.Root` component")
+  }
 
-	return context;
+  return context
 }

@@ -1,1 +1,1 @@
-export type ComboboxTriggerMode = "focus" | "input" | "manual";
+export type ComboboxTriggerMode = "focus" | "input" | "manual"

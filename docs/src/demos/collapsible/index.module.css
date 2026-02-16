@@ -1,89 +1,89 @@
 .collapsible {
-	display: flex;
-	width: 14rem;
-	min-height: 9rem;
-	flex-direction: column;
-	justify-content: center;
-	color: var(--color-gray-900);
+  display: flex;
+  width: 14rem;
+  min-height: 9rem;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--color-gray-900);
 }
 
 .icon {
-	width: 0.75rem;
-	height: 0.75rem;
-	transition: transform 150ms ease-out;
+  width: 0.75rem;
+  height: 0.75rem;
+  transition: transform 150ms ease-out;
 }
 
 .trigger {
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
-	border: 0;
-	outline: 0;
-	padding: 0.25rem 0.5rem;
-	border-radius: 0.25rem;
-	background-color: var(--color-gray-100);
-	color: var(--color-gray-900);
-	font-family: inherit;
-	font-size: 0.875rem;
-	line-height: 1.25rem;
-	font-weight: 500;
-	cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 0;
+  outline: 0;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-900);
+  font-family: inherit;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  cursor: pointer;
 }
 
 @media (hover: hover) {
-	.trigger:hover {
-		background-color: var(--color-gray-200);
-	}
+  .trigger:hover {
+    background-color: var(--color-gray-200);
+  }
 }
 
 .trigger:active {
-	background-color: var(--color-gray-200);
+  background-color: var(--color-gray-200);
 }
 
 .trigger:focus-visible {
-	outline: 2px solid var(--color-blue);
+  outline: 2px solid var(--color-blue);
 }
 
 .trigger[data-expanded] .icon {
-	transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 
 .panel {
-	overflow: hidden;
-	font-size: 0.875rem;
-	line-height: 1.25rem;
-	animation: slideUp 200ms ease-out;
+  overflow: hidden;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  animation: slideUp 200ms ease-out;
 }
 
 .panel[data-expanded] {
-	animation: slideDown 200ms ease-out;
+  animation: slideDown 200ms ease-out;
 }
 
 @keyframes slideDown {
-	from {
-		height: 0;
-	}
-	to {
-		height: var(--kb-collapsible-content-height);
-	}
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--kb-collapsible-content-height);
+  }
 }
 
 @keyframes slideUp {
-	from {
-		height: var(--kb-collapsible-content-height);
-	}
-	to {
-		height: 0;
-	}
+  from {
+    height: var(--kb-collapsible-content-height);
+  }
+  to {
+    height: 0;
+  }
 }
 
 .content {
-	display: flex;
-	flex-direction: column;
-	gap: 0.5rem;
-	margin-top: 0.25rem;
-	padding: 0.5rem 0 0.5rem 1.75rem;
-	border-radius: 0.25rem;
-	background-color: var(--color-gray-100);
-	cursor: text;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+  padding: 0.5rem 0 0.5rem 1.75rem;
+  border-radius: 0.25rem;
+  background-color: var(--color-gray-100);
+  cursor: text;
 }

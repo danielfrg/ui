@@ -13,10 +13,18 @@
   gap: 24px;
 }
 
-.col1 { width: 304px; }
-.col2 { width: 304px; }
-.col3 { width: 416px; }
-.col4 { width: 640px; }
+.col1 {
+  width: 304px;
+}
+.col2 {
+  width: 304px;
+}
+.col3 {
+  width: 416px;
+}
+.col4 {
+  width: 640px;
+}
 
 /* ── Card ───────────────────────────────────────────────────── */
 .card {
@@ -24,12 +32,18 @@
   background: var(--ui-background);
   border: 1px solid var(--ui-line);
   border-radius: 12px;
-  box-shadow: 0 1px 3px oklch(0% 0 0 / 6%), 0 1px 2px oklch(0% 0 0 / 4%);
+  box-shadow:
+    0 1px 3px oklch(0% 0 0 / 6%),
+    0 1px 2px oklch(0% 0 0 / 4%);
   overflow: hidden;
 }
 
-.cardSm { padding: 16px; }
-.cardMd { padding: 24px; }
+.cardSm {
+  padding: 16px;
+}
+.cardMd {
+  padding: 24px;
+}
 
 /* ── Typography ─────────────────────────────────────────────── */
 .h3 {
@@ -51,64 +65,193 @@
   letter-spacing: -0.02em;
 }
 
-.textXs { font-size: 0.75rem; line-height: 1.4; }
-.textSm { font-size: 0.875rem; line-height: 1.4; }
-.textMd { font-size: 1rem; line-height: 1.45; }
-.textLg { font-size: 1.125rem; line-height: 1.4; }
-.textXl { font-size: 1.5rem; line-height: 1.2; font-weight: 700; letter-spacing: -0.0125em; }
-.text2Xl { font-size: 2rem; line-height: 1.1; font-weight: 700; letter-spacing: -0.02em; }
-.text4Xl { font-size: 2.5rem; line-height: 1.05; font-weight: 700; letter-spacing: -0.05em; }
-.textMuted { color: var(--ui-muted); }
-.textBold { font-weight: 600; }
+.textXs {
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+.textSm {
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+.textMd {
+  font-size: 1rem;
+  line-height: 1.45;
+}
+.textLg {
+  font-size: 1.125rem;
+  line-height: 1.4;
+}
+.textXl {
+  font-size: 1.5rem;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.0125em;
+}
+.text2Xl {
+  font-size: 2rem;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.text4Xl {
+  font-size: 2.5rem;
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+}
+.textMuted {
+  color: var(--ui-muted);
+}
+.textBold {
+  font-weight: 600;
+}
 
 /* ── Flex / Grid helpers ────────────────────────────────────── */
-.flex { display: flex; }
-.flexCol { display: flex; flex-direction: column; }
-.flexCenter { display: flex; align-items: center; }
-.flexBetween { display: flex; align-items: center; justify-content: space-between; }
-.flexEnd { display: flex; justify-content: flex-end; }
-.flexGrow { flex-grow: 1; }
-.flexWrap { flex-wrap: wrap; }
-.alignEnd { align-items: flex-end; }
-.alignCenter { align-items: center; }
-.alignStart { align-items: flex-start; }
-.justifyCenter { justify-content: center; }
-.justifyBetween { justify-content: space-between; }
-.textRight { text-align: right; }
-.textCenter { text-align: center; }
-.shrink0 { flex-shrink: 0; }
+.flex {
+  display: flex;
+}
+.flexCol {
+  display: flex;
+  flex-direction: column;
+}
+.flexCenter {
+  display: flex;
+  align-items: center;
+}
+.flexBetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.flexEnd {
+  display: flex;
+  justify-content: flex-end;
+}
+.flexGrow {
+  flex-grow: 1;
+}
+.flexWrap {
+  flex-wrap: wrap;
+}
+.alignEnd {
+  align-items: flex-end;
+}
+.alignCenter {
+  align-items: center;
+}
+.alignStart {
+  align-items: flex-start;
+}
+.justifyCenter {
+  justify-content: center;
+}
+.justifyBetween {
+  justify-content: space-between;
+}
+.textRight {
+  text-align: right;
+}
+.textCenter {
+  text-align: center;
+}
+.shrink0 {
+  flex-shrink: 0;
+}
 
-.gap1 { gap: 4px; }
-.gap2 { gap: 8px; }
-.gap3 { gap: 12px; }
-.gap4 { gap: 16px; }
-.gap5 { gap: 20px; }
-.gap6 { gap: 24px; }
+.gap1 {
+  gap: 4px;
+}
+.gap2 {
+  gap: 8px;
+}
+.gap3 {
+  gap: 12px;
+}
+.gap4 {
+  gap: 16px;
+}
+.gap5 {
+  gap: 20px;
+}
+.gap6 {
+  gap: 24px;
+}
 
-.grid2 { display: grid; grid-template-columns: repeat(2, 1fr); }
-.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); }
-.grid4 { display: grid; grid-template-columns: repeat(4, 1fr); }
-.grid5 { display: grid; grid-template-columns: repeat(5, 1fr); }
+.grid2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.grid4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.grid5 {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
 
-.span4of5 { grid-column: 1 / 5; }
-.spanFull { grid-column: 1 / -1; }
+.span4of5 {
+  grid-column: 1 / 5;
+}
+.spanFull {
+  grid-column: 1 / -1;
+}
 
 /* ── Spacing ────────────────────────────────────────────────── */
-.mb1 { margin-bottom: 4px; }
-.mb2 { margin-bottom: 8px; }
-.mb3 { margin-bottom: 12px; }
-.mb4 { margin-bottom: 16px; }
-.mb5 { margin-bottom: 20px; }
-.mb6 { margin-bottom: 24px; }
-.mt2 { margin-top: 8px; }
-.mt3 { margin-top: 12px; }
-.mt4 { margin-top: 16px; }
-.my4 { margin-top: 16px; margin-bottom: 16px; }
-.py2 { padding-top: 8px; padding-bottom: 8px; }
+.mb1 {
+  margin-bottom: 4px;
+}
+.mb2 {
+  margin-bottom: 8px;
+}
+.mb3 {
+  margin-bottom: 12px;
+}
+.mb4 {
+  margin-bottom: 16px;
+}
+.mb5 {
+  margin-bottom: 20px;
+}
+.mb6 {
+  margin-bottom: 24px;
+}
+.mt2 {
+  margin-top: 8px;
+}
+.mt3 {
+  margin-top: 12px;
+}
+.mt4 {
+  margin-top: 16px;
+}
+.my4 {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+.py2 {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
 
 /* ── Separator ──────────────────────────────────────────────── */
-.separator { width: 100%; border: none; height: 1px; background: var(--ui-line); }
-.separatorV { width: 1px; height: auto; align-self: stretch; background: var(--ui-line); border: none; }
+.separator {
+  width: 100%;
+  border: none;
+  height: 1px;
+  background: var(--ui-line);
+}
+.separatorV {
+  width: 1px;
+  height: auto;
+  align-self: stretch;
+  background: var(--ui-line);
+  border: none;
+}
 
 /* ── Buttons ────────────────────────────────────────────────── */
 .btn {
@@ -133,14 +276,18 @@
   color: var(--ui-background);
 }
 
-.btnSolid:hover { opacity: 0.9; }
+.btnSolid:hover {
+  opacity: 0.9;
+}
 
 .btnSoft {
   background: oklch(93% 0.005 264deg);
   color: var(--ui-foreground);
 }
 
-.btnSoft:hover { background: oklch(90% 0.01 264deg); }
+.btnSoft:hover {
+  background: oklch(90% 0.01 264deg);
+}
 
 .btnGhost {
   background: transparent;
@@ -153,8 +300,14 @@
   color: var(--ui-foreground);
 }
 
-.btnSm { padding: 4px 10px; font-size: 0.75rem; }
-.btnXs { padding: 2px 8px; font-size: 0.6875rem; }
+.btnSm {
+  padding: 4px 10px;
+  font-size: 0.75rem;
+}
+.btnXs {
+  padding: 2px 8px;
+  font-size: 0.6875rem;
+}
 
 /* ── Icon button ────────────────────────────────────────────── */
 .iconBtn {
@@ -172,14 +325,19 @@
   flex-shrink: 0;
 }
 
-.iconBtn:hover { background: oklch(96% 0.005 264deg); color: var(--ui-foreground); }
+.iconBtn:hover {
+  background: oklch(96% 0.005 264deg);
+  color: var(--ui-foreground);
+}
 
 .iconBtnSoft {
   background: oklch(93% 0.005 264deg);
   color: var(--ui-foreground);
 }
 
-.iconBtnSoft:hover { background: oklch(90% 0.01 264deg); }
+.iconBtnSoft:hover {
+  background: oklch(90% 0.01 264deg);
+}
 
 /* ── Input ──────────────────────────────────────────────────── */
 .inputField {
@@ -191,7 +349,9 @@
   color: var(--ui-foreground);
   font-family: inherit;
   outline: none;
-  transition: border-color 120ms ease, box-shadow 120ms ease;
+  transition:
+    border-color 120ms ease,
+    box-shadow 120ms ease;
   width: 100%;
   box-sizing: border-box;
 }
@@ -201,7 +361,10 @@
   box-shadow: 0 0 0 2px oklch(55% 0.18 264deg / 20%);
 }
 
-.inputField::placeholder { color: var(--ui-muted); opacity: 0.7; }
+.inputField::placeholder {
+  color: var(--ui-muted);
+  opacity: 0.7;
+}
 
 .inputWithIcon {
   position: relative;
@@ -228,14 +391,18 @@
   cursor: pointer;
 }
 
-.link:hover { text-decoration: underline; }
+.link:hover {
+  text-decoration: underline;
+}
 
 .linkBold {
   color: var(--ui-foreground);
   font-weight: 600;
 }
 
-.linkBold:hover { text-decoration: underline; }
+.linkBold:hover {
+  text-decoration: underline;
+}
 
 /* ── Badge ──────────────────────────────────────────────────── */
 .badge {
@@ -250,11 +417,26 @@
   white-space: nowrap;
 }
 
-.badgeTeal { background: oklch(92% 0.06 170deg); color: oklch(40% 0.1 170deg); }
-.badgeAmber { background: oklch(92% 0.06 80deg); color: oklch(42% 0.12 60deg); }
-.badgeRed { background: oklch(92% 0.04 25deg); color: oklch(48% 0.15 25deg); }
-.badgeGray { background: oklch(93% 0.005 264deg); color: var(--ui-muted); }
-.badgeGreen { background: oklch(92% 0.06 150deg); color: oklch(38% 0.1 150deg); }
+.badgeTeal {
+  background: oklch(92% 0.06 170deg);
+  color: oklch(40% 0.1 170deg);
+}
+.badgeAmber {
+  background: oklch(92% 0.06 80deg);
+  color: oklch(42% 0.12 60deg);
+}
+.badgeRed {
+  background: oklch(92% 0.04 25deg);
+  color: oklch(48% 0.15 25deg);
+}
+.badgeGray {
+  background: oklch(93% 0.005 264deg);
+  color: var(--ui-muted);
+}
+.badgeGreen {
+  background: oklch(92% 0.06 150deg);
+  color: oklch(38% 0.1 150deg);
+}
 
 /* ── Select (native) ────────────────────────────────────────── */
 .select {
@@ -291,19 +473,25 @@
   border: none;
   cursor: pointer;
   font-family: inherit;
-  transition: background 120ms ease, color 120ms ease;
+  transition:
+    background 120ms ease,
+    color 120ms ease;
   background: oklch(95% 0.005 264deg);
   color: var(--ui-foreground);
 }
 
-.toggleBtn:hover { background: oklch(92% 0.01 264deg); }
+.toggleBtn:hover {
+  background: oklch(92% 0.01 264deg);
+}
 
 .toggleBtnActive {
   background: var(--ui-foreground);
   color: var(--ui-background);
 }
 
-.toggleBtnActive:hover { opacity: 0.9; }
+.toggleBtnActive:hover {
+  opacity: 0.9;
+}
 
 /* ── Color swatch ───────────────────────────────────────────── */
 .swatch {
@@ -344,7 +532,9 @@
   justify-content: center;
 }
 
-.bookmarkBtn:hover { background: rgba(255, 255, 255, 1); }
+.bookmarkBtn:hover {
+  background: rgba(255, 255, 255, 1);
+}
 
 /* ── Textarea ───────────────────────────────────────────────── */
 .textarea {
@@ -401,7 +591,9 @@
   margin-bottom: 16px;
 }
 
-.timelineEvent:last-child { margin-bottom: 0; }
+.timelineEvent:last-child {
+  margin-bottom: 0;
+}
 
 .timelineDot {
   position: absolute;

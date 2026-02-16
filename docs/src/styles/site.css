@@ -1,7 +1,7 @@
 @import "../demos/theme.css";
 
 :root {
-  --ui-background: #FFFFFF;
+  --ui-background: #ffffff;
   --ui-foreground: oklch(22% 0.01 255deg);
   --ui-muted: oklch(52% 0.01 255deg);
   --ui-line: oklch(90% 0.005 255deg);
@@ -11,8 +11,8 @@
   --font-mono: "SF Mono", "Menlo", "DejaVu Sans Mono", "Consolas", "Inconsolata", monospace;
 
   --sl-color-bg: var(--ui-background);
-  --sl-color-bg-nav: #FFFFFF;
-  --sl-color-bg-sidebar: #FFFFFF;
+  --sl-color-bg-nav: #ffffff;
+  --sl-color-bg-sidebar: #ffffff;
   --sl-color-text: var(--ui-foreground);
   --sl-color-text-accent: var(--ui-accent);
   --sl-color-accent: var(--ui-accent);

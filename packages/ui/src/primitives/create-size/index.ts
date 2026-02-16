@@ -1,1 +1,1 @@
-export { createSize } from "./create-size";
+export { createSize } from "./create-size"

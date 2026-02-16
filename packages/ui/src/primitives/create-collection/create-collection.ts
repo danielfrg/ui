@@ -6,45 +6,39 @@
  * https://github.com/adobe/react-spectrum/blob/bfce84fee12a027d9cbc38b43e1747e3e4b4b169/packages/@react-stately/collections/src/useCollection.ts
  */
 
-import { access } from "../../utils";
-import {
-	type Accessor,
-	createMemo,
-} from "solid-js";
+import { access } from "../../utils"
+import { type Accessor, createMemo } from "solid-js"
 
-import type { Collection, CollectionBase, CollectionNode } from "./types";
-import { buildNodes } from "./utils";
+import type { Collection, CollectionBase, CollectionNode } from "./types"
+import { buildNodes } from "./utils"
 
-type CollectionFactory<C extends Collection<CollectionNode>> = (
-	node: Iterable<CollectionNode>,
-) => C;
+type CollectionFactory<C extends Collection<CollectionNode>> = (node: Iterable<CollectionNode>) => C
 
-export interface CreateCollectionProps<C extends Collection<CollectionNode>>
-	extends CollectionBase {
-	factory: CollectionFactory<C>;
+export interface CreateCollectionProps<C extends Collection<CollectionNode>> extends CollectionBase {
+  factory: CollectionFactory<C>
 }
 
 export function createCollection<C extends Collection<CollectionNode>>(
-	props: CreateCollectionProps<C>,
-	deps: Array<Accessor<any>> = [],
+  props: CreateCollectionProps<C>,
+  deps: Array<Accessor<any>> = [],
 ) {
-	return createMemo(() => {
-		const nodes = buildNodes({
-			dataSource: access(props.dataSource),
-			getKey: access(props.getKey),
-			getTextValue: access(props.getTextValue),
-			getDisabled: access(props.getDisabled),
-			getSectionChildren: access(props.getSectionChildren),
-		});
+  return createMemo(() => {
+    const nodes = buildNodes({
+      dataSource: access(props.dataSource),
+      getKey: access(props.getKey),
+      getTextValue: access(props.getTextValue),
+      getDisabled: access(props.getDisabled),
+      getSectionChildren: access(props.getSectionChildren),
+    })
 
-		// Subscribe to all deps
-		for (let i = 0; i < deps.length; i++) {
-			const dep = deps[i];
-			if (dep) {
-				dep();
-			}
-		}
+    // Subscribe to all deps
+    for (let i = 0; i < deps.length; i++) {
+      const dep = deps[i]
+      if (dep) {
+        dep()
+      }
+    }
 
-		return props.factory(nodes);
-	});
+    return props.factory(nodes)
+  })
 }

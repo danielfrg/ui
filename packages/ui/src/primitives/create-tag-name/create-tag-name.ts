@@ -1,27 +1,22 @@
-import { isString } from "../../utils";
-import {
-	type Accessor,
-	type Component,
-	createEffect,
-	createSignal,
-} from "solid-js";
+import { isString } from "../../utils"
+import { type Accessor, type Component, createEffect, createSignal } from "solid-js"
 
 /**
  * Returns the tag name by parsing an element ref.
  */
 export function createTagName(
-	ref: Accessor<HTMLElement | undefined>,
-	fallback?: Accessor<string | Component | undefined>,
+  ref: Accessor<HTMLElement | undefined>,
+  fallback?: Accessor<string | Component | undefined>,
 ) {
-	const [tagName, setTagName] = createSignal(stringOrUndefined(fallback?.()));
+  const [tagName, setTagName] = createSignal(stringOrUndefined(fallback?.()))
 
-	createEffect(() => {
-		setTagName(ref()?.tagName.toLowerCase() || stringOrUndefined(fallback?.()));
-	});
+  createEffect(() => {
+    setTagName(ref()?.tagName.toLowerCase() || stringOrUndefined(fallback?.()))
+  })
 
-	return tagName;
+  return tagName
 }
 
 function stringOrUndefined(value: unknown) {
-	return isString(value) ? value : undefined;
+  return isString(value) ? value : undefined
 }

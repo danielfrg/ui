@@ -1,90 +1,90 @@
 .panel {
-	display: flex;
-	border: 1px solid var(--color-gray-200);
-	background-color: var(--color-gray-50);
-	border-radius: 0.375rem;
-	padding: 0.125rem;
+  display: flex;
+  border: 1px solid var(--color-gray-200);
+  background-color: var(--color-gray-50);
+  border-radius: 0.375rem;
+  padding: 0.125rem;
 }
 
 .button {
-	box-sizing: border-box;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 2rem;
-	height: 2rem;
-	padding: 0;
-	outline: 0;
-	border: 0;
-	border-radius: 0.25rem;
-	background-color: transparent;
-	color: var(--color-gray-900);
-	user-select: none;
-	cursor: pointer;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  outline: 0;
+  border: 0;
+  border-radius: 0.25rem;
+  background-color: transparent;
+  color: var(--color-gray-900);
+  user-select: none;
+  cursor: pointer;
 }
 
 @media (hover: hover) {
-	.button:hover {
-		background-color: var(--color-gray-100);
-	}
+  .button:hover {
+    background-color: var(--color-gray-100);
+  }
 }
 
 .button:active {
-	background-color: var(--color-gray-200);
+  background-color: var(--color-gray-200);
 }
 
 .button:focus-visible {
-	outline: 2px solid var(--color-blue);
-	outline-offset: -1px;
+  outline: 2px solid var(--color-blue);
+  outline-offset: -1px;
 }
 
 .popup {
-	box-sizing: border-box;
-	font-size: 0.875rem;
-	line-height: 1.25rem;
-	display: flex;
-	flex-direction: column;
-	padding: 0.25rem 0.5rem;
-	border-radius: 0.375rem;
-	background-color: var(--color-gray-50);
-	color: var(--color-gray-900);
-	z-index: 50;
-	outline: 1px solid var(--color-gray-200);
-	box-shadow:
-		0 10px 15px -3px var(--color-gray-200),
-		0 4px 6px -4px var(--color-gray-200);
-	animation: popupHide 150ms ease forwards;
+  box-sizing: border-box;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  background-color: var(--color-gray-50);
+  color: var(--color-gray-900);
+  z-index: 50;
+  outline: 1px solid var(--color-gray-200);
+  box-shadow:
+    0 10px 15px -3px var(--color-gray-200),
+    0 4px 6px -4px var(--color-gray-200);
+  animation: popupHide 150ms ease forwards;
 }
 
 .popup[data-expanded] {
-	animation: popupShow 150ms ease;
+  animation: popupShow 150ms ease;
 }
 
 @media (prefers-color-scheme: dark) {
-	.popup {
-		outline: 1px solid var(--color-gray-300);
-		box-shadow: none;
-	}
+  .popup {
+    outline: 1px solid var(--color-gray-300);
+    box-shadow: none;
+  }
 }
 
 @keyframes popupShow {
-	from {
-		opacity: 0;
-		transform: scale(0.96);
-	}
-	to {
-		opacity: 1;
-		transform: scale(1);
-	}
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes popupHide {
-	from {
-		opacity: 1;
-		transform: scale(1);
-	}
-	to {
-		opacity: 0;
-		transform: scale(0.96);
-	}
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.96);
+  }
 }

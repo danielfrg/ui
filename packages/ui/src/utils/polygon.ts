@@ -7,52 +7,52 @@
  * https://github.com/ariakit/ariakit/blob/f2a96973de523d67e41eec983263936c489ef3e2/packages/ariakit/src/hovercard/__utils/debug-polygon.ts
  */
 
-export type Point = [number, number];
-export type Polygon = Point[];
+export type Point = [number, number]
+export type Polygon = Point[]
 
 export function getEventPoint(event: MouseEvent): Point {
-	return [event.clientX, event.clientY];
+  return [event.clientX, event.clientY]
 }
 
 // Based on https://github.com/metafloor/pointinpoly
 export function isPointInPolygon(point: Point, polygon: Polygon) {
-	const [x, y] = point;
-	let inside = false;
-	const length = polygon.length;
-	for (let l = length, i = 0, j = l - 1; i < l; j = i++) {
-		const [xi, yi] = polygon[i] as Point;
-		const [xj, yj] = polygon[j] as Point;
-		const [, vy] = polygon[j === 0 ? l - 1 : j - 1] || [0, 0];
-		const where = (yi - yj) * (x - xi) - (xi - xj) * (y - yi);
-		if (yj < yi) {
-			if (y >= yj && y < yi) {
-				if (where === 0) return true;
-				if (where > 0) {
-					if (y === yj) {
-						if (y > vy) {
-							inside = !inside;
-						}
-					} else {
-						inside = !inside;
-					}
-				}
-			}
-		} else if (yi < yj) {
-			if (y > yi && y <= yj) {
-				if (where === 0) return true;
-				if (where < 0) {
-					if (y === yj) {
-						if (y < vy) {
-							inside = !inside;
-						}
-					} else {
-						inside = !inside;
-					}
-				}
-			}
-		} else if (y === yi && ((x >= xj && x <= xi) || (x >= xi && x <= xj))) {
-			return true;
-		}
-	}
-	return inside;
+  const [x, y] = point
+  let inside = false
+  const length = polygon.length
+  for (let l = length, i = 0, j = l - 1; i < l; j = i++) {
+    const [xi, yi] = polygon[i] as Point
+    const [xj, yj] = polygon[j] as Point
+    const [, vy] = polygon[j === 0 ? l - 1 : j - 1] || [0, 0]
+    const where = (yi - yj) * (x - xi) - (xi - xj) * (y - yi)
+    if (yj < yi) {
+      if (y >= yj && y < yi) {
+        if (where === 0) return true
+        if (where > 0) {
+          if (y === yj) {
+            if (y > vy) {
+              inside = !inside
+            }
+          } else {
+            inside = !inside
+          }
+        }
+      }
+    } else if (yi < yj) {
+      if (y > yi && y <= yj) {
+        if (where === 0) return true
+        if (where < 0) {
+          if (y === yj) {
+            if (y < vy) {
+              inside = !inside
+            }
+          } else {
+            inside = !inside
+          }
+        }
+      }
+    } else if (y === yi && ((x >= xj && x <= xi) || (x >= xi && x <= xj))) {
+      return true
+    }
+  }
+  return inside
 }
