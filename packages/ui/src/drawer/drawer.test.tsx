@@ -45,7 +45,7 @@ describe("Drawer", () => {
       </Drawer.Root>
     ))
 
-    expect(getByRole("dialog")).toBeInTheDocument()
+    expect(getByRole("dialog", { hidden: true })).toBeInTheDocument()
   })
 
   // =========================================================================

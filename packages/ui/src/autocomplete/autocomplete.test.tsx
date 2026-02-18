@@ -42,6 +42,7 @@ describe("Autocomplete", () => {
   afterEach(() => {
     vi.clearAllMocks()
     vi.clearAllTimers()
+    vi.useRealTimers()
   })
 
   it("debounce", () => {
