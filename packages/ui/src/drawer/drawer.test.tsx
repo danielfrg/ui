@@ -141,7 +141,7 @@ describe("Drawer", () => {
     fireEvent.click(getByRole("button"))
     await Promise.resolve()
 
-    expect(getByRole("dialog")).toBeInTheDocument()
+    expect(getByRole("dialog", { hidden: true })).toBeInTheDocument()
   })
 
   it("closes when close button is clicked", async () => {
