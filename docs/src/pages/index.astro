@@ -1,0 +1,17 @@
+---
+import { getCollection } from "astro:content"
+import Docs from "../layouts/Docs.astro"
+
+const docs = await getCollection("docs")
+const entry = docs.find((item) => item.slug === "index")
+
+if (!entry) {
+  throw new Error("Missing docs index entry")
+}
+
+const { Content } = await entry.render()
+---
+
+<Docs title={entry.data.title} description={entry.data.description}>
+  <Content />
+</Docs>

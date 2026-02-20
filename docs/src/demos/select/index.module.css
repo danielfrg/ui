@@ -81,9 +81,15 @@
 }
 
 .listbox {
+  margin: 0;
   overflow-y: auto;
   max-height: 20rem;
   padding: 0.25rem;
+  outline: 0;
+}
+
+.listbox:focus-visible {
+  outline: 0;
 }
 
 .item {

@@ -1,0 +1,19 @@
+---
+import { codeToHtml } from "shiki"
+
+interface Props {
+  code: string
+  lang?: string
+}
+
+const { code, lang = "txt" } = Astro.props
+const html = await codeToHtml(code, {
+  lang,
+  themes: {
+    light: "min-light",
+    dark: "github-dark",
+  },
+})
+---
+
+<div class="code-block" set:html={html} />

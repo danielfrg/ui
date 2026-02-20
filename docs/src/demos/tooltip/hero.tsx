@@ -4,7 +4,7 @@ import styles from "./index.module.css"
 export function DemoTooltipHero() {
   return (
     <div class={styles.panel}>
-      <Tooltip.Root openDelay={200}>
+      <Tooltip.Root openDelay={200} placement="top">
         <Tooltip.Trigger class={styles.button}>
           <BoldIcon />
         </Tooltip.Trigger>
@@ -16,7 +16,7 @@ export function DemoTooltipHero() {
         </Tooltip.Portal>
       </Tooltip.Root>
 
-      <Tooltip.Root openDelay={200}>
+      <Tooltip.Root openDelay={200} placement="top">
         <Tooltip.Trigger class={styles.button}>
           <ItalicIcon />
         </Tooltip.Trigger>
@@ -28,7 +28,7 @@ export function DemoTooltipHero() {
         </Tooltip.Portal>
       </Tooltip.Root>
 
-      <Tooltip.Root openDelay={200}>
+      <Tooltip.Root openDelay={200} placement="top">
         <Tooltip.Trigger class={styles.button}>
           <UnderlineIcon />
         </Tooltip.Trigger>

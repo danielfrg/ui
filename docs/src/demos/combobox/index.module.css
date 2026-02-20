@@ -85,6 +85,7 @@
 }
 
 .listbox {
+  margin: 0;
   overflow-y: auto;
   max-height: 20rem;
   padding: 0.25rem;

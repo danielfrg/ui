@@ -1,72 +1,25 @@
-// @ts-check
 import { defineConfig } from "astro/config"
-import starlight from "@astrojs/starlight"
+import mdx from "@astrojs/mdx"
 import solid from "@astrojs/solid-js"
+
+const copyButtonTransformer = {
+  name: "copy-button",
+  pre(node) {
+    node.properties["data-code"] = this.source
+  },
+}
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://ui.danielfrg.com",
-  integrations: [
-    solid(),
-    starlight({
-      title: "@danielfrg/ui",
-      social: [{ icon: "github", label: "GitHub", href: "https://github.com/danielfrg/ui" }],
-      customCss: ["./src/styles/site.css"],
-      sidebar: [
-        {
-          label: "Overview",
-          items: [{ label: "Introduction", slug: "index" }],
-        },
-        {
-          label: "Components",
-          items: [
-            { label: "Accordion", slug: "components/accordion" },
-            { label: "Alert Dialog", slug: "components/alert-dialog" },
-            { label: "Autocomplete", slug: "components/autocomplete" },
-            { label: "Avatar", slug: "components/avatar" },
-            { label: "Button", slug: "components/button" },
-            { label: "Checkbox", slug: "components/checkbox" },
-            { label: "Checkbox Group", slug: "components/checkbox-group" },
-            { label: "Collapsible", slug: "components/collapsible" },
-            { label: "Combobox", slug: "components/combobox" },
-            { label: "Context Menu", slug: "components/context-menu" },
-            { label: "Dialog", slug: "components/dialog" },
-            { label: "Drawer", slug: "components/drawer" },
-            { label: "Field", slug: "components/field" },
-            { label: "Fieldset", slug: "components/fieldset" },
-            { label: "Form", slug: "components/form" },
-            { label: "Input", slug: "components/input" },
-            { label: "Menu", slug: "components/menu" },
-            { label: "Menubar", slug: "components/menubar" },
-            { label: "Navigation Menu", slug: "components/navigation-menu" },
-            { label: "Number Field", slug: "components/number-field" },
-            { label: "Meter", slug: "components/meter" },
-            { label: "Popover", slug: "components/popover" },
-            { label: "Preview Card", slug: "components/preview-card" },
-            { label: "Progress", slug: "components/progress" },
-            { label: "RadioGroup", slug: "components/radio-group" },
-            { label: "Scroll Area", slug: "components/scroll-area" },
-            { label: "Select", slug: "components/select" },
-            { label: "Separator", slug: "components/separator" },
-            { label: "Slider", slug: "components/slider" },
-            { label: "Switch", slug: "components/switch" },
-            { label: "Tabs", slug: "components/tabs" },
-            { label: "Toast", slug: "components/toast" },
-            { label: "Toggle", slug: "components/toggle-button" },
-            { label: "ToggleGroup", slug: "components/toggle-group" },
-            { label: "Tooltip", slug: "components/tooltip" },
-          ],
-        },
-        {
-          label: "Examples",
-          items: [
-            { label: "Overview", slug: "examples" },
-            { label: "Dashboard", link: "/examples/dashboard/" },
-            { label: "E-commerce", link: "/examples/ecommerce/" },
-            { label: "Music App", link: "/examples/music/" },
-          ],
-        },
-      ],
-    }),
-  ],
+  integrations: [solid(), mdx()],
+  markdown: {
+    shikiConfig: {
+      themes: {
+        light: "min-light",
+        dark: "github-dark",
+      },
+      transformers: [copyButtonTransformer],
+    },
+  },
 })
