@@ -14,6 +14,7 @@ export const sidebar: SidebarSection[] = [
     title: "Overview",
     items: [
       { label: "Introduction", slug: "index" },
+      { label: "Examples", slug: "examples" },
       { label: "Acknowledgements", slug: "acknowledgements" },
     ],
   },
@@ -55,15 +56,6 @@ export const sidebar: SidebarSection[] = [
       { label: "Toggle", slug: "components/toggle-button" },
       { label: "ToggleGroup", slug: "components/toggle-group" },
       { label: "Tooltip", slug: "components/tooltip" },
-    ],
-  },
-  {
-    title: "Examples",
-    items: [
-      { label: "Overview", slug: "examples" },
-      { label: "Dashboard", link: "/examples/dashboard/" },
-      { label: "E-commerce", link: "/examples/ecommerce/" },
-      { label: "Music App", link: "/examples/music/" },
     ],
   },
 ]

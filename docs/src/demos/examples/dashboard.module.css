@@ -4,6 +4,11 @@
   align-items: flex-start;
   gap: 24px;
   min-width: fit-content;
+  --ui-gray-a3: rgba(55, 0, 85, 0.031);
+  --ui-gray-a5: rgba(37, 0, 63, 0.075);
+  --ui-gray-a8: rgba(34, 3, 46, 0.318);
+  --ui-teal-a4: rgba(0, 172, 120, 0.118);
+  --ui-teal-11: #008764;
 }
 
 .col {
@@ -24,70 +29,77 @@
 }
 
 /* ── Card ───────────────────────────────────────────────────── */
+/* Radix Card size="4": padding 32px, border-radius var(--radius-5)=12px on outer, but
+   actually size="4" uses padding: var(--card-padding) = 32px and border-radius depends on theme.
+   In Radix Themes default, Card size=4 border-radius is ~16px. */
 .card {
   position: relative;
   background: var(--ui-background);
   border: 1px solid var(--ui-line);
   border-radius: 12px;
   padding: 32px;
-  box-shadow:
-    0 1px 3px oklch(0% 0 0 / 6%),
-    0 1px 2px oklch(0% 0 0 / 4%);
 }
 
 /* ── Typography ─────────────────────────────────────────────── */
+/* Radix Heading size="6" = 24px, line-height ~1.25, letter-spacing -0.019em, weight 700 */
 .h3 {
   font-size: 1.5rem;
   font-weight: 700;
   line-height: 1.25;
-  letter-spacing: -0.0125em;
+  letter-spacing: -0.019em;
   color: var(--ui-foreground);
   margin: 0;
 }
 
+/* Radix Heading size="3" = 16px, weight 600, line-height 1.5 */
 .h4 {
   font-size: 1rem;
   font-weight: 600;
-  line-height: 1.4;
+  line-height: 1.5;
   letter-spacing: 0em;
   color: var(--ui-foreground);
   margin: 0;
 }
 
+/* Radix Text size="2" = 14px with mb="5" = 20px, color="gray" */
 .subtitle {
   font-size: 0.875rem;
   color: var(--ui-muted);
-  margin: 4px 0 0;
-  line-height: 1.4;
+  margin: 8px 0 0;
+  line-height: 1.43;
 }
 
+/* Radix Text size="2" = 14px, line-height 20px */
 .textSm {
   font-size: 0.875rem;
-  line-height: 1.4;
+  line-height: 1.43;
 }
 
+/* Radix Text size="3" = 16px, line-height 24px */
 .textMd {
   font-size: 1rem;
-  line-height: 1.45;
+  line-height: 1.5;
 }
 
+/* Radix Text size="5" = 20px, line-height 28px */
 .textLg {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   line-height: 1.4;
 }
 
 .textXl {
   font-size: 1.5rem;
-  line-height: 1.2;
+  line-height: 1.25;
   font-weight: 700;
-  letter-spacing: -0.0125em;
+  letter-spacing: -0.019em;
 }
 
+/* Radix Text size="8" = 35px, line-height 40px, letter-spacing -0.03em */
 .text2Xl {
-  font-size: 2rem;
-  line-height: 1.1;
+  font-size: 2.1875rem;
+  line-height: 1.14;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
 }
 
 .textMuted {
@@ -95,7 +107,7 @@
 }
 
 .textBold {
-  font-weight: 600;
+  font-weight: 700;
 }
 
 /* ── Flex / Grid helpers ────────────────────────────────────── */
@@ -151,7 +163,14 @@
   gap: 24px;
 }
 
+/* Radix Grid columns="3" gap="6" = 24px; for financial performance gap="5" = 20px */
 .grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.grid3Tight {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
@@ -186,6 +205,9 @@
 .mb6 {
   margin-bottom: 24px;
 }
+.mb7 {
+  margin-bottom: 28px;
+}
 .mt1 {
   margin-top: 4px;
 }
@@ -219,9 +241,10 @@
 }
 
 /* ── Avatar ─────────────────────────────────────────────────── */
+/* Radix Avatar default (no size prop) = 40px; in team list it's default ~32px */
 .avatarRoot {
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   flex-shrink: 0;
 }
 
@@ -245,29 +268,31 @@
   color: oklch(40% 0.08 264deg);
 }
 
-.avatarSm .avatarRoot,
-.avatarSm.avatarRoot {
-  width: 36px;
-  height: 36px;
+/* Radix Avatar size="3" = 40px (used in activity feed) */
+.avatarMd {
+  width: 40px;
+  height: 40px;
 }
 
 /* ── Buttons ────────────────────────────────────────────────── */
+/* Radix Button size="2" = height 32px, padding 0 12px, font-size 14px, border-radius 6px */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 8px 16px;
-  font-size: 0.8125rem;
+  height: 32px;
+  padding: 0 12px;
+  font-size: 0.875rem;
   font-weight: 500;
-  border-radius: 8px;
+  border-radius: 4px;
   border: none;
   cursor: pointer;
   transition:
     background 120ms ease,
     box-shadow 120ms ease;
   font-family: inherit;
-  line-height: 1.3;
+  line-height: 1;
   white-space: nowrap;
 }
 
@@ -277,74 +302,87 @@
 }
 
 .btnPrimary:hover {
-  background: oklch(50% 0.18 264deg);
+  background: var(--ui-accent-hover);
 }
 
 .btnOutline {
   background: transparent;
   color: var(--ui-foreground);
-  box-shadow: inset 0 0 0 1px var(--ui-line);
+  box-shadow: inset 0 0 0 1px var(--ui-gray-a5);
 }
 
 .btnOutline:hover {
-  background: oklch(96% 0.005 264deg);
+  background: var(--ui-ghost-hover, #f5f4f6);
 }
 
 .btnGhost {
   background: transparent;
   color: var(--ui-muted);
-  padding: 6px 8px;
+  padding: 0 8px;
 }
 
 .btnGhost:hover {
-  background: oklch(96% 0.005 264deg);
+  background: var(--ui-gray-a3);
   color: var(--ui-foreground);
 }
 
 .btnDanger {
   background: transparent;
-  color: oklch(55% 0.2 25deg);
-  box-shadow: inset 0 0 0 1px oklch(75% 0.1 25deg);
+  color: #ce2c31;
+  box-shadow: inset 0 0 0 1px rgba(229, 72, 77, 0.369);
 }
 
 .btnDanger:hover {
-  background: oklch(97% 0.02 25deg);
+  background: rgba(255, 0, 55, 0.051);
 }
 
 .btnSm {
-  padding: 4px 10px;
+  height: 28px;
+  padding: 0 10px;
   font-size: 0.75rem;
 }
 
 /* ── Icon button ────────────────────────────────────────────── */
+/* Radix IconButton variant="ghost" color="gray" highContrast = 32px square, border-radius 6px */
 .iconBtn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 32px;
   height: 32px;
-  border-radius: 8px;
+  border-radius: 4px;
   border: none;
   background: transparent;
-  color: var(--ui-muted);
+  color: var(--ui-foreground);
   cursor: pointer;
   transition:
     background 120ms ease,
     color 120ms ease;
   flex-shrink: 0;
+  padding: 0;
 }
 
 .iconBtn:hover {
-  background: oklch(96% 0.005 264deg);
+  background: var(--ui-gray-a3);
+}
+
+/* When variant="ghost" color="gray" (not highContrast) - for dots menu button */
+.iconBtnGray {
+  color: var(--ui-muted);
+}
+
+.iconBtnGray:hover {
+  background: var(--ui-gray-a3);
   color: var(--ui-foreground);
 }
 
 .iconBtnActive {
-  background: oklch(93% 0.02 264deg);
+  background: var(--ui-gray-a3);
   color: var(--ui-foreground);
 }
 
 /* ── Close button (absolute top-right) ──────────────────────── */
+/* Radix position="absolute" top="0" right="0" m="3" (12px) */
 .closeBtn {
   position: absolute;
   top: 12px;
@@ -361,6 +399,7 @@
 }
 
 /* ── Input (for use with @danielfrg/ui/input) ───────────────── */
+/* Radix TextField.Root size="2" = height 32px, border-radius 6px */
 .inputRoot {
   display: flex;
   flex-direction: column;
@@ -369,19 +408,20 @@
 }
 
 .inputLabel {
-  font-size: 0.8125rem;
-  font-weight: 600;
+  font-size: 0.875rem;
+  font-weight: 700;
   color: var(--ui-foreground);
 }
 
 .inputField {
-  padding: 7px 10px;
-  font-size: 0.8125rem;
-  border-radius: 8px;
+  padding: 0 8px;
+  font-size: 0.875rem;
+  border-radius: 4px;
   border: 1px solid var(--ui-line);
   background: var(--ui-background);
   color: var(--ui-foreground);
   font-family: inherit;
+  height: 32px;
   outline: none;
   transition:
     border-color 120ms ease,
@@ -390,19 +430,20 @@
 
 .inputField:focus {
   border-color: var(--ui-accent);
-  box-shadow: 0 0 0 2px oklch(55% 0.18 264deg / 20%);
+  box-shadow: 0 0 0 1px var(--ui-accent);
 }
 
 .inputField::placeholder {
   color: var(--ui-muted);
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 /* ── Link ───────────────────────────────────────────────────── */
+/* Radix Link size="2" = 14px, accent color */
 .link {
   color: var(--ui-accent);
   text-decoration: none;
-  font-size: 0.8125rem;
+  font-size: inherit;
   cursor: pointer;
 }
 
@@ -416,42 +457,52 @@
 }
 
 /* ── Badge ──────────────────────────────────────────────────── */
+/* Radix Badge radius="full" = pill, font-size ~12px */
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 2px;
-  padding: 1px 8px;
+  padding: 2px 8px;
   border-radius: 100px;
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 500;
-  line-height: 1.6;
+  line-height: 1.33;
   white-space: nowrap;
 }
 
+.badge svg {
+  margin-left: -2px;
+}
+
+/* Radix Badge color="teal" */
 .badgeTeal {
-  background: oklch(92% 0.06 170deg);
-  color: oklch(40% 0.1 170deg);
+  background: rgba(0, 172, 120, 0.118);
+  color: #008764;
 }
 
+/* Radix Badge color="red" */
 .badgeRed {
-  background: oklch(92% 0.04 25deg);
-  color: oklch(48% 0.15 25deg);
+  background: rgba(229, 72, 77, 0.118);
+  color: #ce2c31;
 }
 
+/* Radix Badge color="gray" variant="surface" */
 .badgeGray {
-  background: oklch(93% 0.005 264deg);
+  background: var(--ui-gray-a3);
   color: var(--ui-muted);
+  box-shadow: inset 0 0 0 1px var(--ui-gray-a5);
 }
 
 /* ── Switch (for @danielfrg/ui/switch) ──────────────────────── */
+/* Radix Switch at default size = 44px wide, 24px tall, thumb 20px, translate 20px */
 .switchControl {
   display: inline-flex;
   align-items: center;
-  width: 36px;
-  height: 20px;
-  padding: 2px;
+  width: 44px;
+  height: 24px;
+  padding: 0 2px;
   border-radius: 100px;
-  background: oklch(85% 0.01 264deg);
+  background: rgba(34, 3, 46, 0.216);
   transition: background 150ms ease;
   cursor: pointer;
   flex-shrink: 0;
@@ -462,25 +513,26 @@
 }
 
 .switchThumb {
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   border-radius: 100%;
   background: white;
-  box-shadow: 0 1px 2px oklch(0% 0 0 / 15%);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
   transition: transform 150ms ease;
 }
 
 .switchThumb[data-checked] {
-  transform: translateX(16px);
+  transform: translateX(20px);
 }
 
 /* ── Checkbox (for @danielfrg/ui/checkbox) ──────────────────── */
+/* Radix Checkbox = 16px square, border-radius 4px */
 .checkboxControl {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   border-radius: 4px;
   border: 1px solid var(--ui-line);
   background: var(--ui-background);
@@ -504,11 +556,12 @@
 }
 
 .checkboxLabel {
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   cursor: pointer;
 }
 
 /* ── Marker (teal circle icon) ──────────────────────────────── */
+/* Radix Marker: backgroundColor var(--teal-a4), color var(--teal-11) */
 .marker {
   display: flex;
   align-items: center;
@@ -516,8 +569,8 @@
   width: 16px;
   height: 16px;
   border-radius: 100%;
-  background: oklch(92% 0.06 170deg);
-  color: oklch(40% 0.1 170deg);
+  background: var(--ui-teal-a4);
+  color: var(--ui-teal-11);
   flex-shrink: 0;
 }
 
@@ -527,13 +580,16 @@
 }
 
 /* ── Menu / DropdownMenu (for @danielfrg/ui/menu) ───────────── */
+/* Radix DropdownMenu.Content variant="soft" */
 .menuPopup {
   min-width: 160px;
   background: var(--ui-background);
   border: 1px solid var(--ui-line);
-  border-radius: 8px;
+  border-radius: 6px;
   padding: 4px;
-  box-shadow: 0 4px 16px oklch(0% 0 0 / 10%);
+  box-shadow:
+    0 12px 60px rgba(0, 0, 0, 0.12),
+    0 12px 32px -16px rgba(0, 0, 0, 0.2);
   z-index: 50;
 }
 
@@ -541,7 +597,7 @@
   display: flex;
   align-items: center;
   padding: 6px 8px;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   border-radius: 4px;
   cursor: pointer;
   color: var(--ui-foreground);
@@ -549,15 +605,16 @@
 }
 
 .menuItem[data-highlighted] {
-  background: oklch(96% 0.005 264deg);
+  background: var(--ui-gray-a3);
 }
 
 .menuItemDanger {
-  color: oklch(55% 0.2 25deg);
+  color: #ce2c31;
 }
 
 .menuItemDanger[data-highlighted] {
-  background: oklch(97% 0.02 25deg);
+  background: rgba(229, 72, 77, 0.071);
+  color: #ce2c31;
 }
 
 .menuSeparator {
@@ -567,20 +624,22 @@
 }
 
 /* ── Credit card ────────────────────────────────────────────── */
+/* Radix: backgroundColor var(--gray-a3), borderRadius var(--radius-4) = 12px, p="6" = 24px */
 .creditCardWrap {
-  background: oklch(93% 0.005 264deg);
-  border-radius: 12px;
+  background: var(--ui-gray-a3);
+  border-radius: 8px;
   padding: 24px;
 }
 
+/* Radix: borderRadius var(--radius-3) = 6px, gradient, height 168px */
 .creditCard {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 168px;
-  border-radius: 8px;
+  border-radius: 6px;
   background: linear-gradient(to top right, var(--ui-accent), #e18bff);
-  box-shadow: 0 1px 20px -5px #7971e9aa;
+  box-shadow: 0 1px 20px -5px rgba(121, 113, 233, 0.67);
   color: white;
   padding: 12px;
 }
@@ -591,15 +650,17 @@
   color: var(--ui-muted);
 }
 
+/* Radix Text size="8" = 35px, line-height 40px, letter-spacing -0.03em, weight bold */
 .kpiValue {
-  font-size: 2rem;
+  font-size: 2.1875rem;
   font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  line-height: 1.14;
+  letter-spacing: -0.03em;
   color: var(--ui-foreground);
 }
 
 /* ── Notification row ───────────────────────────────────────── */
+/* Radix: gap="9" = 36px */
 .notifRow {
   display: flex;
   align-items: flex-start;
@@ -615,19 +676,23 @@
   flex-shrink: 0;
 }
 
-.switchLabel {
-  display: flex;
+.switchRow {
+  display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.8125rem;
-  font-weight: 600;
+}
+
+/* Radix Text size="2" weight="bold" = 14px font-weight 700 */
+.switchLabel {
+  font-size: 0.875rem;
+  font-weight: 700;
   cursor: pointer;
 }
 
 /* ── Pricing tier ───────────────────────────────────────────── */
+/* Radix: style={{ color: "var(--gray-a8)" }} */
 .priceMuted {
-  color: var(--ui-muted);
-  opacity: 0.6;
+  color: var(--ui-gray-a8);
 }
 
 /* ── Activity feed ──────────────────────────────────────────── */
@@ -645,7 +710,7 @@
 }
 
 .activityTime {
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   color: var(--ui-muted);
   white-space: nowrap;
   flex-shrink: 0;
@@ -656,7 +721,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
 }
 
 .todoCompleted {
@@ -664,13 +729,25 @@
   color: var(--ui-muted);
 }
 
+/* Radix: --accent-12: var(--accent-11) for link colors inside todos */
+.todoLink {
+  color: var(--ui-accent);
+  text-decoration: none;
+}
+
+.todoLink:hover {
+  text-decoration: underline;
+}
+
 /* ── Team member row ────────────────────────────────────────── */
+/* Radix: gap="4" = 16px between main sections */
 .teamRow {
   display: flex;
   align-items: center;
   gap: 16px;
 }
 
+/* Radix: gap="3" = 12px, width="200px" */
 .teamInfo {
   display: flex;
   align-items: center;
@@ -679,14 +756,15 @@
   flex-shrink: 0;
 }
 
+/* Radix Link size="2" wrap="nowrap" */
 .teamName {
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   font-weight: 500;
   white-space: nowrap;
 }
 
 .teamEmail {
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   color: var(--ui-muted);
   flex-grow: 1;
   min-width: 0;
@@ -699,6 +777,7 @@
 }
 
 /* ── Invoice detail grid ────────────────────────────────────── */
+/* Radix Grid columns="2" gapX="4" gapY="5" = 16px horizontal, 20px vertical */
 .invoiceGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;

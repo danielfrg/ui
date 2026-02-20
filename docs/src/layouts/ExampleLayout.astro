@@ -1,16 +1,18 @@
 ---
+import Base from "./Base.astro"
+
 const { title, theme = "default" } = Astro.props
 const themes = {
 	default: {
 		"--ui-background": "#ffffff",
-		"--ui-foreground": "#111111",
-		"--ui-muted": "#6b7280",
-		"--ui-line": "#e6e8eb",
-		"--ui-accent": "#2563eb",
-		"--ui-accent-hover": "#1d4ed8",
-		"--ui-soft": "#f3f4f6",
-		"--ui-soft-hover": "#e9ecef",
-		"--ui-ghost-hover": "#f5f6f8",
+		"--ui-foreground": "#1a141f",
+		"--ui-muted": "#6f6e77",
+		"--ui-line": "#e4e2e4",
+		"--ui-accent": "#3e63dd",
+		"--ui-accent-hover": "#3358d4",
+		"--ui-soft": "#f3f3f5",
+		"--ui-soft-hover": "#eaeaed",
+		"--ui-ghost-hover": "#f5f4f6",
 		"--ui-floating-panel": "rgba(239, 247, 255, 0.615)",
 	},
 	music: {
@@ -20,101 +22,51 @@ const themes = {
 		"--ui-line": "#d7dbdf",
 		"--ui-accent": "#e5484d",
 		"--ui-accent-hover": "#dc3e42",
-		"--ui-soft": "#f1f3f5",
-		"--ui-soft-hover": "#e7eaee",
-		"--ui-ghost-hover": "#f4f6f8",
+		"--ui-soft": "#eef1f3",
+		"--ui-soft-hover": "#e3e7ea",
+		"--ui-ghost-hover": "#f1f3f5",
 		"--ui-floating-panel": "rgba(239, 247, 255, 0.615)",
 	},
 }
-const themeVars = themes[theme] ?? themes.default
+const themeVars = themes[theme as keyof typeof themes] ?? themes.default
 const themeStyle = Object.entries(themeVars)
 	.map(([key, value]) => `${key}:${value}`)
 	.join(";")
 ---
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title} | @danielfrg/ui</title>
-  </head>
-  <body style={themeStyle} data-theme={theme}>
-    <header class="example-header">
-      <nav class="example-nav">
-        <a href="/">Docs</a>
-        <a href="/examples/">Examples</a>
-      </nav>
-    </header>
-    <main class="example-main">
-      <slot />
-    </main>
-  </body>
-</html>
+
+<Base title={`${title} | @danielfrg/ui`}>
+  <div class="docs-page">
+    <div class="docs-container">
+      <header class="header">
+        <div class="header-content">
+          <a href="/" class="logo">
+            <img class="logo-icon" src="/favicon.svg" alt="@danielfrg/ui" />
+            danielfrg/ui
+          </a>
+          <nav class="nav">
+            <a href="https://github.com/danielfrg/ui" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="/examples/">Examples</a>
+          </nav>
+        </div>
+      </header>
+
+      <main class="example-main" style={themeStyle} data-theme={theme}>
+        <slot />
+      </main>
+
+      <footer class="footer">
+        <div class="footer-content">
+          <span>@danielfrg/ui - SolidJS UI components</span>
+          <a href="https://github.com/danielfrg/ui" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </footer>
+    </div>
+  </div>
+</Base>
 
 <style>
-  :global(:root) {
-    color-scheme: light;
-    --ui-background: #ffffff;
-    --ui-foreground: #111111;
-    --ui-muted: #6b7280;
-    --ui-line: #e6e8eb;
-    --ui-accent: #2563eb;
-    --ui-accent-hover: #1d4ed8;
-    --ui-soft: #f3f4f6;
-    --ui-soft-hover: #e9ecef;
-    --ui-ghost-hover: #f5f6f8;
-    --ui-floating-panel: rgba(239, 247, 255, 0.615);
-    --ui-shadow:
-      0 0.5px 1px oklch(0% 0 0 / 12%),
-      0 1px 3px -1px oklch(0% 0 0 / 5%),
-      0 2px 4px -1px oklch(0% 0 0 / 5%);
-    --font-sans:
-      "Untitled Sans",
-      -apple-system,
-      BlinkMacSystemFont,
-      "Segoe UI",
-      Helvetica,
-      Arial,
-      sans-serif,
-      "Apple Color Emoji",
-      "Segoe UI Emoji";
-    --font-mono: "Sohne Mono", "Menlo", "Consolas", monospace;
-  }
-
-  :global(html) {
-    background: white;
-  }
-
-  :global(body) {
-    margin: 0;
-    font-family: var(--font-sans);
-    color: var(--ui-foreground);
-  }
-
-  .example-header {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background: white;
-    border-bottom: 1px solid #e5e5e5;
-  }
-
-  .example-nav {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    padding: 12px 20px;
-  }
-
-  .example-nav a {
-    color: #111111;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
-  }
-
-  .example-nav a:hover {
-    text-decoration: underline;
+  .docs-page {
+    --container-max-width: 1800px;
   }
 
   .example-main {
