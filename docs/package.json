@@ -13,10 +13,12 @@
     "@astrojs/mdx": "^4.0.4",
     "@astrojs/solid-js": "^5.0.1",
     "@danielfrg/ui": "workspace:*",
+    "@tailwindcss/postcss": "^4.2.0",
     "astro": "^5.6.1",
     "lucide-solid": "^0.575.0",
     "sharp": "^0.34.2",
     "shiki": "^1.1.6",
-    "solid-js": "^1.8.15"
+    "solid-js": "^1.8.15",
+    "tailwindcss": "^4.2.0"
   }
 }

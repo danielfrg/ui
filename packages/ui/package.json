@@ -218,6 +218,11 @@
       "solid": "./src/tooltip/index.tsx",
       "default": "./src/tooltip/index.tsx"
     },
+    "./utils": {
+      "types": "./src/utils/index.ts",
+      "solid": "./src/utils/index.ts",
+      "default": "./src/utils/index.ts"
+    },
     "./src/*": "./src/*"
   },
   "peerDependencies": {
@@ -232,7 +237,9 @@
     "@solid-primitives/refs": "^1.0.5",
     "@solid-primitives/resize-observer": "^2.1.3",
     "@solid-primitives/utils": "^6.3.2",
+    "clsx": "^2.1.1",
     "solid-presence": "^0.1.8",
-    "solid-prevent-scroll": "^0.1.10"
+    "solid-prevent-scroll": "^0.1.10",
+    "tailwind-merge": "^3.5.0"
   }
 }

@@ -1,5 +1,6 @@
 ---
 import Base from "./Base.astro"
+import ExamplesNav from "../components/ExamplesNav.astro"
 
 const { title, theme = "default" } = Astro.props
 const themes = {
@@ -48,7 +49,13 @@ const themeStyle = Object.entries(themeVars)
             <a href="/examples/">Examples</a>
           </nav>
         </div>
-      </header>
+        </header>
+
+      <div class="examples-nav-bar">
+        <div class="examples-nav-content">
+          <ExamplesNav />
+        </div>
+      </div>
 
       <main class="example-main" style={themeStyle} data-theme={theme}>
         <slot />
@@ -67,6 +74,17 @@ const themeStyle = Object.entries(themeVars)
 <style>
   .docs-page {
     --container-max-width: 1800px;
+  }
+
+  .examples-nav-bar {
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-bg);
+  }
+
+  .examples-nav-content {
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 16px 24px;
   }
 
   .example-main {
