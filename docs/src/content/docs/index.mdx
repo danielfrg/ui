@@ -3,26 +3,39 @@ title: "danielfrg/ui"
 description: SolidJS UI components
 ---
 
-Unstyled and accessible SolidJS components mostly forked from [Kobalte](https://kobalte.dev) and others migrated from [Base UI](https://base-ui.com/).
+Styled and accessible SolidJS components with a shadcn-inspired Tailwind theme. Built on top of headless primitives from `@danielfrg/ui-core` (forked from [Kobalte](https://kobalte.dev) and [Base UI](https://base-ui.com/)).
 
 # Quick start
 
-Install the package:
+Install the styled components:
 
 ```bash
 npm install @danielfrg/ui
 ```
 
-Import the components you need:
+Add the theme to your CSS:
 
-```tsx
-import { Button } from "@danielfrg/ui"
+```css
+@import "tailwindcss";
+@import "@danielfrg/ui/theme.css";
 ```
 
-Use the components:
+Import and use:
 
 ```tsx
-<Button>Click me</Button>
+import { Button } from "@danielfrg/ui/button"
+
+;<Button variant="outline">Click me</Button>
+```
+
+For headless/unstyled primitives only:
+
+```bash
+npm install @danielfrg/ui-core
+```
+
+```tsx
+import { Button } from "@danielfrg/ui-core/button"
 ```
 
 # Components

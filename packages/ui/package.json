@@ -1,7 +1,7 @@
 {
   "name": "@danielfrg/ui",
   "version": "0.0.1",
-  "description": "A SolidJS collection of unstyled UI components",
+  "description": "Styled SolidJS UI components with a shadcn-inspired Tailwind theme",
   "type": "module",
   "sideEffects": false,
   "license": "Apache-2.0",
@@ -17,17 +17,15 @@
     "solidjs",
     "ui",
     "components",
-    "headless",
-    "unstyled"
+    "tailwind",
+    "shadcn",
+    "styled"
   ],
   "publishConfig": {
     "access": "public"
   },
   "files": [
-    "src",
-    "!src/**/*.test.tsx",
-    "!src/**/*.test.ts",
-    "!src/test-utils"
+    "src"
   ],
   "module": "./src/index.ts",
   "main": "./src/index.ts",
@@ -38,208 +36,24 @@
       "solid": "./src/index.ts",
       "default": "./src/index.ts"
     },
-    "./accordion": {
-      "types": "./src/accordion/index.tsx",
-      "solid": "./src/accordion/index.tsx",
-      "default": "./src/accordion/index.tsx"
-    },
-    "./alert-dialog": {
-      "types": "./src/alert-dialog/index.tsx",
-      "solid": "./src/alert-dialog/index.tsx",
-      "default": "./src/alert-dialog/index.tsx"
-    },
-    "./autocomplete": {
-      "types": "./src/autocomplete/index.tsx",
-      "solid": "./src/autocomplete/index.tsx",
-      "default": "./src/autocomplete/index.tsx"
-    },
-    "./avatar": {
-      "types": "./src/avatar/index.tsx",
-      "solid": "./src/avatar/index.tsx",
-      "default": "./src/avatar/index.tsx"
-    },
     "./button": {
-      "types": "./src/button/index.tsx",
-      "solid": "./src/button/index.tsx",
-      "default": "./src/button/index.tsx"
-    },
-    "./checkbox": {
-      "types": "./src/checkbox/index.tsx",
-      "solid": "./src/checkbox/index.tsx",
-      "default": "./src/checkbox/index.tsx"
-    },
-    "./checkbox-group": {
-      "types": "./src/checkbox-group/index.tsx",
-      "solid": "./src/checkbox-group/index.tsx",
-      "default": "./src/checkbox-group/index.tsx"
-    },
-    "./collapsible": {
-      "types": "./src/collapsible/index.tsx",
-      "solid": "./src/collapsible/index.tsx",
-      "default": "./src/collapsible/index.tsx"
-    },
-    "./combobox": {
-      "types": "./src/combobox/index.tsx",
-      "solid": "./src/combobox/index.tsx",
-      "default": "./src/combobox/index.tsx"
-    },
-    "./context-menu": {
-      "types": "./src/context-menu/index.tsx",
-      "solid": "./src/context-menu/index.tsx",
-      "default": "./src/context-menu/index.tsx"
-    },
-    "./dialog": {
-      "types": "./src/dialog/index.tsx",
-      "solid": "./src/dialog/index.tsx",
-      "default": "./src/dialog/index.tsx"
-    },
-    "./drawer": {
-      "types": "./src/drawer/index.tsx",
-      "solid": "./src/drawer/index.tsx",
-      "default": "./src/drawer/index.tsx"
-    },
-    "./field": {
-      "types": "./src/field/index.tsx",
-      "solid": "./src/field/index.tsx",
-      "default": "./src/field/index.tsx"
-    },
-    "./fieldset": {
-      "types": "./src/fieldset/index.tsx",
-      "solid": "./src/fieldset/index.tsx",
-      "default": "./src/fieldset/index.tsx"
-    },
-    "./form": {
-      "types": "./src/form/index.tsx",
-      "solid": "./src/form/index.tsx",
-      "default": "./src/form/index.tsx"
-    },
-    "./input": {
-      "types": "./src/input/index.tsx",
-      "solid": "./src/input/index.tsx",
-      "default": "./src/input/index.tsx"
-    },
-    "./listbox": {
-      "types": "./src/listbox/index.tsx",
-      "solid": "./src/listbox/index.tsx",
-      "default": "./src/listbox/index.tsx"
-    },
-    "./menu": {
-      "types": "./src/menu/index.tsx",
-      "solid": "./src/menu/index.tsx",
-      "default": "./src/menu/index.tsx"
-    },
-    "./menubar": {
-      "types": "./src/menubar/index.tsx",
-      "solid": "./src/menubar/index.tsx",
-      "default": "./src/menubar/index.tsx"
-    },
-    "./meter": {
-      "types": "./src/meter/index.tsx",
-      "solid": "./src/meter/index.tsx",
-      "default": "./src/meter/index.tsx"
-    },
-    "./navigation-menu": {
-      "types": "./src/navigation-menu/index.tsx",
-      "solid": "./src/navigation-menu/index.tsx",
-      "default": "./src/navigation-menu/index.tsx"
-    },
-    "./number-field": {
-      "types": "./src/number-field/index.tsx",
-      "solid": "./src/number-field/index.tsx",
-      "default": "./src/number-field/index.tsx"
-    },
-    "./popover": {
-      "types": "./src/popover/index.tsx",
-      "solid": "./src/popover/index.tsx",
-      "default": "./src/popover/index.tsx"
-    },
-    "./preview-card": {
-      "types": "./src/preview-card/index.tsx",
-      "solid": "./src/preview-card/index.tsx",
-      "default": "./src/preview-card/index.tsx"
-    },
-    "./progress": {
-      "types": "./src/progress/index.tsx",
-      "solid": "./src/progress/index.tsx",
-      "default": "./src/progress/index.tsx"
-    },
-    "./radio-group": {
-      "types": "./src/radio-group/index.tsx",
-      "solid": "./src/radio-group/index.tsx",
-      "default": "./src/radio-group/index.tsx"
-    },
-    "./scroll-area": {
-      "types": "./src/scroll-area/index.tsx",
-      "solid": "./src/scroll-area/index.tsx",
-      "default": "./src/scroll-area/index.tsx"
-    },
-    "./select": {
-      "types": "./src/select/index.tsx",
-      "solid": "./src/select/index.tsx",
-      "default": "./src/select/index.tsx"
-    },
-    "./separator": {
-      "types": "./src/separator/index.tsx",
-      "solid": "./src/separator/index.tsx",
-      "default": "./src/separator/index.tsx"
-    },
-    "./slider": {
-      "types": "./src/slider/index.tsx",
-      "solid": "./src/slider/index.tsx",
-      "default": "./src/slider/index.tsx"
-    },
-    "./switch": {
-      "types": "./src/switch/index.tsx",
-      "solid": "./src/switch/index.tsx",
-      "default": "./src/switch/index.tsx"
-    },
-    "./tabs": {
-      "types": "./src/tabs/index.tsx",
-      "solid": "./src/tabs/index.tsx",
-      "default": "./src/tabs/index.tsx"
-    },
-    "./toast": {
-      "types": "./src/toast/index.tsx",
-      "solid": "./src/toast/index.tsx",
-      "default": "./src/toast/index.tsx"
-    },
-    "./toggle-button": {
-      "types": "./src/toggle-button/index.tsx",
-      "solid": "./src/toggle-button/index.tsx",
-      "default": "./src/toggle-button/index.tsx"
-    },
-    "./toggle-group": {
-      "types": "./src/toggle-group/index.tsx",
-      "solid": "./src/toggle-group/index.tsx",
-      "default": "./src/toggle-group/index.tsx"
-    },
-    "./tooltip": {
-      "types": "./src/tooltip/index.tsx",
-      "solid": "./src/tooltip/index.tsx",
-      "default": "./src/tooltip/index.tsx"
+      "types": "./src/button.tsx",
+      "solid": "./src/button.tsx",
+      "default": "./src/button.tsx"
     },
     "./utils": {
-      "types": "./src/utils/index.ts",
-      "solid": "./src/utils/index.ts",
-      "default": "./src/utils/index.ts"
+      "types": "./src/utils.ts",
+      "solid": "./src/utils.ts",
+      "default": "./src/utils.ts"
     },
-    "./src/*": "./src/*"
+    "./theme.css": "./src/theme.css"
   },
   "peerDependencies": {
-    "solid-js": "^1.8.15"
+    "solid-js": "^1.8.15",
+    "tailwindcss": "^4.0.0"
   },
   "dependencies": {
-    "@floating-ui/dom": "^1.7.5",
-    "@internationalized/number": "^3.6.3",
-    "@solid-primitives/event-listener": "^2.4.3",
-    "@solid-primitives/keyed": "^1.5.3",
-    "@solid-primitives/props": "^3.2.0",
-    "@solid-primitives/refs": "^1.0.5",
-    "@solid-primitives/resize-observer": "^2.1.3",
-    "@solid-primitives/utils": "^6.3.2",
-    "clsx": "^2.1.1",
-    "solid-presence": "^0.1.8",
-    "solid-prevent-scroll": "^0.1.10",
-    "tailwind-merge": "^3.5.0"
+    "@danielfrg/ui-core": "workspace:*",
+    "class-variance-authority": "^0.7.1"
   }
 }

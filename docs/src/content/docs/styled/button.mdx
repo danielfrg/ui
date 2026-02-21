@@ -1,0 +1,61 @@
+---
+title: Button
+description: Styled button component with multiple variants and sizes.
+---
+
+import ShadcnDemo from "../../../components/shadcn-demo.astro"
+import { ButtonShowcase } from "../../../demos/styled/button"
+
+Styled button with 6 variants and 8 sizes. Wraps the headless [`@danielfrg/ui-core`](/components/button) button primitive with a shadcn-inspired Tailwind theme via `class-variance-authority`.
+
+## Installation
+
+```bash
+npm install @danielfrg/ui
+```
+
+Add the theme to your CSS:
+
+```css
+@import "tailwindcss";
+@import "@danielfrg/ui/theme.css";
+```
+
+## Usage
+
+```tsx
+import { Button } from "@danielfrg/ui/button"
+;<Button variant="outline" size="sm">
+  Click me
+</Button>
+```
+
+## Demo
+
+<ShadcnDemo>
+  <ButtonShowcase client:load />
+</ShadcnDemo>
+
+## Variants
+
+| Variant       | Description                          |
+| ------------- | ------------------------------------ |
+| `default`     | Primary action, solid background     |
+| `secondary`   | Less prominent action                |
+| `outline`     | Bordered with transparent background |
+| `ghost`       | No background, hover reveals fill    |
+| `destructive` | Dangerous or destructive action      |
+| `link`        | Looks like a text link               |
+
+## Sizes
+
+| Size      | Description                 |
+| --------- | --------------------------- |
+| `default` | Standard size (h-9)         |
+| `xs`      | Extra small (h-6)           |
+| `sm`      | Small (h-8)                 |
+| `lg`      | Large (h-10)                |
+| `icon`    | Square icon button (size-9) |
+| `icon-xs` | Small icon button (size-6)  |
+| `icon-sm` | Small icon button (size-8)  |
+| `icon-lg` | Large icon button (size-10) |

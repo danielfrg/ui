@@ -1,0 +1,21 @@
+---
+// Wrapper component that loads the shadcn Tailwind theme for styled component demos.
+// Use this around styled component demos that need Tailwind utility classes.
+---
+
+<div class="shadcn-demo">
+  <slot />
+</div>
+
+<style is:global>
+  @import "../styles/shadcn-theme.css";
+</style>
+
+<style>
+  .shadcn-demo {
+    padding: 24px;
+    border-radius: 8px;
+    border: 1px solid var(--border, #e4e2e4);
+    background: var(--background, #fff);
+  }
+</style>

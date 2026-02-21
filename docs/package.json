@@ -13,6 +13,7 @@
     "@astrojs/mdx": "^4.0.4",
     "@astrojs/solid-js": "^5.0.1",
     "@danielfrg/ui": "workspace:*",
+    "@danielfrg/ui-core": "workspace:*",
     "@tailwindcss/postcss": "^4.2.0",
     "astro": "^5.6.1",
     "lucide-solid": "^0.575.0",

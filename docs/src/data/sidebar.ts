@@ -19,7 +19,11 @@ export const sidebar: SidebarSection[] = [
     ],
   },
   {
-    title: "Components",
+    title: "Styled Components",
+    items: [{ label: "Button", slug: "styled/button" }],
+  },
+  {
+    title: "Core Components",
     items: [
       { label: "Accordion", slug: "components/accordion" },
       { label: "Alert Dialog", slug: "components/alert-dialog" },

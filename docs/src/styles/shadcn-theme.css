@@ -1,0 +1,6 @@
+/* Docs theme: Tailwind + @danielfrg/ui shadcn design tokens */
+@import "tailwindcss";
+@import "@danielfrg/ui/theme.css";
+
+/* Scan the styled package source for Tailwind class usage */
+@source "../../../packages/ui/src";
