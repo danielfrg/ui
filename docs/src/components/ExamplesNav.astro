@@ -1,0 +1,76 @@
+---
+const currentPath = Astro.url.pathname
+
+const radixExamples = [
+  { name: "Dashboard", href: "/examples/dashboard" },
+  { name: "E-commerce", href: "/examples/ecommerce" },
+  { name: "Music", href: "/examples/music" },
+]
+
+function isActive(href: string, current: string) {
+  return current === href || current === href + '/'
+}
+---
+
+<nav class="examples-nav">
+  <div class="examples-nav-section">
+    <span class="examples-nav-label">Examples</span>
+    {radixExamples.map((example) => (
+      <a
+        href={example.href}
+        class:list={["examples-nav-link", { active: isActive(example.href, currentPath) }]}
+      >
+        {example.name}
+      </a>
+    ))}
+  </div>
+
+</nav>
+
+<style>
+  .examples-nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .examples-nav-section {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .examples-nav-label {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-weak, #888);
+    margin-right: 8px;
+  }
+
+  .examples-nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 28px;
+    padding: 0 12px;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text, #666);
+    text-decoration: none;
+    transition: color 0.15s, background-color 0.15s;
+  }
+
+  .examples-nav-link:hover {
+    color: var(--color-text-strong, #111);
+    text-decoration: none;
+  }
+
+  .examples-nav-link.active {
+    color: var(--color-text-strong, #111);
+    background-color: var(--color-bg-weak, #f5f5f5);
+  }
+
+</style>
